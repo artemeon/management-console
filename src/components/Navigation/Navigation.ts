@@ -1,7 +1,8 @@
 import { Component, Vue } from 'vue-property-decorator'
-
+import { namespace } from 'vuex-class'
 @Component
 class Navigation extends Vue {
+  // @(namespace('storageModule').Action) test!: any
   private items = []
   public title: string = ''
   public url: string = ''

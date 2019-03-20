@@ -11,11 +11,17 @@ const phpSettingsModule = {
     }
   },
   actions: {
-    async getPHPSettings ({ commit }) {
+    /**
+     * get System Informations : php Settings
+     * @param data :contains system url and token
+     */
+    async getPHPSettings ({ commit }, data: any) {
+      const url = data.url + '/api.php/installer/module'
       try {
         const res = await axios({
           method: 'get',
-          url: 'https://dev.artemeon.de/agp/api.php/installer/systeminfo'
+          url: url
+          // Authorisation:'bearer'+data.token
         })
         console.log(res)
         commit('GET_PHP_SETTINGS', res.data)

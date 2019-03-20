@@ -15,11 +15,17 @@ const installPackagesModule = {
     }
   },
   actions: {
-    async getAllPackages ({ commit, dispatch }) {
+    /**
+     *
+     * @param data contains system-url and token
+     */
+    async getAllPackages ({ commit, dispatch }, data: any) {
+      const url = data.url + '/api.php/installer/module'
       try {
         const res = await axios({
           method: 'get',
-          url: 'https://dev.artemeon.de/agp/api.php/installer/module'
+          url: url
+          // Authorisation :'bearer'+data.token
         })
 
         commit('GET_PACKAGES', res.data.modules)
@@ -29,77 +35,10 @@ const installPackagesModule = {
         commit('ERROR_PACKAGES', true)
       }
     },
-    // trying to find a solution for the installation getNext snd triggerNext
-    // sortedByRequire ({ dispatch, state }) {
-    //   const sortedByRequireLength = state.packages.sort((a, b) => {
-    //     // console.log(a.requires.length, b.requires.length)
-    //     return Object.keys(a.requires).length - Object.keys(b.requires).length
-    //   })
-    //   // first element to install is system : requires []
-    //   console.log('sortedByRequireLength 1 ', sortedByRequireLength)
-    //   // second element to Install : all Modules that require system and nothing else
-    //   const requireFirstElement = sortedByRequireLength.filter(el => {
-    //     const data = Object.keys(el.requires)
-    //     const index = data.findIndex(
-    //       el => el.toUpperCase() == sortedByRequireLength[0].title.toUpperCase()
-    //     )
-    //     return index !== -1 && Object.values(el.requires).length === 1
-    //   })
-    //   const requireByElement = sortedByRequireLength.filter(el => {
-    //     const data = Object.keys(el.requires)
-    //     const index = data.findIndex(
-    //       el => el.toUpperCase() == 'prozessverwaltung'.toUpperCase()
-    //     )
-    //     return index !== -1
-    //     // && Object.values(el.requires).length === 1
-    //   })
-    //   const returnElementByTitle = sortedByRequireLength.filter(el => {
-    //     console.log(el.title)
-    //     return el.title.toUpperCase() == 'confirmation'.toUpperCase()
-    //   })
-    //   console.log('requireFirstElement', requireByElement)
-    // },
-    /**
-     * Versuch 2
-     */
-    // getNextModule ({ dispatch, state }) {
-    //   const packages = state.packages
-    //   console.log(notAllInstalled(packages))
 
-    //   if (notAllInstalled(packages)) {
-    //     packages.map(module => {
-    //       if (isInstallable(module) === true) {
-    //         if (requireInstalled(module.requires, state.packages) === true) {
-    //           // dispatch('triggerNextModule', { module: module.title })
-    //         } else return
-    //       }
-    //     })
-    //     // dispatch('getNextModule')
-    //   }
-    // },
-    // async triggerNextModule ({ commit, state }, param: String) {
-    //   try {
-    //     const res = await axios({
-    //       method: 'post',
-    //       url:
-    //         'https://dev.artemeon.de/agp/installer.php?channel=api&step=triggerInstallerApi',
-    //       data: {
-    //         module: param.module
-    //       }
-    //     })
-
-    //     console.log(res)
-    //   } catch (e) {
-    //     console.log(e)
-    //     // commit('ERROR_PACKAGES', true)
-    //   }
-    // }
-    /**
-     * Versuch 3
-     */
     async getNextModule ({ dispatch, state }) {
       const packages = Object.values(state.packages)
-      // console.log('notAllInstalled', allInstalled(packages))
+
       if (allInstalled(packages) === false) {
         packages.forEach(async element => {
           // if (!element.isInstallable || !element.providesInstaller) {
