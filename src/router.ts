@@ -30,11 +30,11 @@ export default new Router({
       name: 'adminLogin',
       component: AdminLogin
     },
-    {
-      path: '/',
-      name: 'app',
-      component: App
-    },
+    // {
+    //   path: '/',
+    //   name: 'app',
+    //   component: App
+    // },
 
     {
       path: '/dbSettings',

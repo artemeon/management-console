@@ -10,11 +10,6 @@ class PhpSettings extends Vue {
 
   async mounted () {
     await this.getPHPSettings()
-    console.log(
-      'phpSettings in Component',
-      this.phpSettings,
-      typeof this.phpSettings
-    )
   }
   private get fileChecksFolder (): any {
     if (this.phpSettings && Object.keys(this.phpSettings.fileChecksFolder)) {

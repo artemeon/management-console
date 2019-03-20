@@ -19,11 +19,10 @@ const installPackagesModule = {
       try {
         const res = await axios({
           method: 'get',
-          url:
-            'https://dev.artemeon.de/agp/installer.php?channel=api&step=getModuleList'
+          url: 'https://dev.artemeon.de/agp/api.php/installer/module'
         })
 
-        commit('GET_PACKAGES', Object.values(res.data))
+        commit('GET_PACKAGES', res.data.modules)
         // dispatch('sortedByRequire')
       } catch (e) {
         console.log(e)

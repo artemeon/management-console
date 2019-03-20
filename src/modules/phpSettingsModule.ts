@@ -15,11 +15,7 @@ const phpSettingsModule = {
       try {
         const res = await axios({
           method: 'get',
-          // url: 'https://dev.artemeon.de/agp/installer.php',
-          url:
-            'https://dev.artemeon.de/agp/installer.php?channel=api&step=phpenv'
-          // params: { channel: 'api', step: 'phpenv' },
-          // withCredentials: true
+          url: 'https://dev.artemeon.de/agp/api.php/installer/systeminfo'
         })
         console.log(res)
         commit('GET_PHP_SETTINGS', res.data)
