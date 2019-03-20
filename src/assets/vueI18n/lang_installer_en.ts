@@ -54,7 +54,7 @@ const en = {
     '<br />The installation of the system is spilt up into serveral steps: <br />Check of permissions, DB-configuration, credentials to access the administration and module-installation<br />Dependant on the modules choosen, the number of steps can vary.<br /><br />The permissions on some files and the availability <br />of needed php-modules are being checked:<br />',
   installer_phpcheck_lang:
     'To load the installer using a different language, use one of the following links:<br /><br />',
-  installer_phpcheck_module: 'PHP-module ',
+  installer_phpcheck_module: 'PHP-extension ',
   installer_phpcheck_version: 'PHP-version ',
   installer_prev: '< Previous step',
   installer_samplecontent:

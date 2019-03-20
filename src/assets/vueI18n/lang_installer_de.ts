@@ -55,7 +55,7 @@ const de = {
     '<br />Die Installation des Systems erfolgt in mehreren Schritten: <br />Rechtepüfung, DB-Konfiguration, Zugangsdaten zur Administration sowie Modulinstallation.<br />Je nach Modulauswahl kann die Anzahl dieser Schritte abweichen.<br /><br />Es werden die Schreibrechte einzelner Dateien und Verzeichnisse sowie<br />die Verfügbarkeit benötigter PHP-Module überprüft:<br />',
   installer_phpcheck_lang:
     'Um den Installer in einer anderen Sprache zu laden, bitte einen der folgenden Links verwenden:<br /><br />',
-  installer_phpcheck_module: 'PHP-Modul ',
+  installer_phpcheck_module: 'PHP-Extension ',
   installer_phpcheck_version: 'PHP-Version ',
   installer_prev: '< Vorheriger Schritt',
   installer_samplecontent:

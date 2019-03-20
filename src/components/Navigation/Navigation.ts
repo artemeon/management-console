@@ -19,9 +19,21 @@ class Navigation extends Vue {
    * Saves Title, Url and Token of a single system in local Storage
    */
   public saveToLocalStorage () {
-    console.log('title', this.title, 'url', this.url, 'token', this.token)
-    this.jsonData = { title: this.title, url: this.url, token: this.token }
-    window.localStorage.setItem(this.title, JSON.stringify(this.jsonData))
+    const local = window.localStorage.getItem('mc_server_cfg')
+    console.log(local)
+    if (local) {
+      this.jsonData = JSON.parse(local)
+      this.jsonData.systems.push({
+        title: this.title,
+        url: this.url,
+        token: this.token
+      })
+    } else {
+      this.jsonData = {
+        systems: [{ title: this.title, url: this.url, token: this.token }]
+      }
+    }
+    window.localStorage.setItem('mc_server_cfg', JSON.stringify(this.jsonData))
     this.refresh()
     this.dialog = false
   }
@@ -29,39 +41,32 @@ class Navigation extends Vue {
    * Since not working with state, we need to refresh : Temporary
    */
   public refresh () {
-    var values = []
-    this.items = []
-    var keys = Object.keys(localStorage)
-    var i = keys.length
+    if (JSON.parse(window.localStorage.getItem('mc_server_cfg'))) {
+      var values = JSON.parse(window.localStorage.getItem('mc_server_cfg'))
+        .systems
+      this.items = []
 
-    while (i--) {
-      if (
-        localStorage.getItem(keys[i]) &&
-        localStorage.getItem(keys[i]) !== 'SILENT'
-      ) {
-        values.push(JSON.parse(localStorage.getItem(keys[i])))
-      }
-    }
-    values.map(value => {
-      this.items.push({
-        name: value.title,
-        id: value.title,
-        children: [
-          {
-            name: value.title + 'config',
-            id: 'config'
-          },
-          {
-            name: value.title + 'install',
-            id: 'install'
-          },
-          {
-            name: value.title + 'Logs',
-            id: 'logs'
-          }
-        ]
+      values.map(value => {
+        this.items.push({
+          name: value.title,
+          id: value.title,
+          children: [
+            {
+              name: value.title + 'config',
+              id: 'config'
+            },
+            {
+              name: value.title + 'install',
+              id: 'install'
+            },
+            {
+              name: value.title + 'Logs',
+              id: 'logs'
+            }
+          ]
+        })
       })
-    })
+    }
   }
   /**
    * Which Submenu has been selected : Computed
