@@ -14,7 +14,14 @@ class DbSettings extends Vue {
   private dbName: String = ''
   private dbPort: String = ''
   private found: boolean = true
-
+  public drivers = [
+    'MySQL',
+    'MariaDB',
+    'PostgreSQL',
+    'SQLite 3',
+    'Oracle (oci8)',
+    'MSSQL(sqlsrv)'
+  ]
   private async postDbsettings (): Promise<any> {
     this.postDbSettings({
       username: this.dbUser,

@@ -1,6 +1,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-@Component
+import PhpSettings from '../PhpSettings/PhpSettings.vue'
+import DbSettings from '../DbSettings/DbSettings.vue'
+@Component({
+  components: { PhpSettings, DbSettings }
+  })
 class Navigation extends Vue {
   // @(namespace('storageModule').Action) test!: any
   private items = []
@@ -20,23 +24,30 @@ class Navigation extends Vue {
    * Saves Title, Url and Token of a single system in local Storage
    */
   public saveToLocalStorage () {
-    const local = window.localStorage.getItem('mc_server_cfg')
-    console.log(local)
-    if (local) {
-      this.jsonData = JSON.parse(local)
-      this.jsonData.systems.push({
-        title: this.title,
-        url: this.url,
-        token: this.token
-      })
-    } else {
-      this.jsonData = {
-        systems: [{ title: this.title, url: this.url, token: this.token }]
+    if (this.title !== '' && this.url !== '' && this.token !== '') {
+      const local = window.localStorage.getItem('mc_server_cfg')
+      console.log(local)
+      if (local) {
+        this.jsonData = JSON.parse(local)
+        this.jsonData.systems.push({
+          title: this.title,
+          url: this.url,
+          token: this.token
+        })
+      } else {
+        this.jsonData = {
+          systems: [{ title: this.title, url: this.url, token: this.token }]
+        }
       }
+      window.localStorage.setItem(
+        'mc_server_cfg',
+        JSON.stringify(this.jsonData)
+      )
+      this.refresh()
+      this.dialog = false
+    } else {
+      this.dialog = false
     }
-    window.localStorage.setItem('mc_server_cfg', JSON.stringify(this.jsonData))
-    this.refresh()
-    this.dialog = false
   }
   /**
    * Since not working with state, we need to refresh : Temporary
@@ -53,16 +64,40 @@ class Navigation extends Vue {
           id: value.title,
           children: [
             {
-              name: value.title + 'config',
-              id: 'config'
+              name: value.title + 'System',
+              id: 'System',
+              vueInformations: {
+                system: value.title,
+                component: 'PhpSettings',
+                url: value.url
+              }
             },
             {
-              name: value.title + 'install',
-              id: 'install'
+              name: value.title + 'Database',
+              id: 'Database',
+              vueInformations: {
+                system: value.title,
+                component: 'DbSettings',
+                url: value.url
+              }
+            },
+            {
+              name: value.title + 'Install',
+              id: 'Install',
+              vueInformations: {
+                system: value.title,
+                component: 'Install',
+                url: value.url
+              }
             },
             {
               name: value.title + 'Logs',
-              id: 'logs'
+              id: 'Logs',
+              vueInformations: {
+                system: value.title,
+                component: 'Logs',
+                url: value.url
+              }
             }
           ]
         })
@@ -81,6 +116,7 @@ class Navigation extends Vue {
       item.children.find(el => el.name === id)
     )
     const found = item.children.find(el => el.name === id)
+    console.log(found)
     return found
     // return this.items.find(item => item.id === id)
   }

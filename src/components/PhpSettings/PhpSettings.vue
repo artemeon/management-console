@@ -1,6 +1,8 @@
 <template>
   <div id="phpSettingsContainer">
-    <h4 v-html="$t('message.  installer_phpcheck_intro')"></h4>
+    <div v-if="phpSettings==='error'">ERROR</div>
+    <div v-else>
+      <h4 v-html="$t('message.  installer_phpcheck_intro')"></h4>
     <p v-html="$t('message. installer_phpcheck_lang')"></p>
     <select v-model="$i18n.locale">
       <option
@@ -18,7 +20,7 @@
           <tr>
             <td>
               <p v-html="$t('message.installer_phpcheck_version')"></p>
-              <span class="label-success label-as-badge label">{{phpSettings.minPhpVersion}}</span>
+              <span class="label-success label-as-badge label">{{phpSettings.version.actual}}</span>
             </td>
           </tr>
           <tr v-for="(phpFile,index) in fileChecksFolder  " :key="index + '-file'">
@@ -53,6 +55,7 @@
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 </template>

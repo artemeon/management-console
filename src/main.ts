@@ -8,6 +8,7 @@ import i18n from './assets/vueI18n/i18n'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
+
 // import './assets/css/bootstrapOverride.scss'
 Vue.config.productionTip = false
 

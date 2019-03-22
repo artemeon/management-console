@@ -8,6 +8,9 @@ const phpSettingsModule = {
   mutations: {
     GET_PHP_SETTINGS (state: any, payload: any): void {
       state.phpSettings = payload
+    },
+    ERROR_PHP_SETTINGS (state: any): void {
+      state.phpSettings = 'error'
     }
   },
   actions: {
@@ -16,7 +19,7 @@ const phpSettingsModule = {
      * @param data :contains system url and token
      */
     async getPHPSettings ({ commit }, data: any) {
-      const url = data.url + '/api.php/installer/module'
+      const url = data.url + '/api.php/installer/systeminfo'
       try {
         const res = await axios({
           method: 'get',
@@ -26,6 +29,7 @@ const phpSettingsModule = {
         console.log(res)
         commit('GET_PHP_SETTINGS', res.data)
       } catch (e) {
+        commit('ERROR_PHP_SETTINGS')
         console.log(e)
       }
     }
