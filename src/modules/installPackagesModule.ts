@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import * as helfers from '../Globals/InstallerHelfers/InstallerHelfer'
 const installPackagesModule = {
   namespaced: true,
   state: {
@@ -41,14 +41,10 @@ const installPackagesModule = {
 
       if (allInstalled(packages) === false) {
         packages.forEach(async element => {
-          // if (!element.isInstallable || !element.providesInstaller) {
-          //   var index = Object.values(packages).indexOf(element)
-          //   if (index > -1) {
-          //     // packages.splice(index, 1)
-          //     console.log('test')
-          //   }
-          // } else
-          if (element.isInstallable && element.providesInstaller) {
+          if (
+            helfers.default.prototype.isInstallable(element) &&
+            element.providesInstaller
+          ) {
             return dispatch('triggerNextModule', element.title)
           }
         })
@@ -74,7 +70,11 @@ const installPackagesModule = {
 
         // console.log(modulesInstalledWithSampleContent)
         // samplecontent not all installed then install
-        if (!sampleContentInstalled(modulesInstalledWithSampleContent)) {
+        if (
+          !helfers.default.prototype.sampleContentInstalled(
+            modulesInstalledWithSampleContent
+          )
+        ) {
           // const filtered = modulesInstalledWithSampleContent.filter(
           //   el => el.samplecontent.isInstalled === false
           // )
@@ -147,21 +147,11 @@ function requireInstalled (requires, packages) {
     return allInstalled
   }
 }
-function isInstallable (module) {
-  if (module.versionInstalled) return false
-  else return true
-}
+
 function allInstalled (packages) {
   var found = true
   Object.values(packages).map(el => {
-    if (el.isInstallable === true) found = false
-  })
-  return found
-}
-function sampleContentInstalled (packages) {
-  var found = true
-  packages.map(el => {
-    if (el.samplecontent.isInstalled === true) found = false
+    if (helfers.default.prototype.isInstallable(el) === true) found = false
   })
   return found
 }

@@ -6,7 +6,8 @@ import DbSettings from '../DbSettings/DbSettings.vue'
   components: { PhpSettings, DbSettings }
   })
 class Navigation extends Vue {
-  // @(namespace('storageModule').Action) test!: any
+  @(namespace('storageModule').Action) setServer!: any
+  @(namespace('storageModule').Action) getServers!: any
   private items = []
   public title: string = ''
   public url: string = ''
@@ -24,30 +25,9 @@ class Navigation extends Vue {
    * Saves Title, Url and Token of a single system in local Storage
    */
   public saveToLocalStorage () {
-    if (this.title !== '' && this.url !== '' && this.token !== '') {
-      const local = window.localStorage.getItem('mc_server_cfg')
-      console.log(local)
-      if (local) {
-        this.jsonData = JSON.parse(local)
-        this.jsonData.systems.push({
-          title: this.title,
-          url: this.url,
-          token: this.token
-        })
-      } else {
-        this.jsonData = {
-          systems: [{ title: this.title, url: this.url, token: this.token }]
-        }
-      }
-      window.localStorage.setItem(
-        'mc_server_cfg',
-        JSON.stringify(this.jsonData)
-      )
-      this.refresh()
-      this.dialog = false
-    } else {
-      this.dialog = false
-    }
+    this.setServer({ title: this.title, url: this.url, token: this.token })
+    this.refresh()
+    this.dialog = false
   }
   /**
    * Since not working with state, we need to refresh : Temporary
