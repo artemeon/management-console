@@ -9,7 +9,7 @@ class InstallerHelfer {
    */
   public isInstallable (module): Boolean {
     if (module.versionInstalled) return false
-    else return true
+    return true
   }
   /**
    *
@@ -20,6 +20,22 @@ class InstallerHelfer {
     var found = true
     packages.map(el => {
       if (el.samplecontent.isInstalled === true) found = false
+    })
+    return found
+  }
+
+  public allInstalled (packages) {
+    var found = true
+    packages.map(el => {
+      if (el.versionInstalled === null && el.providesInstaller) found = false
+    })
+    return found
+  }
+
+  public allInstalledSamples (samples) {
+    var found = true
+    samples.map(el => {
+      if (el.isInstalled === false) found = false
     })
     return found
   }

@@ -34,6 +34,10 @@
                 v-else-if="selected.vueInformations.component==='DbSettings' "
                 :url="selected.vueInformations.url"
               />
+              <Installer
+                v-else-if="selected.vueInformations.component==='Install'"
+                :url="selected.vueInformations.url"
+              />
               <div v-else>coming soon</div>
             </v-card-text>
           </v-card>

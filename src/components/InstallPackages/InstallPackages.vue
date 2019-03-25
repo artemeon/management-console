@@ -1,14 +1,16 @@
 <template>
-  <div id="installPackagesContainer">
+  <div v-if="packagesError">ERROR COMING SOON</div>
+  <div id="installPackagesContainer" v-else>
     <div>
       <div class="alert alert-success">
         <h4 id="statusintro">{{ $t("message.installer_start_installation_hint")}}</h4>
         <!-- <p id="statusinfo" class="hidden"><i class="fa fa-spinner fa-spin"></i> {{ "installer_start_statusinfo_intro" }} <span id="statuscurmodule"></span></p> -->
-        <button
+        <!-- <button
           html_type="submit"
           @click="startInstaller"
           class="btn savechanges"
-        >{{ $t("message.installer_start_installation") }}</button>
+        >{{ $t("message.installer_start_installation") }}</button>-->
+        <v-btn color="info" @click="startInstaller">{{ $t("message.installer_start_installation") }}</v-btn>
       </div>
     </div>
     <table class="table table-striped" v-if="!wait">
@@ -29,10 +31,11 @@
           <i v-else class="far fa-hourglass"></i>
         </td>
         <td v-else>
-          <Icon type="md-checkmark"/>
+          <i class="fas fa-check"></i>
         </td>
-        <td v-if="!Array.isArray(data.samplecontent) ">
-          <i v-if=" data.samplecontent.isInstalled" class="fas fa-check"></i>
+
+        <td v-if="hasSampleContent(data)">
+          <i v-if=" hasSampleContent(data).isInstalled" class="fas fa-check"></i>
           <i v-else class="far fa-hourglass"></i>
         </td>
         <td v-else></td>

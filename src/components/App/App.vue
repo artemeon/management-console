@@ -1,7 +1,7 @@
 
 <template>
-  <v-app>
-    <div id="app">
+  <div id="app">
+    <v-app>
       <div id="bg"></div>
       <Navigation></Navigation>
       <!-- <Base/> -->
@@ -10,8 +10,8 @@
         <router-view></router-view>
       </div>
       <!-- <div id="appViews"></div> -->
-    </div>
-  </v-app>
+    </v-app>
+  </div>
 </template>
 <script lang="ts" src="./App.ts"></script>
 <style lang="scss" src="./App.scss"></style>

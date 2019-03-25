@@ -2,8 +2,9 @@ import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import PhpSettings from '../PhpSettings/PhpSettings.vue'
 import DbSettings from '../DbSettings/DbSettings.vue'
+import Installer from '../InstallPackages/InstallPackages.vue'
 @Component({
-  components: { PhpSettings, DbSettings }
+  components: { PhpSettings, DbSettings, Installer }
   })
 class Navigation extends Vue {
   @(namespace('storageModule').Action) setServer!: any
