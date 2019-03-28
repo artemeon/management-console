@@ -2,60 +2,36 @@
   <div id="phpSettingsContainer">
     <div v-if="phpSettings==='error'">ERROR</div>
     <div v-else>
-      <!-- <h4 v-html="$t('message.  installer_phpcheck_intro')"></h4> -->
-      <!-- <p v-html="$t('message. installer_phpcheck_lang')"></p> -->
-      <!-- <select v-model="$i18n.locale">
-      <option
-        v-for="(lang, i) in langs"
-        :key="`Lang${i}`"
-        :value="lang"
-        selected="lang===de"
-      >{{ lang }}</Option>
-      </select>-->
-      <!-- <p v-html="$t('message.installer_phpcheck_intro2')"></p> -->
-      <!-- <div>{{$t('message.installer_phpcheck_intro2 ')}}</div> -->
-      <div class="tbl-content">
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <p v-html="$t('message.installer_phpcheck_version')"></p>
-                <span class="label-success label-as-badge label">{{phpSettings.version.actual}}</span>
-              </td>
-            </tr>
-            <tr v-for="(phpFile,index) in fileChecksFolder  " :key="index + '-file'">
-              <td>
-                <p class="content">{{$t('message.installer_phpcheck_folder ')}} {{phpFile.key}}</p>
-                <span
-                  v-if="phpFile.value===true"
-                  v-html="$t('message.installer_given')"
-                  class="label-success label-as-badge label"
-                ></span>
-                <span
-                  v-else
-                  v-html="$t('message.installer_missing')"
-                  class="label-danger label-as-badge label"
-                ></span>
-              </td>
-            </tr>
-            <tr v-for="(phpModule,index) in fileChecksModules " :key="index + '-module'">
-              <td>
-                <p class="content">{{$t('message.installer_phpcheck_module ')}}{{phpModule.key}}</p>
-                <span
-                  v-if="phpModule.value===true"
-                  v-html="$t('message.installer_loaded')"
-                  class="label-success label-as-badge label"
-                ></span>
-                <span
-                  v-else
-                  v-html="$t('message.installer_nloaded')"
-                  class="label-danger label-as-badge label"
-                ></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <p>{{$t('message.installer_phpcheck_version')}} : {{phpSettings.version.actual}}</p>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{$t('message.installer_phpcheck_folder ')}}</th>
+            <th>{{$t('message.installer_phpcheck_module ')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(phpFile,index) in fileChecksFolder  " :key="index + '-file'">
+            <td class="content">{{phpFile.key}}</td>
+
+            <td>
+              <i v-if="phpFile.value===true" class="fas fa-check text-success"></i>
+              <i v-else class="fas fa-times text-danger"></i>
+            </td>
+            <td></td>
+          </tr>
+          <tr v-for="(phpModule,index) in fileChecksModules " :key="index + '-module'">
+            <td class="content">{{phpModule.key}}</td>
+            <td></td>
+            <td>
+              <i v-if="phpModule.value===true" class="fas fa-check text-success"></i>
+              <i v-else class="fas fa-times text-danger"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>

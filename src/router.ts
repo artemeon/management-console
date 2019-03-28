@@ -7,7 +7,7 @@ import InstallPackages from './components/InstallPackages/InstallPackages.vue'
 import PhpSettings from './components/PhpSettings/PhpSettings.vue'
 import UpdatePackages from './components/UpdatePackages/UpdatePackages.vue'
 import Finish from './components/Finish/Finish.vue'
-import Management from './components/Management/Management.vue'
+
 import Installation from './components/Installation/Installation.vue'
 Vue.use(Router)
 
@@ -19,11 +19,6 @@ export default new Router({
       path: '/Installation',
       name: 'Installation',
       component: Installation
-    },
-    {
-      path: '/Management',
-      name: 'Management',
-      component: Management
     },
     {
       path: '/adminLogin',

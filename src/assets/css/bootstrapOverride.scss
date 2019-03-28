@@ -1,8 +1,13 @@
 /* KAJONA variable redefinitions */
-
+@import "node_modules/bootstrap/scss/bootstrap";
 //$kajona-brand-color:        #6cb121;
 $kajona-brand-color: #876a2e;
-
+$white: #fff;
+$black: #000;
+$gray-darker: #bfbfbf;
+$gray-lighter: #f6f6f6;
+$gray-light: #eeeeee;
+$kajona-gray: #e5e5e5;
 $font-size-base: 13px;
 $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial,
   sans-serif;
@@ -12,7 +17,7 @@ $link-color: $black;
 $input-bg: $gray-lighter;
 $input-border-focus: $kajona-brand-color;
 $btn-primary-bg: $gray-darker;
-$input-mandatory-glow: $brand-warning+20;
+// $input-mandatory-glow: $brand-warning + 20;
 
 $label-color: $text-color;
 $brand-primary: $kajona-brand-color;
@@ -21,39 +26,31 @@ $dropdown-link-active-bg: $gray-darker;
 $dropdown-link-hover-bg: $dropdown-link-active-bg;
 $dropdown-link-hover-color: $white;
 
-$gray-darker: #bfbfbf;
-$gray-lighter: #f6f6f6;
-$gray-light: #eeeeee;
-$kajona-gray: #e5e5e5;
-
 $popover-border-color: $text-color;
 
 $border-radius-base: 0px;
 $border-radius-small: 0px;
 $border-radius-large: 6px;
 
-$table-bg: $body-bg;
+// $table-bg: $body-bg;
 
-$white: #fff;
-$black: #000;
+// $kajona-login-header-bg: "../img/pusteblume.png";
+// $kajona-navi-active-bg: "../img/pusteblume.png";
+// $kajona-navi-action-bg: "../img/navbar-inner-background.png";
+// $kajona-topbar-bg: "../img/navbar-inner-background.png";
+// $kajona-search-bg: "../img/pusteblume-submenu.png";
+// $kajona-breadcrumb-bg: "../img/pusteblume.png";
 
-$kajona-login-header-bg: "../img/pusteblume.png";
-$kajona-navi-active-bg: "../img/pusteblume.png";
-$kajona-navi-action-bg: "../img/navbar-inner-background.png";
-$kajona-topbar-bg: "../img/navbar-inner-background.png";
-$kajona-search-bg: "../img/pusteblume-submenu.png";
-$kajona-breadcrumb-bg: "../img/pusteblume.png";
-
-$kajona-top-bar-logo-small: "../img/logo_small.png";
-$kajona-top-bar-logo-large: "../img/logo_large.png";
+// $kajona-top-bar-logo-small: "../img/logo_small.png";
+// $kajona-top-bar-logo-large: "../img/logo_large.png";
 
 //glyphicons
-$icon-font-path: "../fonts/glyphicons/";
+// $icon-font-path: "../fonts/glyphicons/";
 
 /* END KAJONA redefinitions */
 
 .smaller {
-  font-size: floor((85% * $font-size-small / $font-size-base));
+  // font-size: floor((85% * $font-size-sm/ $font-size-base));
 }
 
 /* Reintroduce the multilevel dropdown */
@@ -80,7 +77,7 @@ $icon-font-path: "../fonts/glyphicons/";
   border-color: transparent;
   border-style: solid;
   border-width: 5px 0 5px 5px;
-  border-left-color: $dropdown-border;
+  border-left-color: $dropdown-border-color;
   margin-top: 5px;
   margin-right: -10px;
 }
@@ -166,7 +163,7 @@ body {
 
 footer {
   text-align: center;
-  border-top: 1px solid $hr-border;
+  border-top: 1px solid $nav-divider-color;
   margin: 10px 0;
 }
 
@@ -196,7 +193,7 @@ footer {
     overflow: auto;
   }
 
-  @media (max-width: $screen-sm-max) {
+  @media (max-width: $container-max-widths(sm)) {
     .affix {
       display: none;
     }
@@ -300,7 +297,7 @@ footer {
   margin: 15px 0 0 0;
   white-space: nowrap;
 
-  @media (max-width: $screen-sm-max) {
+  @media (max-width: $container-max-widths(sm)) {
     left: -10px;
   }
 
@@ -334,7 +331,7 @@ footer {
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
       border-bottom: 7px solid #ccc;
-      border-bottom-color: $dropdown-border;
+      border-bottom-color: $dropdown-border-color;
       position: absolute;
       top: -7px;
       left: 3px;
@@ -377,19 +374,19 @@ footer {
 
   #userNotificationsCount {
     display: none;
-    font-family: $font-family-base;
+    // font-family: $font-family-base;
     font-weight: bold;
   }
 
   #icon-user {
-    font-size: $font-size-base+6;
+    font-size: $font-size-base + 6;
     color: lighten($text-color, 10%);
     padding: 0 5px 0 0;
   }
 }
 
 .generalContextMenu {
-  border: 1px solid $dropdown-border !important;
+  border: 1px solid $dropdown-border-color !important;
   background: none $white !important;
   padding: 5px 0 !important;
 
@@ -453,7 +450,7 @@ footer {
 
 .actions .generalContextMenu,
 .contentToolbar .generalContextMenu {
-  .dropdown-menu-right;
+  // @include dropdown-menu-right;
 }
 
 .ui-autocomplete {
@@ -462,8 +459,8 @@ footer {
   overflow-x: hidden;
   position: fixed;
   background-color: $white;
-  border: 1px solid $dropdown-border !important;
-  .box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+  border: 1px solid $dropdown-border-color !important;
+  @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
 
   li,
   li.ui-menu-item {
@@ -474,7 +471,7 @@ footer {
       font-size: $font-size-base - 1;
       border-radius: 0;
       color: $link-color;
-      font-family: $font-family-base;
+      // font-family: $font-family-base;
       white-space: nowrap;
 
       &:hover {
@@ -510,7 +507,7 @@ footer {
   .ui-autocomplete-category h3 {
     padding-left: 5px;
     clear: both;
-    font-family: $font-family-base;
+    // font-family: $font-family-base;
     border-radius: 0;
   }
 }
@@ -519,7 +516,7 @@ footer {
   border: 2px solid red;
   &:before {
     font-size: $font-size-base + 10;
-    content: $fa-var-spinner;
+    // content: $fa-var-spinner;
     color: $kajona-brand-color;
     font-family: fontawesome;
     animation: fa-spin 2s infinite linear;
@@ -568,7 +565,7 @@ footer {
   margin: 0;
   .navbar-topbar {
     background: $kajona-gray;
-    background-image: url($kajona-top-bar-logo-small), url($kajona-topbar-bg);
+    // background-image: url($kajona-top-bar-logo-small), url($kajona-topbar-bg);
 
     background-position: right 15px center, 300px 0;
     background-repeat: no-repeat, no-repeat;
@@ -579,7 +576,7 @@ footer {
       (-webkit-min-device-pixel-ratio: 1.5),
       (min-device-pixel-ratio: 1.5),
       (min-resolution: 1.5dppx) {
-      background-image: url($kajona-top-bar-logo-large), url($kajona-topbar-bg);
+      // background-image: url($kajona-top-bar-logo-large), url($kajona-topbar-bg);
     }
 
     //background: url($kajona-topbar-bg) 300px 0 no-repeat $kajona-gray;
@@ -589,7 +586,7 @@ footer {
     filter: none;
     border: 0;
 
-    //border-bottom: 1px solid $kajona-brand-color;
+    border-bottom: 1px solid $kajona-brand-color;
 
     .sidebar-menu {
       display: inline-block;
@@ -601,7 +598,7 @@ footer {
       button {
         border: none;
         background: none;
-        font-size: $font-size-base+10;
+        font-size: $font-size-base + 10;
       }
     }
 
@@ -629,7 +626,7 @@ footer {
         }
 
         i {
-          font-size: $font-size-base+4;
+          font-size: $font-size-base + 4;
           color: lighten($text-color, 25%);
         }
       }
@@ -654,7 +651,7 @@ footer {
   min-width: 160px;
   padding: 4px 0;
   text-align: left;
-  z-index: $zindex-navbar-fixed+1;
+  z-index: $zindex-fixed + 1;
 
   a {
     clear: both;
@@ -666,7 +663,7 @@ footer {
   }
 
   img {
-    .pull-left;
+    // @include pull-left;
   }
 
   i {
@@ -679,7 +676,7 @@ footer {
   }
 
   .detailedResults {
-    border-top: 1px solid $gray-dark;
+    border-top: 1px solid $gray-800;
     margin-top: 10px;
     padding-bottom: 0;
   }
@@ -690,7 +687,7 @@ footer {
   width: percentage((10 / $grid-columns));
   z-index: 300;
 
-  @media (max-width: $screen-md-max) {
+  @media (max-width: $container-max-widths(md)) {
     width: 100%;
   }
 
@@ -701,7 +698,7 @@ footer {
   .breadcrumb {
     background: url($kajona-breadcrumb-bg) right -45px no-repeat $gray-darker;
     border: 0;
-    .box-shadow(none);
+    // @include box-shadow(none);
     margin: 0;
     padding: 6px 14px 5px 14px;
     white-space: nowrap;
@@ -712,10 +709,10 @@ footer {
       font-size: $font-size-base;
       text-transform: uppercase;
       vertical-align: top;
-      .text-overflow();
+      // @include text-overflow();
       max-width: 250px;
 
-      .transition(max-width ease-out 0.5s);
+      // @include transition(max-width ease-out 0.5s);
 
       &:hover {
         max-width: 100% !important;
@@ -728,7 +725,7 @@ footer {
     }
 
     li.pathentry:before {
-      content: $fa-var-angle-right;
+      // content: $fa-var-angle-right;
       font-family: fontawesome;
       color: $white;
       padding: 0 2px;
@@ -741,7 +738,7 @@ footer {
       }
 
       i {
-        font-size: $font-size-base+4;
+        font-size: $font-size-base + 4;
       }
     }
 
@@ -754,7 +751,7 @@ footer {
 
 #quickhelp {
   color: $white;
-  font-size: $font-size-base+3;
+  font-size: $font-size-base + 3;
   //margin-top: -4px;
   display: none;
   float: right;
@@ -779,7 +776,7 @@ footer {
     left: 4px;
     top: 2px;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    color: $gray;
+    // color: $gray;
   }
 }
 
@@ -789,7 +786,7 @@ footer {
 }
 
 .kj-icon {
-  font-size: $font-size-base+3;
+  font-size: $font-size-base + 3;
 
   .kj-text-icon {
     font-family: "open sans", Monospace;
@@ -805,9 +802,9 @@ footer {
   .open {
     .dropdown-menu {
       position: absolute !important;
-      border: 1px solid $dropdown-border !important;
+      border: 1px solid $dropdown-border-color !important;
       background: $white !important;
-      .box-shadow(0 6px 12px rgba(0, 0, 0, 0.175)) !important;
+      @include box-shadow(0 6px 12px rgba(0, 0, 0, 0.175));
       margin-top: 2px;
 
       li {
@@ -832,7 +829,7 @@ footer {
   }
 
   .nav-tabs .error-text {
-    color: $alert-danger-text;
+    color: $danger;
   }
 
   .alert {
@@ -843,7 +840,7 @@ footer {
   }
 
   .btn {
-    color: $gray-dark;
+    color: $gray-800;
   }
 
   .btn-primary {
@@ -865,13 +862,13 @@ footer {
 
     &.buttonbar {
       label.btn:before {
-        content: $fa-var-square-o;
+        // content: $fa-var-square-o;
         font-family: fontawesome;
         padding: 0 2px;
       }
 
       label.btn.active:before {
-        content: $fa-var-check-square-o;
+        // content: $fa-var-check-square-o;
         padding-right: 1px;
       }
     }
@@ -912,8 +909,8 @@ footer {
         width: 100%;
 
         .metainfo {
-          .transition(opacity linear 0.2s);
-          .opacity(0);
+          @include transition(opacity linear 0.2s);
+          @include invisible(0);
           background-color: $white;
           padding: 5px;
           font-size: $font-size-base - 4;
@@ -921,18 +918,18 @@ footer {
       }
 
       .actions {
-        .opacity(0);
-        .transition(opacity linear 0.2s);
+        @include invisible(0);
+        @include transition(opacity linear 0.2s);
         padding-top: 3px;
       }
 
       &:hover {
         .contentWrapper .metainfo {
-          .opacity(90);
+          @include invisible(90);
         }
 
         .actions {
-          .opacity(100);
+          @include invisible(100);
         }
       }
     }
@@ -960,7 +957,7 @@ footer {
       vertical-align: top;
       padding: 7px 0 0 0;
 
-      @media (max-width: $screen-sm-min) {
+      @media (max-width: $grid-breakpoints(sm)) {
         padding: 7px 15px 0 15px;
       }
     }
@@ -969,7 +966,7 @@ footer {
   .form-group {
     margin-bottom: 10px;
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-breakpoints(sm)) {
       .input-large {
         width: 58.33333333%;
       }
@@ -1015,7 +1012,7 @@ footer {
         left: 0;
         &:before {
           font-family: fontawesome;
-          content: $fa-var-check;
+          // content: $fa-var-check;
           color: $kajona-brand-color;
         }
       }
@@ -1025,7 +1022,7 @@ footer {
     .cancelbtn {
       .statusicon {
         &:before {
-          content: $fa-var-times;
+          // content: $fa-var-times;
         }
       }
     }
@@ -1033,7 +1030,7 @@ footer {
     .processing {
       .statusicon {
         &:before {
-          content: $fa-var-spinner;
+          // content: $fa-var-spinner;
           animation: fa-spin 2s infinite linear;
         }
       }
@@ -1047,7 +1044,7 @@ footer {
     }
 
     ul.tag-editor {
-      min-height: $input-height-base;
+      min-height: $input-height;
 
       li {
         margin-top: 2px;
@@ -1062,12 +1059,14 @@ footer {
         );
         border-color: $kajona-brand-color;
         outline: 0;
-        .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px ${color-rgba}");
+        @include box-shadow(
+          #{"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px ${color-rgba}"}
+        );
       }
     }
 
     .inputContainer {
-      min-height: $input-height-base;
+      min-height: $input-height;
       background-color: $input-bg;
       border: 1px solid $gray-darker;
 
@@ -1175,7 +1174,7 @@ footer {
 
     ul {
       border-radius: 0;
-      .box-shadow(none);
+      @include box-shadow(none);
       display: inline-block;
       margin-bottom: 0;
       margin-left: 0;
@@ -1211,13 +1210,13 @@ footer {
   }
 
   .batchActionsWrapper {
-    .opacity(0);
-    .transition(all linear 0.2s);
+    @include invisible(0);
+    @include transition(all linear 0.2s);
 
     &.visible {
       display: block;
-      .opacity(100);
-      .transition(all linear 0.2s);
+      @include invisible(100);
+      @include transition(all linear 0.2s);
     }
   }
 
@@ -1258,10 +1257,10 @@ footer {
         padding: 5px 5px 5px 7px;
 
         span {
-          .opacity(50);
+          @include invisible(50);
 
           &:hover {
-            .opacity(100);
+            @include invisible(100);
           }
         }
       }
@@ -1279,7 +1278,7 @@ footer {
   fieldset {
     margin-top: 5px;
     legend {
-      font-size: $font-size-base+2;
+      font-size: $font-size-base + 2;
     }
 
     &.blocks fieldset.block {
@@ -1301,16 +1300,16 @@ footer {
   }
 
   .contentFolder {
-    .transition(opacity 0.25s ease-in);
+    @include transition(opacity 0.25s ease-in);
 
     &.folderHidden {
-      .opacity(0);
+      @include invisible(0);
       height: 0;
       overflow: hidden;
     }
 
     &.folderVisible {
-      .opacity(100);
+      @include invisible(100);
       height: auto;
     }
   }
@@ -1335,7 +1334,7 @@ footer {
       rgba(0, 0, 0, 0.05) 16px
     );
     min-height: 100px;
-    outline: 3px dotted $gray;
+    outline: 3px dotted $gray-600;
 
     &.table {
       display: table-row-group;
@@ -1354,7 +1353,7 @@ footer {
   /* upload styling */
   .fileupload-wrapper {
     .active-dropzone {
-      outline: 3px dotted $gray;
+      outline: 3px dotted $gray-600;
     }
 
     .hover {
@@ -1368,7 +1367,7 @@ footer {
 .form-control {
   border: 1px solid $gray-darker;
 
-  .box-shadow(none);
+  @include box-shadow(none);
   padding: 4px;
 
   &[disabled],
@@ -1380,8 +1379,8 @@ footer {
 
 .mandatoryFormElement,
 .form-control.mandatoryFormElement {
-  .box-shadow(0 0 6px $input-mandatory-glow);
-  .opacity(
+  // @include box-shadow(0 0 6px $input-mandatory-glow);
+  @include invisible(
     100
   ); //mandatory form elements being disabled need a full opacity anyways
 }
@@ -1528,7 +1527,7 @@ table.form-control {
     td.actions {
       text-align: right;
 
-      @media (min-width: $screen-md-min) {
+      @media (min-width: $grid-breakpoints(md)) {
         & {
           white-space: nowrap;
         }
@@ -1577,7 +1576,7 @@ table.form-control {
     > tbody:nth-child(odd) {
       border-top: 1px solid $table-border-color;
       > tr {
-        background-color: $table-bg-accent;
+        background-color: $table-accent-bg;
       }
     }
 
@@ -1590,14 +1589,14 @@ table.form-control {
 
     > tbody:hover {
       > tr {
-        background-color: $table-bg-hover;
+        background-color: $table-hover-bg;
       }
     }
   }
 
   &.table-striped {
     tr:hover {
-      background-color: $table-bg-hover;
+      background-color: $table-hover-bg;
     }
   }
 
@@ -1620,7 +1619,7 @@ table.form-control {
 
   &:before {
     font-size: $font-size-base + 10;
-    content: $fa-var-spinner;
+    // content: $fa-var-spinner;
     color: $kajona-brand-color;
     display: block;
     font-family: fontawesome;
@@ -1751,7 +1750,7 @@ table.form-control {
 }
 
 .vakata-context {
-  border: 1px solid $dropdown-border !important;
+  border: 1px solid $dropdown-border-color !important;
   background: none $white !important;
   padding: 2px 0 !important;
 
@@ -1904,14 +1903,14 @@ body.login {
     &:after {
       animation: fa-spin 2s infinite linear;
       font-size: $font-size-base + 10;
-      content: $fa-var-spinner;
+      // content: $fa-var-spinner;
       color: $kajona-brand-color;
     }
 
     &:before {
       padding: 8px 5px;
       font-size: $font-size-base - 2;
-      content: $fa-var-check;
+      // content: $fa-var-check;
       color: grey;
     }
   }
@@ -1933,13 +1932,13 @@ body.login {
     &:before {
       font-size: $font-size-base;
       padding: 8px 6px;
-      content: $fa-var-exclamation-circle;
+      // content: $fa-var-exclamation-circle;
     }
     &:after {
       opacity: 0;
     }
 
-    $keyframes shake {
+    @keyframes shake {
       from,
       to {
         transform: translate3d(0, 0, 0);

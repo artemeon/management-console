@@ -198,7 +198,46 @@ const installPackagesModule = {
       return dispatch('getAllPackages', data)
     }
   },
-  getters: {}
+  getters: {
+    installed: state => {
+      if (state.packages) {
+        return state.packages.filter(
+          module =>
+            (module.versionInstalled === null &&
+              module.providesInstaller === false) ||
+            module.versionInstalled !== null
+        )
+      }
+    },
+    notInstalled: state => {
+      if (state.packages) {
+        return state.packages.filter(
+          module =>
+            module.versionInstalled === null &&
+            module.providesInstaller === true
+        )
+      }
+    },
+    withSampleContent: state => {
+      if (state.packages && state.samples) {
+        return state.packages.filter(module => {
+          return (
+            state.samples.findIndex(sample => sample.title === module.title) !==
+            -1
+          )
+        })
+      }
+    },
+    hasUpdate: state => {
+      if (state.packages) {
+        return state.packages.filter(
+          module =>
+            module.versionInstalled &&
+            module.versionInstalled !== module.versionAvailable
+        )
+      }
+    }
+  }
 }
 
 // recursive way to install sample content

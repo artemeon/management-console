@@ -1,55 +1,91 @@
 <template>
   <div>
-    <h5>DbSettings</h5>
-    <!-- <div v-html="$t('message.installer_dbdriver_na') +'  ' +dbDriver" v-if="checkModule===false"></div>
-    <label for="dbServer">DB Server</label>
-    <input v-model="dbServer" clearable id="dbServer">
-    <label for="dbUser">DB User</label>
-    <input v-model="dbUser" clearable id="dbUser">
-    <label for="dbPassword">DB Password</label>
-    <input v-model="dbPassword" type="password" clearable id="dbPassword">
-    <label for="dbName">DB Name</label>
-    <input v-model="dbName" clearable id="dbName">
-    <label for="dbDriver">DB Driver</label>
-    <select v-model="dbDriver" placeholder="Driver" @on-change="switchDriver">
-      <option value="mysqli">MySQL</option>
-      <option value="mysqli">MariaDB</option>
-      <option value="postgres">PostgreSQL</option>
-      <option value="sqlite3">SQLite 3</option>
-      <option value="oci8">Oracle (oci8)</option>
-      <option value="sqlsrv">MSSQL(sqlsrv)</option>
-    </select>
-    <button
-      html_type="submit"
-      class="btn savechanges"
-      @click="postDbsettings"
-    >{{$t('message.installer_config_write')}}</button>-->
-    <!-- ************************************** -->
-    <form>
-      <v-text-field
-        v-model="dbServer"
-        v-validate="'required'"
-        label="dbServer"
-        data-vv-name="dbServer"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="dbUser"
-        v-validate="'required'"
-        label="dbUser"
-        data-vv-name="dbUser"
-        required
-      ></v-text-field>
-      <v-text-field
-        v-model="dbPassword"
-        :type="password"
-        label="password"
-        data-vv-name="password"
-        required
-      ></v-text-field>
-      <v-text-field v-model="dbName" label="name" data-vv-name="name" required></v-text-field>
-      <v-select :items="drivers" label="Driver" outline></v-select>
-      <v-btn @click="submit">In config.php speichern</v-btn>
+    <form class="form-horizontal col-sm-10">
+      <!-- dbServer -->
+      <div class="form-group">
+        <label
+          for="hostname"
+          class="col-sm-5 control-label"
+        >{{$t('message.installer_config_dbhostname')}}</label>
+        <div class="col-sm-6">
+          <input type="text" id="hostname" name="hostname" class="form-control" v-model="dbServer">
+        </div>
+      </div>
+      <!-- dbUser -->
+      <div class="form-group">
+        <label
+          for="username"
+          class="col-sm-5 control-label"
+        >{{$t('message.installer_config_dbusername')}}</label>
+        <div class="col-sm-6">
+          <input type="text" id="username" name="username" class="form-control" v-model="dbUser">
+        </div>
+      </div>
+      <!-- dbPsw -->
+      <div class="form-group">
+        <label
+          for="password"
+          class="col-sm-5 control-label"
+        >{{$t('message.installer_config_dbpassword')}}</label>
+        <div class="col-sm-6">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            v-model="dbPassword"
+          >
+        </div>
+      </div>
+      <!-- dbName -->
+      <div class="form-group">
+        <label for="dbname" class="col-sm-5 control-label">{{$t('message.installer_config_dbname')}}</label>
+        <div class="col-sm-6">
+          <input type="text" id="dbname" name="dbname" class="form-control" v-model="dbName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label
+          for="driver"
+          class="col-sm-5 control-label"
+        >{{$t('message.installer_config_dbdriver')}}</label>
+        <div class="col-sm-6">
+          <select
+            name="driver"
+            id="driver"
+            class="form-control"
+            v-model="dbDriver"
+            @change="switchDriver()"
+          >
+            <option value="mysqli" selected="selected">MySQL</option>
+            <option value="mysqli">MariaDB</option>
+            <option value="pgsql">PostgreSQL</option>
+            <option value="sqlite3">SQLite 3</option>
+            <option value="oci8">Oracle (oci8)</option>
+            <option value="sqlsrv">MSSQL(sqlsrv)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="port" class="col-sm-5">{{$t('message.installer_config_dbport')}}</label>
+        <div class="col-sm-6">
+          <input type="text" id="port" name="port" class="form-control" v-model="dbPort">
+        </div>
+        <div class="col-sm-6">
+          <span class="alert-info">{{$t('message.installer_config_dbportinfo')}}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5"></label>
+        <div class="col-sm-6">
+          <button
+            type="submit"
+            class="btn savechanges"
+            @click="postDbsettings"
+          >{{$t('message.installer_config_write')}}</button>
+        </div>
+      </div>
     </form>
   </div>
 </template>

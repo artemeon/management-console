@@ -2,13 +2,10 @@
 <template>
   <div id="app">
     <v-app>
-      <div id="bg"></div>
       <Navigation></Navigation>
-      <!-- <Base/> -->
-      <!-- <div class="col-md-8 container-fluid"> -->
-      <div>
-        <router-view></router-view>
-      </div>
+
+      <router-view></router-view>
+
       <!-- <div id="appViews"></div> -->
     </v-app>
   </div>
