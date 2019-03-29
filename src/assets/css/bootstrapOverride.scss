@@ -8,7 +8,7 @@ $gray-darker: #bfbfbf;
 $gray-lighter: #f6f6f6;
 $gray-light: #eeeeee;
 $kajona-gray: #e5e5e5;
-$font-size-base: 13px;
+$font-size-base: 0.8rem;
 $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial,
   sans-serif;
 $text-color: #626262;
@@ -32,17 +32,17 @@ $border-radius-base: 0px;
 $border-radius-small: 0px;
 $border-radius-large: 6px;
 
-// $table-bg: $body-bg;
+$table-bg: $body-bg;
 
-// $kajona-login-header-bg: "../img/pusteblume.png";
-// $kajona-navi-active-bg: "../img/pusteblume.png";
-// $kajona-navi-action-bg: "../img/navbar-inner-background.png";
-// $kajona-topbar-bg: "../img/navbar-inner-background.png";
-// $kajona-search-bg: "../img/pusteblume-submenu.png";
-// $kajona-breadcrumb-bg: "../img/pusteblume.png";
+$kajona-login-header-bg: import("./img/pusteblume.png");
+$kajona-navi-active-bg: import("./img/pusteblume.png");
+$kajona-navi-action-bg: import("./img/navbar-inner-background.png");
+$kajona-topbar-bg: import("./img/navbar-inner-background.png");
+$kajona-search-bg: import("./img/pusteblume-submenu.png");
+$kajona-breadcrumb-bg: import("./img/pusteblume.png");
 
-// $kajona-top-bar-logo-small: "../img/logo_small.png";
-// $kajona-top-bar-logo-large: "../img/logo_large.png";
+$kajona-top-bar-logo-small: import("./img/logo_small.png");
+$kajona-top-bar-logo-large: import("./img/logo_large.png");
 
 //glyphicons
 // $icon-font-path: "../fonts/glyphicons/";
@@ -50,7 +50,7 @@ $border-radius-large: 6px;
 /* END KAJONA redefinitions */
 
 .smaller {
-  // font-size: floor((85% * $font-size-sm/ $font-size-base));
+  font-size: floor((85% * $font-size-sm/ $font-size-base));
 }
 
 /* Reintroduce the multilevel dropdown */

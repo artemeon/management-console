@@ -7,7 +7,7 @@ import i18n from './assets/vueI18n/i18n'
 import '../node_modules/bootstrap/scss/bootstrap.scss'
 import 'vuetify/dist/vuetify.min.css'
 
-// import './assets/css/bootstrapOverride.scss'
+import './assets/css/bootstrapOverride.scss'
 
 Vue.use(Vuetify)
 
