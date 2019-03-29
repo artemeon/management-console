@@ -1,5 +1,6 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import store from '@/store'
 @Component
 class InstallPackages extends Vue {
   @Prop(String) url!: String
@@ -14,23 +15,46 @@ class InstallPackages extends Vue {
   @(namespace('installPackagesModule').Action) getSampleContent!: any
   @(namespace('installPackagesModule').Action) getNextModule!: any
   private wait: Boolean = false
-  public modules = null
+  public filter: string = ''
+  // public modules = null
+
   public showInstalled () {
-    console.log(this.modules, 'installed', this.installed)
-    this.modules = this.installed
+    // console.log(this.modules, 'installed', this.installed)
+    // this.modules = this.installed
+    this.filter = 'INSTALLED'
   }
   public showNotInstalled () {
-    this.modules = this.notInstalled
+    // this.modules = this.notInstalled
+    this.filter = 'NOTINSTALLED'
   }
   public showWithSampleContent () {
-    console.log(this.withSampleContent)
-    this.modules = this.withSampleContent
+    // console.log(this.withSampleContent)
+    // this.modules = this.withSampleContent
+    this.filter = 'SAMPLECONTENT'
   }
   public showHasUpdate () {
-    this.modules = this.hasUpdate
+    // this.modules = this.hasUpdate
+    this.filter = 'HASUPDATE'
   }
   public showAll () {
-    this.modules = this.packages
+    // this.modules = this.packages
+    this.filter = 'ALL'
+  }
+  public modules () {
+    switch (this.filter) {
+      case 'INSTALLED':
+        return this.installed
+      case 'NOTINSTALLED':
+        return this.notInstalled
+      case 'HASUPDATE':
+        return this.hasUpdate
+      case 'SAMPLECONTENT':
+        return this.withSampleContent
+      case 'ALL':
+        return this.packages
+      default:
+        return this.packages
+    }
   }
   async mounted () {
     this.wait = true
@@ -40,7 +64,7 @@ class InstallPackages extends Vue {
     this.wait = false
   }
   beforeDestroy () {
-    console.log('destroyed')
+    // console.log('destroyed')
   }
   hasSampleContent (module) {
     let found = []
@@ -54,6 +78,16 @@ class InstallPackages extends Vue {
   }
   public startInstaller () {
     this.getNextModule({ url: this.url })
+  }
+
+  public informations (data) {
+    const ar = []
+
+    const array = Object.keys(data).map(i => {
+      ar.push({ key: i, value: data[i] })
+    })
+
+    return ar
   }
 }
 export default InstallPackages

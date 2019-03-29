@@ -16,9 +16,10 @@ class DbSettings extends Vue {
   private dbName: string = ''
   private dbPort: string = ''
   private found: boolean = true
+  public disable: boolean = false
   private async postDbsettings (e): Promise<any> {
     e.preventDefault()
-    console.log(this)
+
     this.postDbSettings({
       database: {
         username: this.dbUser,
@@ -32,10 +33,22 @@ class DbSettings extends Vue {
     })
   }
   public async switchDriver () {
-    await this.checkDbModule({ url: this.url })
     let driver = this.dbDriver
     this.found = this.checkModule[driver]
   }
-  mounted () {}
+  async mounted () {
+    await this.checkDbModule({ url: this.url })
+    if (this.checkModule.config) {
+      this.dbServer = this.checkModule.config.host
+      this.dbUser = this.checkModule.config.username
+      this.dbName = this.checkModule.config.database
+      this.dbPort = this.checkModule.config.port
+      this.disable = true
+    }
+  }
+
+  enable () {
+    this.disable = false
+  }
 }
 export default DbSettings

@@ -33,6 +33,10 @@
             v-else-if="selected.vueInformations.component==='Install'"
             :url="selected.vueInformations.url"
           />
+          <Logs
+            v-else-if="selected.vueInformations.component==='Logs'"
+            :url="selected.vueInformations.url"
+          />
           <div v-else>coming soon</div>
         </div>
       </div>

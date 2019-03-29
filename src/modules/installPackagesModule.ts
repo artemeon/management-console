@@ -55,7 +55,7 @@ const installPackagesModule = {
         commit('GET_SAMPLE_CONTENT', res.data.samples)
         commit('ERROR_PACKAGES', false)
       } catch (e) {
-        console.log(e)
+        commit('ERROR_PACKAGES', true)
       }
     },
     /**
@@ -64,7 +64,7 @@ const installPackagesModule = {
      */
     async getNextModule ({ dispatch, state }, data: any) {
       // Not all Modules installed
-      console.log(helfer.allInstalled(state.packages), 'all Installed')
+
       if (helfer.allInstalled(state.packages) === false) {
         state.packages.forEach(async element => {
           if (!element.versionInstalled && element.providesInstaller) {
@@ -79,62 +79,10 @@ const installPackagesModule = {
       }
       // all Modules Installed
       else {
-        // filter modules : which one has samplecontent
-        // const modulesInstalledWithSampleContent = packages.filter(
-        //   el => el.versionInstalled !== null && !Array.isArray(el.samplecontent)
-        // )
-
-        // sort modules by samplecontent alphabetically
-
-        // modulesInstalledWithSampleContent.sort(function (a, b) {
-        //   var textA = a.samplecontent.name
-        //     .substring(a.samplecontent.name.lastIndexOf('\\') + 1)
-        //     .toUpperCase()
-        //   var textB = b.samplecontent.name
-        //     .substring(b.samplecontent.name.lastIndexOf('\\') + 1)
-        //     .toUpperCase()
-        //   return textA < textB ? -1 : textA > textB ? 1 : 0
-        // })
-
-        // console.log(modulesInstalledWithSampleContent)
-        // samplecontent not all installed then install
-        // if (
-        //   !helfers.default.prototype.sampleContentInstalled(
-        //     modulesInstalledWithSampleContent
-        //   )
-        // ) {
-        // const filtered = modulesInstalledWithSampleContent.filter(
-        //   el => el.samplecontent.isInstalled === false
-        // )
-
-        // modulesInstalledWithSampleContent.forEach(async element => {
-        //   if (!element.samplecontent.isInstalled) {
-        //     await dispatch('triggerNextSampleContent', element.title)
-        //   }
-        // })
-
-        // dispatch('getAllPackages')
-        // makeRequestsFromArray(modulesInstalledWithSampleContent)
-        // dispatch('getAllPackages')
-        // } else {
-        // console.log('else sample content')
-        // }
-
         // Sample Content not installed
         if (!helfer.allInstalledSamples(state.samples)) {
-          // Promise.all(
-          //   state.samples.map(sample => {
-          //     console.log('sample content not installed', sample.title)
-          //     dispatch('triggerNextSampleContent', {
-          //       url: data.url,
-          //       module: sample.title
-          //     })
-          //   })
-          // )
           await dispatch('makeRequestsFromArray', data)
           dispatch('getSampleContent', data)
-
-          console.log('sample content')
         } else {
           console.log('sample content  installed')
         }
@@ -143,7 +91,7 @@ const installPackagesModule = {
     /**
      * @param payload Name of Module that will be installed
      */
-    async triggerNextModule ({ dispatch, state }, payload: any) {
+    async triggerNextModule ({ commit, dispatch, state }, payload: any) {
       const url = payload.url + '/api.php/installer/module'
       try {
         const res = await axios({
@@ -154,8 +102,7 @@ const installPackagesModule = {
           }
         })
       } catch (e) {
-        console.log(e)
-        //  commit('ERROR_PACKAGES', true)
+        commit('ERROR_PACKAGES', true)
       }
     },
     async triggerNextSampleContent ({ commit, dispatch }, payload: any) {
@@ -169,7 +116,6 @@ const installPackagesModule = {
           }
         })
 
-        console.log(res)
         // dispatch('getAllPackages')
         return res
       } catch (e) {

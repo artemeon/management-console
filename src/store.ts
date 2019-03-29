@@ -5,6 +5,7 @@ import phpSettingsModule from './modules/phpSettingsModule'
 import installPackagesModule from './modules/installPackagesModule'
 import dbSettingsModule from './modules/dbSettingsModule'
 import storageModule from './modules/storageModule'
+import logsModule from './modules/logsModule'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     phpSettingsModule: phpSettingsModule,
     installPackagesModule: installPackagesModule,
     dbSettingsModule: dbSettingsModule,
-    storageModule: storageModule
+    storageModule: storageModule,
+    logsModule: logsModule
   }
 })
