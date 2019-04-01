@@ -48,7 +48,7 @@ $kajona-top-bar-logo-large: import("./img/logo_large.png");
 // $icon-font-path: "../fonts/glyphicons/";
 
 /* END KAJONA redefinitions */
-
+//fontsize sm bootstrap4 ==>rem frueher px
 .smaller {
   font-size: floor((85% * $font-size-sm/ $font-size-base));
 }
@@ -138,25 +138,25 @@ body {
   }
 
   h1 {
-    font-size: $font-size-base + 12;
+    font-size: $font-size-base + 0.75;
     margin: 9px 0;
   }
 
   h2 {
-    font-size: $font-size-base + 4;
-    line-height: $font-size-base + 7;
+    font-size: $font-size-base + 0.25;
+    line-height: $font-size-base + 0.44;
     margin: 9px 0;
   }
 
   h3 {
-    font-size: $font-size-base + 2;
-    line-height: $font-size-base + 7;
+    font-size: $font-size-base + 0.125;
+    line-height: $font-size-base + 0.44;
     margin: 9px 0;
   }
 
   h4 {
-    font-size: $font-size-base + 1;
-    line-height: $font-size-base + 6;
+    font-size: $font-size-base + 0.0625;
+    line-height: $font-size-base + 0.375;
     margin: 9px 0;
   }
 }

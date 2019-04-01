@@ -2,6 +2,10 @@
 <template>
   <div id="app">
     <v-app>
+      <nav class="navbar fixed-top">
+        <div class="navbar-topbar"></div>
+      </nav>
+
       <Navigation></Navigation>
 
       <router-view></router-view>

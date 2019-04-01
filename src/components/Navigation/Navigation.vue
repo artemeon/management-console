@@ -37,6 +37,10 @@
             v-else-if="selected.vueInformations.component==='Logs'"
             :url="selected.vueInformations.url"
           />
+          <DbBrowser
+            v-else-if="selected.vueInformations.component==='Dbbrowser'"
+            :url="selected.vueInformations.url"
+          />
           <div v-else>coming soon</div>
         </div>
       </div>

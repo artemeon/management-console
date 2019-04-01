@@ -4,8 +4,9 @@ import PhpSettings from '../PhpSettings/PhpSettings.vue'
 import DbSettings from '../DbSettings/DbSettings.vue'
 import Installer from '../InstallPackages/InstallPackages.vue'
 import Logs from '../Logs/Logs.vue'
+import DbBrowser from '../DbBrowser/DbBrowser.vue'
 @Component({
-  components: { PhpSettings, DbSettings, Installer, Logs }
+  components: { PhpSettings, DbSettings, Installer, Logs, DbBrowser }
   })
 class Navigation extends Vue {
   @(namespace('storageModule').Action) setServer!: any
@@ -80,6 +81,15 @@ class Navigation extends Vue {
               vueInformations: {
                 system: value.title,
                 component: 'Logs',
+                url: value.url
+              }
+            },
+            {
+              name: value.title + 'dbbrowser',
+              id: 'DBBrowser',
+              vueInformations: {
+                system: value.title,
+                component: 'Dbbrowser',
                 url: value.url
               }
             }

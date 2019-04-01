@@ -12,3 +12,17 @@
   width: 100%;
   z-index: -1;
 }
+
+.fixed-top {
+  background: #e5e5e5;
+  background-image: url("../../assets/img/logo_small.png"),
+    url("../../assets/img/navbar-inner-background.png");
+  background-position: right 15px center, 300px 0;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto 50px, auto auto;
+  min-height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  filter: none;
+  border: 0;
+}

@@ -6,6 +6,7 @@ import installPackagesModule from './modules/installPackagesModule'
 import dbSettingsModule from './modules/dbSettingsModule'
 import storageModule from './modules/storageModule'
 import logsModule from './modules/logsModule'
+import dbBrowserModule from './modules/dbBrowserModule'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     installPackagesModule: installPackagesModule,
     dbSettingsModule: dbSettingsModule,
     storageModule: storageModule,
-    logsModule: logsModule
+    logsModule: logsModule,
+    dbBrowserModule: dbBrowserModule
   }
 })
