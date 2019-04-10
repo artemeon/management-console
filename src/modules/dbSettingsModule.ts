@@ -22,7 +22,8 @@ const dbSettingsModule = {
     /*
     @TODO handle check false and async Loaders
     */
-    async checkDbSettings ({ dispatch }, data: any) {
+    async checkDbSettings ({ dispatch, commit }, data: any) {
+      commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/installer/connection'
       try {
         const res = await axios({
@@ -36,9 +37,11 @@ const dbSettingsModule = {
         // Error handling not yet
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     async postDbSettings ({ commit }, data: any) {
       const url = data.url + '/api.php/installer/config'
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'post',
@@ -52,6 +55,7 @@ const dbSettingsModule = {
         // Error handling not yet
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      * check if database drivers are available : all of them !
@@ -61,6 +65,7 @@ const dbSettingsModule = {
     async checkDbModule ({ commit }, data: any) {
       // https://dev.artemeon.de/agp/debug.php?debugfile=api_show_routes.php
       const url = data.url + '/api.php/installer/connection'
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'get',
@@ -73,6 +78,7 @@ const dbSettingsModule = {
         // Error handling not yet
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     }
   },
   getters: {}

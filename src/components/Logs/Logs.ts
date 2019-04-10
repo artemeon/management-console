@@ -1,30 +1,33 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import * as LogsFormatter from '../../Globals/GlobalHelfers/LogsFormatter'
+import Tabs from '../ReusableLayout/Tabs/Tabs'
+import LogFile from './LogFile/LogFile'
 const formatter = LogsFormatter.default.prototype
-@Component
+@Component({ components: { Tabs, LogFile } })
 class Logs extends Vue {
-  @Prop(String) url!: String
-
+  @(namespace('storage').State) current!: any
   @(namespace('logsModule').State) logs!: any
   @(namespace('logsModule').State) loading!: any
   @(namespace('logsModule').State) error!: any
-  @(namespace('logsModule').Action) getLogs!: any
-
+  @(namespace('logsModule').Action) getLogFiles!: any
+  @(namespace('logsModule').Action) getLogForFile!: any
+  @(namespace('logsModule').State) log!: any
+  public component: any = ''
+  public content: Array<String> = []
+  async mounted () {
+    await this.getLogFiles(this.current)
+  }
+  public async loadContent (data) {
+    this.component = LogFile
+    await this.getLogForFile(Object.assign(this.current, { log: data }))
+    this.content = this.log
+  }
   public warning (el: string) {
     return formatter.bootstrapType(el)
   }
-  public selected: number = -1
-
-  async mounted () {
-    await this.getLogs({ url: this.url })
-  }
-  public showItem (i: number) {
-    if (this.selected === i) {
-      this.selected = -1
-    } else {
-      this.selected = i
-    }
+  public get logsComputed () {
+    return this.logs ? this.logs.logs : []
   }
 }
 export default Logs

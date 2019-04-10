@@ -7,6 +7,7 @@ import dbSettingsModule from './modules/dbSettingsModule'
 import storageModule from './modules/storageModule'
 import logsModule from './modules/logsModule'
 import dbBrowserModule from './modules/dbBrowserModule'
+import statusBarModule from './modules/statusBarModule'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -14,8 +15,9 @@ export default new Vuex.Store({
     phpSettingsModule: phpSettingsModule,
     installPackagesModule: installPackagesModule,
     dbSettingsModule: dbSettingsModule,
-    storageModule: storageModule,
+    storage: storageModule,
     logsModule: logsModule,
-    dbBrowserModule: dbBrowserModule
+    dbBrowserModule: dbBrowserModule,
+    status: statusBarModule
   }
 })

@@ -2,8 +2,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import store from '@/store'
 @Component
-class InstallPackages extends Vue {
-  @Prop(String) url!: String
+class Module extends Vue {
+  @(namespace('storage').State) current: any
   @(namespace('installPackagesModule').State) packages!: any
   @(namespace('installPackagesModule').Getter) installed!: any
   @(namespace('installPackagesModule').Getter) notInstalled!: any
@@ -58,9 +58,9 @@ class InstallPackages extends Vue {
   }
   async mounted () {
     this.wait = true
-    await this.getAllPackages({ url: this.url })
+    await this.getAllPackages({ url: this.current.url })
 
-    await this.getSampleContent({ url: this.url })
+    await this.getSampleContent({ url: this.current.url })
     this.wait = false
   }
   beforeDestroy () {
@@ -90,4 +90,4 @@ class InstallPackages extends Vue {
     return ar
   }
 }
-export default InstallPackages
+export default Module

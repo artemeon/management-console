@@ -5,11 +5,15 @@ const logsModule = {
   state: {
     logs: null,
     loading: false,
-    error: false
+    error: false,
+    log: null
   },
   mutations: {
-    GET_LOGS (state: any, payload: any): void {
+    GET_LOG_FILES (state: any, payload: any): void {
       state.logs = payload
+    },
+    GET_LOG_FOR_ENTRY (state: any, payload: any): void {
+      state.log = payload
     },
     LOADING (state: any, payload: Boolean): void {
       state.loading = payload
@@ -19,21 +23,40 @@ const logsModule = {
     }
   },
   actions: {
-    async getLogs ({ commit }, data: any) {
+    async getLogFiles ({ commit }, data: any) {
       const url = data.url + '/api.php/installer/log'
       commit('LOADING', true)
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'get',
           url: url
           // authorisation:'bearer' +data.token
         })
-        commit('GET_LOGS', res.data)
+        commit('GET_LOG_FILES', res.data)
         commit('LOADING', false)
       } catch (e) {
         // Error handling not yet
         commit('ERROR', e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
+    },
+    async getLogForFile ({ commit }, data: any) {
+      const url = data.url + '/api.php/installer/log/' + data.log
+
+      commit('status/LOADING_TRUE', {}, { root: true })
+      try {
+        const res = await axios({
+          method: 'get',
+          url: url
+          // authorisation:'bearer' +data.token
+        })
+        commit('GET_LOG_FOR_ENTRY', res.data)
+      } catch (e) {
+        // Error handling not yet
+        commit('ERROR', e)
+      }
+      commit('status/LOADING_FALSE', {}, { root: true })
     }
   },
   getters: {}

@@ -2,7 +2,7 @@
   <div id="phpSettingsContainer">
     <div v-if="phpSettings==='error'">ERROR</div>
     <div v-else>
-      <p>{{$t('message.installer_phpcheck_version')}} : {{phpSettings.version.actual}}</p>
+      <p>{{$t('message.installer_phpcheck_version')}} : {{phpVersion}}</p>
 
       <table class="table table-striped">
         <thead>

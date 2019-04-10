@@ -1,17 +1,16 @@
 
 <template>
-  <div id="app">
-    <v-app>
-      <nav class="navbar fixed-top">
-        <div class="navbar-topbar"></div>
-      </nav>
-
-      <Navigation></Navigation>
-
-      <router-view></router-view>
-
-      <!-- <div id="appViews"></div> -->
-    </v-app>
+  <div id="app" class="container-fluid">
+    <Base/>
+    <div class="row">
+      <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+        <SideBar :content="content"/>
+      </div>
+      <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+        <router-view></router-view>
+        <StatusBar/>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" src="./App.ts"></script>

@@ -9,7 +9,7 @@ import Row from '../Grid/Row.vue'
 // const toastr = require('toastr')
 @Component({ components: { Row, Col } })
 class DbBrowser extends Vue {
-  @Prop(String) url!: String
+  // @Prop(String) url!: String
   @(namespace('dbBrowserModule').State) dbTables: any
   @(namespace('dbBrowserModule').Action) listTables: any
   @(namespace('dbBrowserModule').State) tableData: any
@@ -17,6 +17,7 @@ class DbBrowser extends Vue {
   @(namespace('dbBrowserModule').Action) addIndexToDb: any
   @(namespace('dbBrowserModule').Action) deleteIndexFromDb: any
   @(namespace('dbBrowserModule').Action) recreateIndexDb: any
+  @(namespace('storage').State) current: any
   // @(namespace('Loader').Action) StopLoader: any
   // private dbTables: DbTables = {} as DbTables
   public selectedTable: string = ''
@@ -25,14 +26,14 @@ class DbBrowser extends Vue {
   // get tables List fron the Api when the Component did mount
   public async mounted () {
     // this.StartLoader()
-    await this.listTables({ url: this.url })
+    await this.listTables({ url: this.current.url })
     console.log(this.dbTables)
     // this.StopLoader()
   }
 
   public async getSelectedTable (): Promise<void> {
     // this.StartLoader()
-    await this.detailTable({ url: this.url, table: this.selectedTable })
+    await this.detailTable({ url: this.current.url, table: this.selectedTable })
     console.log('tableData', this.tableData)
     // this.StopLoader()
   }
@@ -45,7 +46,7 @@ class DbBrowser extends Vue {
   public async addIndex (column: string): Promise<void> {
     // this.StartLoader()
     await this.addIndexToDb({
-      url: this.url,
+      url: this.current.url,
       table: this.selectedTable,
       column: column
     })
@@ -55,7 +56,7 @@ class DbBrowser extends Vue {
   public async deleteIndex (index: Index): Promise<void> {
     // this.StartLoader()
     await this.deleteIndexFromDb({
-      url: this.url,
+      url: this.current.url,
       table: this.selectedTable,
       index: index
     })
@@ -66,7 +67,7 @@ class DbBrowser extends Vue {
   public async recreateIndex (index: Index): Promise<void> {
     // this.StartLoader()
     await this.recreateIndexDb({
-      url: this.url,
+      url: this.current.url,
       table: this.selectedTable,
       index: index
     })

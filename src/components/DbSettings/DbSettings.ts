@@ -2,7 +2,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 @Component
 class DbSettings extends Vue {
-  @Prop(String) url!: String
+  @(namespace('storage').State) current: any
 
   @(namespace('dbSettingsModule').State) dbSettings!: any
   @(namespace('dbSettingsModule').State) checkModule!: any
@@ -29,7 +29,7 @@ class DbSettings extends Vue {
         driver: this.dbDriver,
         port: this.dbPort
       },
-      url: this.url
+      url: this.current.url
     })
   }
   public async switchDriver () {
@@ -37,7 +37,7 @@ class DbSettings extends Vue {
     this.found = this.checkModule[driver]
   }
   async mounted () {
-    await this.checkDbModule({ url: this.url })
+    await this.checkDbModule({ url: this.current.url })
     if (this.checkModule.config) {
       this.dbServer = this.checkModule.config.host
       this.dbUser = this.checkModule.config.username

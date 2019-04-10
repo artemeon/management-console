@@ -17,6 +17,7 @@ const dbBrowserModule = {
   actions: {
     // list all tables
     async listTables ({ commit }, data) {
+      commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/dbbrowser'
       try {
         const res = await axios({
@@ -28,9 +29,11 @@ const dbBrowserModule = {
       } catch (e) {
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     async detailTable ({ commit }, data) {
       const url = data.url + '/api.php/dbbrowser/' + data.table
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'get',
@@ -41,9 +44,11 @@ const dbBrowserModule = {
       } catch (e) {
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async addIndexToDb ({ dispatch }, data: any) {
+    async addIndexToDb ({ dispatch, commit }, data: any) {
       const url = data.url + '/api.php/dbbrowser/index'
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'post',
@@ -57,9 +62,11 @@ const dbBrowserModule = {
       } catch (e) {
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async deleteIndexFromDb ({ dispatch }, data: any) {
+    async deleteIndexFromDb ({ dispatch, commit }, data: any) {
       const url = data.url + '/api.php/dbbrowser/index'
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'delete',
@@ -75,9 +82,11 @@ const dbBrowserModule = {
       } catch (e) {
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async recreateIndexDb ({ dispatch }, data: any) {
+    async recreateIndexDb ({ dispatch, commit }, data: any) {
       const url = data.url + '/api.php/dbbrowser/index'
+      commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'put',
@@ -91,6 +100,7 @@ const dbBrowserModule = {
       } catch (e) {
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     }
   },
   getters: {}

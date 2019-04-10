@@ -3,15 +3,30 @@ import Server from '../Globals/Storage/Server'
 const storageModule = {
   namespaced: true,
   state: {
-    storageLocal: null
+    storageLocal: null,
+    current: null
   },
-  mutations: {},
+  mutations: {
+    GET_SERVERS (state: any, payload: any): void {
+      console.log(payload)
+      state.storageLocal = payload
+    },
+    SET_CURRENT (state: any, payload: any): void {
+      state.current = payload
+    }
+  },
   actions: {
     getServers ({ commit }): Array<Server> {
-      return Local.default.prototype.getServers()
+      let servers = null
+      servers = Local.default.prototype.getServers()
+      commit('GET_SERVERS', servers)
+      return servers
     },
     setServer ({ commit }, server: Server) {
       Local.default.prototype.setServer(server)
+    },
+    setCurrent ({ commit }, server: Server) {
+      commit('SET_CURRENT', server)
     }
   },
   getters: {}

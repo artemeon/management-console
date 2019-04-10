@@ -25,6 +25,7 @@ const installPackagesModule = {
      * @param data contains system-url and token
      */
     async getAllPackages ({ commit, dispatch }, data: any) {
+      commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/installer/module'
       try {
         const res = await axios({
@@ -38,12 +39,14 @@ const installPackagesModule = {
       } catch (e) {
         commit('ERROR_PACKAGES', true)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      * Get sample content system-url and token
      * @param data
      */
     async getSampleContent ({ commit, dispatch }, data: any) {
+      commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/installer/sample'
       try {
         const res = await axios({
@@ -57,14 +60,15 @@ const installPackagesModule = {
       } catch (e) {
         commit('ERROR_PACKAGES', true)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      *
      * @param data : System Url and token
      */
-    async getNextModule ({ dispatch, state }, data: any) {
+    async getNextModule ({ dispatch, state, commit }, data: any) {
       // Not all Modules installed
-
+      commit('status/LOADING_TRUE', {}, { root: true })
       if (helfer.allInstalled(state.packages) === false) {
         state.packages.forEach(async element => {
           if (!element.versionInstalled && element.providesInstaller) {
@@ -87,6 +91,7 @@ const installPackagesModule = {
           console.log('sample content  installed')
         }
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      * @param payload Name of Module that will be installed

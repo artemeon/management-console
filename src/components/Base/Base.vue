@@ -1,27 +1,13 @@
 
 <template>
-  <div>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <router-link to="/phpSettings">{{$t("message.installer_step_phpsettings")}}</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/dbSettings">{{$t("message.installer_step_dbsettings")}}</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/adminLogin">{{$t("message.installer_step_adminsettings")}}</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/installPackages">{{$t("message.installer_step_autoinstall")}}</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/updatePackages">update</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link to="/finish">Finish</router-link>
-      </li>
-    </ul>
-  </div>
+  <nav class="navbar fixed-top">
+    <div class="navbar-topbar">
+      <select class="custom-select" v-model="current" @change="getSelected()">
+        <option selected>Select System</option>
+        <option v-for="(data,index) in storageLocal" :key="index" :value="data">{{data.title}}</option>
+      </select>
+    </div>
+  </nav>
 </template>
 <script lang="ts" src="./Base.ts"></script>
 <style lang="scss" scoped src="./Base.scss"></style>

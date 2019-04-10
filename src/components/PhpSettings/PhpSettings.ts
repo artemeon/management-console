@@ -4,25 +4,15 @@ import { namespace } from 'vuex-class'
 const uuidv4 = require('uuid/v1')
 @Component
 class PhpSettings extends Vue {
-  @Prop(String) url!: String
+  @(namespace('storage').State) current: any
   @(namespace('phpSettingsModule').State) phpSettings!: any
   @(namespace('phpSettingsModule').Action) getPHPSettings!: any
   private langs: Array<String> = ['de', 'en']
 
   async mounted () {
-    console.log('just mounted', this.url)
-    await this.getPHPSettings({ url: this.url })
+    await this.getPHPSettings({ url: this.current.url })
   }
-  // private get fileChecksFolder (): any {
-  //   if (this.phpSettings && Object.keys(this.phpSettings.fileChecksFolder)) {
-  //     // return Object.keys(this.phpSettings.fileChecksFolder)
-  //     const ar = []
-  //     const array = Object.keys(this.phpSettings.fileChecksFolder).map(i =>
-  //       ar.push({ key: i, value: this.phpSettings.fileChecksFolder[i] })
-  //     )
-  //     return ar
-  //   }
-  // }
+
   private get fileChecksFolder (): any {
     if (this.phpSettings && this.phpSettings.folders) {
       const ar = []
@@ -34,16 +24,6 @@ class PhpSettings extends Vue {
       return ar
     }
   }
-  // private get fileChecksModules (): any {
-  //   if (this.phpSettings && Object.keys(this.phpSettings.fileChecksModules)) {
-  //     // return Object.keys(this.phpSettings.fileChecksModules)
-  //     const ar = []
-  //     const array = Object.keys(this.phpSettings.fileChecksModules).map(i =>
-  //       ar.push({ key: i, value: this.phpSettings.fileChecksModules[i] })
-  //     )
-  //     return ar
-  //   }
-  // }
   private get fileChecksModules (): any {
     if (this.phpSettings && this.phpSettings.extensions) {
       const ar = []
@@ -57,6 +37,9 @@ class PhpSettings extends Vue {
 
       return ar
     }
+  }
+  private get phpVersion (): String {
+    return this.phpSettings ? this.phpSettings.version.actual : ''
   }
   // private get langs (): any {
   //   return ['de', 'en']

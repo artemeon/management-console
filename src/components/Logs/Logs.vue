@@ -7,22 +7,12 @@
       </div>
     </div>
     <div v-else>
-      <div v-if="loading===true">
-        <div class="spinner-grow text-info" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-      <div v-else>
-        <div class="list-group" v-for="(data,index) in Object.keys(logs)" :key="index+ '-log'">
-          <h5>{{data}}</h5>
-          <div class="list-group" v-for="(el,i) in logs[data]" :key="i">
-            <p
-              v-bind:class="[{truncate: i!==selected },'alert',warning(el)]"
-              @click="showItem(i)"
-            >{{el}}</p>
-          </div>
-        </div>
-      </div>
+      <Tabs
+        :headers="logsComputed"
+        :loadContent="loadContent"
+        :component="component"
+        :content="content"
+      />
     </div>
   </div>
 </template>

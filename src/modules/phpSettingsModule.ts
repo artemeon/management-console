@@ -20,6 +20,8 @@ const phpSettingsModule = {
      */
     async getPHPSettings ({ commit }, data: any) {
       const url = data.url + '/api.php/installer/systeminfo'
+      commit('status/LOADING_TRUE', {}, { root: true })
+
       try {
         const res = await axios({
           method: 'get',
@@ -32,6 +34,7 @@ const phpSettingsModule = {
         commit('ERROR_PHP_SETTINGS')
         console.log(e)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     }
   },
   getters: {}

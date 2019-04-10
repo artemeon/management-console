@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Installation",
+    "children": [
+      { "name": "Systemcheck" },
+      { "name": "Datenbank" },
+      { "name": "Module" },
+      { "name": "Samplecontent" }
+    ]
+  },
+  {
+    "name": "System",
+    "children": [
+      { "name": "PHPInfo" },
+      { "name": "Logs" },
+      { "name": "Stats" },
+      { "name": "Mail-test" },
+      { "name": "DBBrowser" },
+      { "name": "Systemtask" }
+    ]
+  }
+]
