@@ -127,7 +127,8 @@ const installPackagesModule = {
         console.log(e)
       }
     },
-    makeRequestsFromArray ({ state, dispatch }, data) {
+    makeRequestsFromArray ({ commit, state, dispatch }, data) {
+      commit('status/LOADING_TRUE', {}, { root: true })
       let index = 0
       let arr = state.samples
       let url = data.url + '/api.php/installer/sample'
@@ -146,6 +147,7 @@ const installPackagesModule = {
           })
       }
       request()
+      commit('status/LOADING_TRUE', {}, { root: true })
       return dispatch('getAllPackages', data)
     }
   },

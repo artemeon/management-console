@@ -4,8 +4,7 @@
     "children": [
       { "name": "Systemcheck" },
       { "name": "Datenbank" },
-      { "name": "Module" },
-      { "name": "Samplecontent" }
+      { "name": "Module" }
     ]
   },
   {

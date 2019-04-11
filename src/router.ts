@@ -5,8 +5,7 @@ import DbSettings from './components/DbSettings/DbSettings.vue'
 import PhpSettings from './components/PhpSettings/PhpSettings.vue'
 import Logs from './components/Logs/Logs'
 import DbBrowser from './components/DbBrowser/DbBrowser'
-import Module from './components/InstallPackages/Module/Module'
-import Samplecontent from './components/InstallPackages/Samplecontent/Samplecontent'
+import Install from './components/InstallPackages/Module'
 import Phpinfo from './components/Phpinfo/Phpinfo'
 import Stats from './components/Stats/Stats'
 import Mailtest from './components/Mailtest/Mailtest'
@@ -30,13 +29,7 @@ export default new Router({
     {
       path: '/Installation/Module/:system',
       name: 'Module',
-      component: Module
-    },
-
-    {
-      path: '/Installation/Samplecontent/:system',
-      name: 'Samplecontent',
-      component: Samplecontent
+      component: Install
     },
 
     {

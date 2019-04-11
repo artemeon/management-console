@@ -63,9 +63,6 @@ class Module extends Vue {
     await this.getSampleContent({ url: this.current.url })
     this.wait = false
   }
-  beforeDestroy () {
-    // console.log('destroyed')
-  }
   hasSampleContent (module) {
     let found = []
     if (this.samples) {
@@ -77,7 +74,7 @@ class Module extends Vue {
     return found[0]
   }
   public startInstaller () {
-    this.getNextModule({ url: this.url })
+    this.getNextModule(this.current)
   }
 
   public informations (data) {
