@@ -1,30 +1,24 @@
 @import "../../assets/css/bootstrapOverride.scss";
 .fixedbottom {
-  position: -webkit-sticky;
+  // position: -webkit-sticky;
   position: fixed;
   width: 100%;
   bottom: 0;
   background: $kajona-gray;
-  //   background-image: url($kajona-top-bar-logo-small), url($kajona-topbar-bg);
-
-  background-position: right 15px center, 300px 0;
-  background-repeat: no-repeat, no-repeat;
-  background-size: auto 50px, auto auto;
-
-  @media (min--moz-device-pixel-ratio: 1.5),
-    (-o-min-device-pixel-ratio: 3/2),
-    (-webkit-min-device-pixel-ratio: 1.5),
-    (min-device-pixel-ratio: 1.5),
-    (min-resolution: 1.5dppx) {
-    // background-image: url($kajona-top-bar-logo-large), url($kajona-topbar-bg);
-  }
-
-  background: url($kajona-topbar-bg) 300px 0 no-repeat $kajona-gray;
-  min-height: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-  filter: none;
+  min-height: 30px;
+  padding-left: 5px;
+  padding-right: 15px;
+  z-index: 999;
   border: 0;
 
-  border-bottom: 1px solid $kajona-brand-color;
+  border-top: 1px solid $kajona-brand-color;
+}
+.navbar-bottombar {
+  display: flex;
+  padding-left: 10px;
+  width: 100%;
+  text-align: right;
+}
+.action {
+  cursor: pointer;
 }

@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <nav class="navbar fixedbottom">
-      <div class="navbar-bottombar" v-if="loading">
-        <div class="spinner-border text-danger" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
+  <div :class="expandClass">
+    <div class="navbar-bottombar">
+      <div v-if="expanded">Logs messages</div>
+      <div class="spinner-border text-primary" role="status" v-if="loading">
+        <span class="sr-only">Loading...</span>
       </div>
-    </nav>
+      <div class="action" @click="expand()" v-if="!expanded">
+        <i class="fas fa-angle-double-up"></i>
+      </div>
+      <div class="action" @click="expand()" v-else>
+        <i class="fas fa-angle-double-down"></i>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" src="./StatusBar.ts"></script>
