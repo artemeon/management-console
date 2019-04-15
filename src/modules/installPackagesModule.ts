@@ -42,36 +42,21 @@ const installPackagesModule = {
       commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
-     * Get sample content system-url and token
-     * @param data
-     */
-    async getSampleContent ({ commit, dispatch }, data: any) {
-      commit('status/LOADING_TRUE', {}, { root: true })
-      const url = data.url + '/api.php/installer/sample'
-      try {
-        const res = await axios({
-          method: 'get',
-          url: url
-          // Authorisation:'bearer'+data.token
-        })
-
-        commit('GET_SAMPLE_CONTENT', res.data.samples)
-        commit('ERROR_PACKAGES', false)
-      } catch (e) {
-        commit('ERROR_PACKAGES', true)
-      }
-      commit('status/LOADING_FALSE', {}, { root: true })
-    },
-    /**
      *
      * @param data : System Url and token
      */
     async getNextModule ({ dispatch, state, commit }, data: any) {
-      // Not all Modules installed
       commit('status/LOADING_TRUE', {}, { root: true })
+      // Not all Modules installed
+      console.log('all installed', helfer.allInstalled(state.packages))
       if (helfer.allInstalled(state.packages) === false) {
-        state.packages.forEach(async element => {
-          if (!element.versionInstalled && element.providesInstaller) {
+        // filter already installed
+        let installable = state.packages.filter(element => {
+          return !element.versionInstalled && element.providesInstaller === true
+        })
+
+        installable.forEach(async element => {
+          if (!element.versionInstalled && element.providesInstaller === true) {
             return dispatch('triggerNextModule', {
               url: data.url,
               module: element.title
@@ -83,12 +68,16 @@ const installPackagesModule = {
       }
       // all Modules Installed
       else {
-        // Sample Content not installed
-        if (!helfer.allInstalledSamples(state.samples)) {
-          await dispatch('makeRequestsFromArray', data)
-          dispatch('getSampleContent', data)
-        } else {
-          console.log('sample content  installed')
+        // install sample only in full Mode
+        if (data.full === true) {
+          // Sample Content not installed
+          if (!helfer.allInstalledSamples(state.samples)) {
+            await dispatch('makeRequestsFromArray', data)
+            // dispatch('getSampleContent', data)
+          } else {
+            dispatch('getSampleContent', data)
+            console.log('finish')
+          }
         }
       }
       commit('status/LOADING_FALSE', {}, { root: true })
@@ -106,49 +95,57 @@ const installPackagesModule = {
             module: payload.module
           }
         })
+        if (res.data.status === 'success') {
+          commit('status/INSTALLER_LOG', res.data.log, { root: true })
+        }
       } catch (e) {
-        commit('ERROR_PACKAGES', true)
+        console.log('error', e)
+        // commit('ERROR_PACKAGES', true)
       }
     },
-    async triggerNextSampleContent ({ commit, dispatch }, payload: any) {
-      let url = payload.url + '/api.php/installer/sample'
+    /**
+     * Get sample content system-url and token
+     * @param data
+     */
+    async getSampleContent ({ commit, dispatch }, data: any) {
+      commit('status/LOADING_TRUE', {}, { root: true })
+      const url = data.url + '/api.php/installer/sample'
       try {
         const res = await axios({
-          method: 'post',
-          url: url,
-          data: {
-            module: payload.module
-          }
+          method: 'get',
+          url: url
+          // Authorisation:'bearer'+data.token
         })
 
-        // dispatch('getAllPackages')
-        return res
+        commit('GET_SAMPLE_CONTENT', res.data.samples)
+        // commit('ERROR_PACKAGES', false)
       } catch (e) {
-        console.log(e)
+        // commit('ERROR_PACKAGES', true)
       }
+      commit('status/LOADING_FALSE', {}, { root: true })
     },
     makeRequestsFromArray ({ commit, state, dispatch }, data) {
-      commit('status/LOADING_TRUE', {}, { root: true })
+      commit('status/LOADING_FALSE', {}, { root: true })
       let index = 0
       let arr = state.samples
       let url = data.url + '/api.php/installer/sample'
-      function request () {
+      function request (): any {
         return axios
           .post(url, {
             module: arr[index].title
           })
-          .then(() => {
-            // dispatch('getAllPackages')
+          .then(res => {
             index++
             if (index >= arr.length) {
-              return
+              commit('status/LOADING_TRUE', {}, { root: true })
+              return dispatch('getAllPackages', data)
             }
             return request()
           })
       }
       request()
-      commit('status/LOADING_TRUE', {}, { root: true })
-      return dispatch('getAllPackages', data)
+      // commit('status/LOADING_TRUE', {}, { root: true })
+      // return
     }
   },
   getters: {
@@ -191,29 +188,6 @@ const installPackagesModule = {
       }
     }
   }
-}
-
-// recursive way to install sample content
-function makeRequestsFromArray (arr) {
-  let index = 0
-  function request () {
-    return axios
-      .post(
-        'https://dev.artemeon.de/agp/installer.php?channel=api&step=triggerSampleApi',
-        {
-          module: arr[index].title
-        }
-      )
-      .then(() => {
-        // dispatch('getAllPackages')
-        index++
-        if (index >= arr.length) {
-          return
-        }
-        return request()
-      })
-  }
-  return request()
 }
 
 export default installPackagesModule

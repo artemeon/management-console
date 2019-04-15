@@ -15,9 +15,14 @@ class Module extends Vue {
   @(namespace('installPackagesModule').Action) getSampleContent!: any
   @(namespace('installPackagesModule').Action) getNextModule!: any
   private wait: Boolean = false
+  public installationMode: string = 'full'
+  public full: boolean = true
   public filter: string = ''
   // public modules = null
-
+  public handle () {
+    if (this.installationMode === 'full') this.full = true
+    else this.full = false
+  }
   public showInstalled () {
     // console.log(this.modules, 'installed', this.installed)
     // this.modules = this.installed
@@ -74,7 +79,7 @@ class Module extends Vue {
     return found[0]
   }
   public startInstaller () {
-    this.getNextModule(this.current)
+    this.getNextModule(Object.assign(this.current, { full: this.full }))
   }
 
   public informations (data) {

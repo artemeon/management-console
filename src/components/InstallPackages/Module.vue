@@ -17,6 +17,11 @@
       <button type="button" class="btn btn-outline-info" @click="showHasUpdate ()">Mit Update</button>
     </div>
     <br>
+    <select v-model="installationMode" @change="handle()">
+      <!-- @TODO add Entries in Language Files -->
+      <option value="full">Das ganze System installieren</option>
+      <option value="partial">System ohne Beispielinhalte</option>
+    </select>
     <button
       html_type="submit"
       @click="startInstaller"

@@ -72,10 +72,8 @@ const dbBrowserModule = {
           method: 'delete',
           url: url,
           data: {
-            // table: data.table,
-            // index: data.index
-            table: '',
-            index: ''
+            table: data.table,
+            index: data.index.name
           }
         })
         dispatch('detailTable', { url: data.url, table: data.table })
@@ -93,7 +91,7 @@ const dbBrowserModule = {
           url: url,
           data: {
             table: data.table,
-            index: data.index
+            index: data.index.name
           }
         })
         dispatch('detailTable', { url: data.url, table: data.table })

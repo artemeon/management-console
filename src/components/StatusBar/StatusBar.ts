@@ -4,6 +4,8 @@ import { namespace } from 'vuex-class'
 @Component
 class StatusBar extends Vue {
   @(namespace('status').State) loading!: any
+  @(namespace('status').State) information!: any
+  @(namespace('status').State) installerLog!: any
   public expanded: boolean = false
   public expandClass = 'navbar fixedbottom'
   public expand () {

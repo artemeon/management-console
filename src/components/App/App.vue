@@ -2,6 +2,7 @@
 <template>
   <div id="app" class="container-fluid">
     <Base/>
+    <!-- <Modal/> -->
     <div class="row">
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
         <SideBar :content="content"/>

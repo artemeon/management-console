@@ -27,7 +27,7 @@ class InstallerHelfer {
   public allInstalled (packages) {
     var found = true
     packages.map(el => {
-      if (el.versionInstalled === null && el.providesInstaller) found = false
+      if (el.versionInstalled === null && el.providesInstaller === true) { found = false }
     })
     return found
   }

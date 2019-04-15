@@ -1,7 +1,6 @@
 <template>
   <div :class="expandClass">
     <div class="navbar-bottombar">
-      <div v-if="expanded">Logs messages</div>
       <div class="spinner-border text-primary" role="status" v-if="loading">
         <span class="sr-only">Loading...</span>
       </div>
@@ -10,6 +9,13 @@
       </div>
       <div class="action" @click="expand()" v-else>
         <i class="fas fa-angle-double-down"></i>
+      </div>
+      <div>{{information}}</div>
+    </div>
+    <div v-if="expanded">
+      <div class="logs" v-for="(log,index) in installerLog " :key="index + '-log'">
+        <small>{{log}}</small>
+        <br>
       </div>
     </div>
   </div>
