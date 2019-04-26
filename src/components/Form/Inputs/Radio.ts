@@ -7,7 +7,15 @@ class Radio extends Vue {
   @Prop() id!: string
   @Prop() name!: string
   @Prop() values!: any
-  //   @Prop() readonly!: boolean
-  //   @Prop() disabled: boolean = false
+  @Prop() value: any
+  @Prop() readonly!: boolean
+  @Prop() disabled!: boolean
+  public checkItem = null
+  created () {
+    this.checkItem = this.value
+  }
+  updateVal () {
+    this.$emit('input', this.checkItem)
+  }
 }
 export default Radio

@@ -12,13 +12,13 @@
           type="button"
           class="btn btn-primary modalTrigger"
           data-toggle="modal"
-          data-target="#exampleModalCentered"
+          :data-target="'#'+id"
         >
           <i class="fas fa-plus"></i>
         </button>
       </div>
     </nav>
-    <Modal :items="items" label="exampleModalCentered" header="Add System"/>
+    <Modal :items="items" label="exampleModalCentered" header="Add System" :id="id"/>
   </div>
 </template>
 <script lang="ts" src="./Base.ts"></script>

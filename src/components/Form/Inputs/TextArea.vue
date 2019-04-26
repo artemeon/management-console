@@ -1,8 +1,7 @@
 <template>
   <div class="form-group">
     <label :for="id">{{label}}</label>
-    <input
-      type="text"
+    <textarea
       class="form-control"
       :id="id"
       :placeholder="placeholder"
@@ -15,5 +14,5 @@
     <!-- :disabled="disabled" -->
   </div>
 </template>
-<script lang="ts" src="./TextField.ts"></script>
-<style lang="scss" scoped src="../Forms.scss"></style>
+<script lang="ts" src="./TextArea.ts"></script>
+<style lang="scss"  src="../Forms.scss"></style>

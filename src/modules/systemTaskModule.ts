@@ -5,7 +5,8 @@ const systemTaskModule = {
   namespaced: true,
   state: {
     systemTasks: null,
-    error: false
+    error: false,
+    form: null
   },
   mutations: {
     GET_SYSTEM_TASKS (state: any, payload: any): void {
@@ -13,6 +14,9 @@ const systemTaskModule = {
     },
     ERROR (state: any, payload: boolean) {
       state.error = payload
+    },
+    GET_FORM (state: any, payload: any): void {
+      state.form = payload
     }
   },
   actions: {
@@ -33,16 +37,19 @@ const systemTaskModule = {
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async postSystemTasks ({ commit }, data: any) {
+    async getForm ({ commit }, data: any) {
       const url = data.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
-          method: 'post',
+          method: 'get',
           url: url
 
           // authorisation:'bearer' +data.token
         })
+        let result = formatTypes(res.data)
+        console.log(result)
+        commit('GET_FORM', result)
       } catch (e) {
         // Error handling not yet
         console.log(e)
@@ -50,5 +57,14 @@ const systemTaskModule = {
       commit('status/LOADING_FALSE', {}, { root: true })
     }
   }
+}
+function formatTypes (form: any): any {
+  form.fields.forEach(element => {
+    element.type = element.type.substring(
+      element.type.lastIndexOf('\\') + 1,
+      element.type.length
+    )
+  })
+  return form
 }
 export default systemTaskModule

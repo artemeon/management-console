@@ -2,7 +2,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 
 @Component
-class TextField extends Vue {
+class TextArea extends Vue {
   @(namespace('storage').State) current!: any
   @Prop() label!: string
   @Prop() id!: string
@@ -20,4 +20,4 @@ class TextField extends Vue {
   }
 }
 
-export default TextField
+export default TextArea

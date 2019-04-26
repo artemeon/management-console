@@ -6,7 +6,17 @@
           <h5>{{task.key}}</h5>
 
           <div>{{task.value[0].value}}</div>
-          <button @click="runtask(task.value[0].key)">{{task.value[0].key}}</button>
+          <button
+            @click="runtask(task.value[0].key)"
+            data-toggle="modal"
+            :data-target="'#'+task.value[0].key"
+          >{{task.value[0].key}}</button>
+          <Modal
+            :id="task.value[0].key"
+            :header="task.value[0].key"
+            :items="form.fields"
+            v-if="form"
+          />
         </li>
       </ul>
     </div>

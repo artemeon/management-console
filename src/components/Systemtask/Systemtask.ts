@@ -1,11 +1,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-@Component
+import Modal from '../ReusableLayout/Modal/Modal'
+@Component({ components: { Modal } })
 class Systemtask extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('systemTaskModule').State) systemTasks!: any
   @(namespace('systemTaskModule').Action) getSystemTasks!: any
-  @(namespace('systemTaskModule').Action) postSystemTasks!: any
+  @(namespace('systemTaskModule').Action) getForm!: any
+  @(namespace('systemTaskModule').State) form: any
   async mounted () {
     await this.getSystemTasks(this.current)
   }
@@ -31,7 +33,8 @@ class Systemtask extends Vue {
     return array
   }
   private runtask (task) {
-    this.postSystemTasks(Object.assign(this.current, { task: task }))
+    this.$store.commit('systemTaskModule/GET_FORM', {})
+    this.getForm(Object.assign(this.current, { task: task }))
   }
 }
 

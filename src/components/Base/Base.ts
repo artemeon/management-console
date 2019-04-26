@@ -7,6 +7,7 @@ class Base extends Vue {
   @(namespace('storage').Action) getServers!: any
   @(namespace('storage').Action) setCurrent!: any
   @(namespace('storage').State) storageLocal!: any
+  private id = 'modalTopBar'
   public current = null
   public items = [
     {
@@ -68,7 +69,6 @@ class Base extends Vue {
     {
       id: 'Token',
       label: 'Token',
-
       type: 'TextField'
     }
   ]
