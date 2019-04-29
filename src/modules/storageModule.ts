@@ -1,4 +1,4 @@
-import * as Local from '../Globals/Storage/Local'
+import Local from '../Globals/Storage/Local'
 import Server from '../Globals/Storage/Server'
 const storageModule = {
   namespaced: true,
@@ -8,7 +8,6 @@ const storageModule = {
   },
   mutations: {
     GET_SERVERS (state: any, payload: any): void {
-      console.log(payload)
       state.storageLocal = payload
     },
     SET_CURRENT (state: any, payload: any): void {
@@ -18,12 +17,18 @@ const storageModule = {
   actions: {
     getServers ({ commit }): Array<Server> {
       let servers = null
-      servers = Local.default.prototype.getServers()
+      servers = Local.prototype.getServers()
+
       commit('GET_SERVERS', servers)
       return servers
     },
-    setServer ({ commit }, server: Server) {
-      Local.default.prototype.setServer(server)
+    setServer ({ commit, dispatch }, server: Server) {
+      Local.prototype.setServer(server)
+      dispatch('getServers')
+    },
+    setServers ({ dispatch }, servers: Array<Server>) {
+      Local.prototype.setServers(servers)
+      dispatch('getServers')
     },
     setCurrent ({ commit }, server: Server) {
       commit('SET_CURRENT', server)

@@ -1,9 +1,11 @@
 <template>
   <div :class="expandClass">
+    <div class="spinnerCustom" v-if="loading"></div>
     <div class="navbar-bottombar">
-      <div class="spinner-border text-primary" role="status" v-if="loading">
+      <!-- <div class="spinner-border text-primary" role="status" v-if="loading">
         <span class="sr-only">Loading...</span>
-      </div>
+      </div>-->
+
       <div class="action" @click="expand()" v-if="!expanded">
         <i class="fas fa-angle-double-up"></i>
       </div>

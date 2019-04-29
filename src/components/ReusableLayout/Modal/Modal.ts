@@ -19,11 +19,13 @@ class Modal extends Vue {
   @Prop() label!: string
   @Prop() header!: string
   @Prop() id!: string
+  @Prop() handler
   private exists (item): boolean {
     return item in this.$options.components
   }
-  private execute () {
-    console.log(this.items)
+
+  execute () {
+    this.handler()
   }
 }
 export default Modal

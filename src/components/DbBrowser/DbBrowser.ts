@@ -1,12 +1,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-// import axios from 'axios'
-// import to from 'await-to-js'
 import { Index, DbTables, TableData } from './Interfaces'
-// import Col from '../Grid/Col.vue'
-// import Row from '../Grid/Row.vue'
-// import Table from '../Table/Table.vue'
-// const toastr = require('toastr')
+
 @Component
 // ({ components: { Row, Col } })
 class DbBrowser extends Vue {

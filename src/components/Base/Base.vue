@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <nav class="navbar fixed-top">
@@ -16,9 +15,22 @@
         >
           <i class="fas fa-plus"></i>
         </button>
+        <button type="button" class="btn btn-primary modalTrigger" @click="exportJson">
+          <i class="fas fa-download"></i>
+        </button>
+        <label class="btn btn-primary uploadBtn">
+          <i class="fas fa-upload"></i>
+          <input type="file" style="display: none;" @change="importJson" ref="myFiles">
+        </label>
       </div>
     </nav>
-    <Modal :items="items" label="exampleModalCentered" header="Add System" :id="id"/>
+    <Modal
+      :items="agp_add"
+      label="exampleModalCentered"
+      header="Add System"
+      :id="id"
+      :handler="addSystem"
+    />
   </div>
 </template>
 <script lang="ts" src="./Base.ts"></script>

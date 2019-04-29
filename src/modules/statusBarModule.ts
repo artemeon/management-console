@@ -2,24 +2,30 @@ const statusBarModule = {
   namespaced: true,
   state: {
     loading: false,
-    information: '',
+    information: null,
     installerLog: []
   },
   mutations: {
-    LOADING_TRUE (state): void {
+    LOADING_TRUE (state: statusBar): void {
       state.loading = true
     },
-    LOADING_FALSE (state): void {
+    LOADING_FALSE (state: statusBar): void {
       state.loading = false
     },
-    SET_INFORMATION (state, payload: string) {
+    SET_INFORMATION (state: statusBar, payload: string) {
       state.information = payload
     },
-    INSTALLER_LOG (state, payload: string) {
+    INSTALLER_LOG (state: statusBar, payload: string) {
       state.installerLog.push(payload)
     }
   },
   actions: {},
   getters: {}
 }
+
 export default statusBarModule
+interface statusBar {
+  loading: Boolean
+  information: String
+  installerLog: Array<String>
+}

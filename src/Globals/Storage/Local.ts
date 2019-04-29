@@ -3,16 +3,18 @@ import Server from './Server'
 class Local implements Storage {
   private jsonData!: object
   getServers (): Array<Server> {
-    let result = JSON.parse(
-      window.localStorage.getItem('mc_server_cfg') || '{}'
-    )
-    return result.systems || []
+    let temp = JSON.parse(window.localStorage.getItem('mc_server_cfg') || '{}')
+    let result =
+      typeof temp.systems === 'object' ? temp.systems : JSON.parse(temp.systems)
+
+    return result
   }
   setServer (server: Server): void {
     if (server.title !== '' && server.url !== '' && server.token !== '') {
       let local = window.localStorage.getItem('mc_server_cfg')
-      if (local) {
-        this.jsonData = JSON.parse(local)
+      if (local !== undefined || local !== null) {
+        this.jsonData = typeof local !== 'object' ? JSON.parse(local) : local
+
         this.jsonData.systems.push({
           title: server.title,
           url: server.url,
@@ -29,7 +31,13 @@ class Local implements Storage {
         'mc_server_cfg',
         JSON.stringify(this.jsonData)
       )
+      console.log('set Server ', JSON.stringify(this.jsonData))
     }
+  }
+  setServers (servers: Array<Server>) {
+    this.jsonData = { systems: servers }
+    console.log(this.jsonData)
+    window.localStorage.setItem('mc_server_cfg', JSON.stringify(this.jsonData))
   }
 }
 
