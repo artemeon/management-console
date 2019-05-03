@@ -10,6 +10,7 @@ import dbBrowserModule from './modules/dbBrowserModule'
 import statusBarModule from './modules/statusBarModule'
 import systemTaskModule from './modules/systemTaskModule'
 import lockSystem from './modules/lockSystem'
+import systemInfosModule from './modules/systemInfosModule'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     dbBrowserModule: dbBrowserModule,
     status: statusBarModule,
     systemTaskModule: systemTaskModule,
-    lock: lockSystem
+    lock: lockSystem,
+    systemInfo: systemInfosModule
   }
 })

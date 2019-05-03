@@ -6,7 +6,7 @@ import PhpSettings from './components/PhpSettings/PhpSettings.vue'
 import Logs from './components/Logs/Logs'
 import DbBrowser from './components/DbBrowser/DbBrowser'
 import Install from './components/InstallPackages/Module'
-import Phpinfo from './components/Phpinfo/Phpinfo'
+import SystemInfo from './components/SystemInfo/SystemInfo'
 import Stats from './components/Stats/Stats'
 import Mailtest from './components/Mailtest/Mailtest'
 import Systemtask from './components/Systemtask/Systemtask'
@@ -33,9 +33,9 @@ export default new Router({
     },
 
     {
-      path: '/System/PHPInfo/:system',
-      name: 'PHPInfo',
-      component: Phpinfo
+      path: '/System/SystemInfo/:system',
+      name: 'System Info',
+      component: SystemInfo
     },
     {
       path: '/System/Logs/:system',
