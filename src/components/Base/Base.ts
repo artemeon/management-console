@@ -12,6 +12,10 @@ class Base extends Vue {
   @(namespace('storage').Action) getServers!: any
   @(namespace('storage').Action) setCurrent!: any
   @(namespace('storage').State) storageLocal!: any
+  @(namespace('lock').State) locked!: any
+  @(namespace('lock').Action) checkIfLocked!: any
+  @(namespace('lock').Action) lockSystem!: any
+  @(namespace('lock').Action) unlockSystem!: any
   private id = 'modalTopBar'
   public current = null
   public systems!: any
@@ -41,6 +45,7 @@ class Base extends Vue {
 
     this.current = this.storageLocal[0] || {}
     this.setCurrent(this.current)
+    this.checkIfLocked(this.current)
   }
   getSelected () {
     this.setCurrent(this.current)
@@ -77,6 +82,12 @@ class Base extends Vue {
     })
     console.log('server', server)
     this.setServer(server)
+  }
+  lock () {
+    this.lockSystem(this.current)
+  }
+  unlock () {
+    this.unlockSystem(this.current)
   }
 }
 export default Base

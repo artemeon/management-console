@@ -125,8 +125,8 @@ const installPackagesModule = {
         })
 
         commit('GET_SAMPLE_CONTENT', res.data.samples)
+        commit('status/LOADING_FALSE', {}, { root: true })
       } catch (e) {}
-      commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      * install sample content

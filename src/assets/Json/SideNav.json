@@ -10,10 +10,9 @@
   {
     "name": "System",
     "children": [
-      { "name": "PHPInfo" },
+      { "name": "System Info" },
       { "name": "Logs" },
-      { "name": "Stats" },
-      { "name": "Mail-test" },
+
       { "name": "DBBrowser" },
       { "name": "Systemtask" }
     ]

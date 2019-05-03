@@ -9,6 +9,7 @@ import logsModule from './modules/logsModule'
 import dbBrowserModule from './modules/dbBrowserModule'
 import statusBarModule from './modules/statusBarModule'
 import systemTaskModule from './modules/systemTaskModule'
+import lockSystem from './modules/lockSystem'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     logsModule: logsModule,
     dbBrowserModule: dbBrowserModule,
     status: statusBarModule,
-    systemTaskModule: systemTaskModule
+    systemTaskModule: systemTaskModule,
+    lock: lockSystem
   }
 })
