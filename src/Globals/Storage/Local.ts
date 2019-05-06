@@ -10,11 +10,17 @@ class Local implements Storage {
     return result
   }
   setServer (server: Server): void {
+    console.log('server', server)
     if (server.title !== '' && server.url !== '' && server.token !== '') {
       let local = window.localStorage.getItem('mc_server_cfg')
-      if (local !== undefined || local !== null) {
+      console.log(local)
+      if (local !== undefined && local !== null) {
         this.jsonData = typeof local !== 'object' ? JSON.parse(local) : local
-
+        let systems =
+          typeof this.jsonData.systems !== 'object'
+            ? JSON.parse(this.jsonData.systems)
+            : this.jsonData.systems
+        this.jsonData.systems = systems
         this.jsonData.systems.push({
           title: server.title,
           url: server.url,

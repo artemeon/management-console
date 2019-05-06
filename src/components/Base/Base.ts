@@ -70,7 +70,7 @@ class Base extends Vue {
       switch (el.id.toUpperCase()) {
         case 'TITLE': {
           server.title = el.value
-          console.log(server)
+          // console.log(server)
         }
         case 'URL': {
           server.url = el.value
@@ -80,7 +80,7 @@ class Base extends Vue {
         }
       }
     })
-    console.log('server', server)
+    // console.log('server', server)
     this.setServer(server)
   }
   lock () {
