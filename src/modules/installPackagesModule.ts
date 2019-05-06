@@ -129,7 +129,7 @@ const installPackagesModule = {
       } catch (e) {}
     },
     /**
-     * install sample content
+     * install sample content : recursively
      * @param vuex params
      * @param data object containing url and token of system
      */
@@ -163,6 +163,26 @@ const installPackagesModule = {
           })
       }
       request()
+    },
+    async updateModules ({ commit, state, dispatch }, data) {
+      commit('status/LOADING_TRUE', {}, { root: true })
+      if (helfer.allUpdated(state.packages) === false) {
+        let update = state.packages.filter(element => {
+          return element.versionInstalled !== element.versionAvailable
+        })
+
+        update.forEach(async element => {
+          if (element.providesInstaller === true) {
+            return dispatch('triggerNextModule', {
+              url: data.url,
+              module: element.title
+            })
+          }
+        })
+        await dispatch('getAllPackages', data)
+        await dispatch('updateModules', data)
+        commit('status/LOADING_FALSE', {}, { root: true })
+      }
     }
   },
   getters: {
@@ -199,7 +219,7 @@ const installPackagesModule = {
       if (state.packages) {
         return state.packages.filter(
           module =>
-            module.versionInstalled &&
+            module.versionInstalled != null &&
             module.versionInstalled !== module.versionAvailable
         )
       }

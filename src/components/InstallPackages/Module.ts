@@ -1,6 +1,6 @@
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import store from '@/store'
+
 @Component
 class Module extends Vue {
   @(namespace('storage').State) current: any
@@ -14,35 +14,29 @@ class Module extends Vue {
   @(namespace('installPackagesModule').Action) getAllPackages!: any
   @(namespace('installPackagesModule').Action) getSampleContent!: any
   @(namespace('installPackagesModule').Action) getNextModule!: any
-  private wait: Boolean = false
+  @(namespace('installPackagesModule').Action) updateModules!: any
+
   public installationMode: string = 'full'
   public full: boolean = true
   public filter: string = ''
-  // public modules = null
+
   public handle () {
     if (this.installationMode === 'full') this.full = true
     else this.full = false
   }
   public showInstalled () {
-    // console.log(this.modules, 'installed', this.installed)
-    // this.modules = this.installed
     this.filter = 'INSTALLED'
   }
   public showNotInstalled () {
-    // this.modules = this.notInstalled
     this.filter = 'NOTINSTALLED'
   }
   public showWithSampleContent () {
-    // console.log(this.withSampleContent)
-    // this.modules = this.withSampleContent
     this.filter = 'SAMPLECONTENT'
   }
   public showHasUpdate () {
-    // this.modules = this.hasUpdate
     this.filter = 'HASUPDATE'
   }
   public showAll () {
-    // this.modules = this.packages
     this.filter = 'ALL'
   }
   public modules () {
@@ -62,11 +56,8 @@ class Module extends Vue {
     }
   }
   async mounted () {
-    this.wait = true
     await this.getAllPackages({ url: this.current.url })
-
     await this.getSampleContent({ url: this.current.url })
-    this.wait = false
   }
   hasSampleContent (module) {
     let found = []
@@ -81,15 +72,23 @@ class Module extends Vue {
   public startInstaller () {
     this.getNextModule(Object.assign(this.current, { full: this.full }))
   }
-
+  public update () {
+    this.updateModules(Object.assign(this.current, { full: this.full }))
+  }
   public informations (data) {
     const ar = []
-
     const array = Object.keys(data).map(i => {
       ar.push({ key: i, value: data[i] })
     })
 
     return ar
+  }
+  public showUpdateBtn () {
+    return (
+      this.hasUpdate !== null &&
+      this.hasUpdate.length &&
+      this.hasUpdate.length > 0
+    )
   }
 }
 export default Module

@@ -17,16 +17,21 @@
       <button type="button" class="btn btn-outline-info" @click="showHasUpdate ()">Mit Update</button>
     </div>
     <br>
-    <select v-model="installationMode" @change="handle()">
-      <!-- @TODO add Entries in Language Files -->
-      <option value="full">Das ganze System installieren</option>
-      <option value="partial">System ohne Beispielinhalte</option>
-    </select>
-    <button
-      html_type="submit"
-      @click="startInstaller"
-      class="btn savechanges btn-outline-info"
-    >{{ $t("message.installer_start_installation") }}</button>
+    <div v-if="!showUpdateBtn()">
+      <select v-model="installationMode" @change="handle()">
+        <!-- @TODO add Entries in Language Files -->
+        <option value="full">Das ganze System installieren</option>
+        <option value="partial">System ohne Beispielinhalte</option>
+      </select>
+      <button
+        html_type="submit"
+        @click="startInstaller"
+        class="btn savechanges btn-outline-info"
+      >{{ $t("message.installer_start_installation") }}</button>
+    </div>
+    <div v-else>
+      <button html_type="submit" @click="update" class="btn savechanges btn-outline-info">Update all</button>
+    </div>
     <table>
       <tr>
         <th>{{ $t("message.installer_package_title")}}</th>

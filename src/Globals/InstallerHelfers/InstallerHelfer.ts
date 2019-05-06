@@ -23,19 +23,36 @@ class InstallerHelfer {
     })
     return found
   }
-
+  /**
+   * returns true if all modules have been installed
+   * @param packages : Modules
+   */
   public allInstalled (packages) {
     var found = true
     packages.map(el => {
-      if (el.versionInstalled === null && el.providesInstaller === true) { found = false }
+      if (el.versionInstalled === null && el.providesInstaller === true) {
+        found = false
+      }
     })
     return found
   }
-
+  /**
+   * returns true if all entries have been installed
+   * @param samples array with sample content
+   */
   public allInstalledSamples (samples) {
     var found = true
     samples.map(el => {
       if (el.isInstalled === false) found = false
+    })
+    return found
+  }
+  public allUpdated (packages) {
+    let found = true
+    packages.map(el => {
+      if (el.versionInstalled !== el.versionAvailable) {
+        found = false
+      }
     })
     return found
   }
