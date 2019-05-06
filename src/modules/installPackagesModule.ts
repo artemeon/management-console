@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as helfers from '../Globals/InstallerHelfers/InstallerHelfer'
+import { Module, Sample, ModulesState } from '../Globals/Types'
 const helfer = helfers.default.prototype
 const installPackagesModule = {
   namespaced: true,
@@ -9,13 +10,13 @@ const installPackagesModule = {
     samples: null
   },
   mutations: {
-    GET_PACKAGES (state: any, payload: any): void {
+    GET_PACKAGES (state: ModulesState, payload: Array<Module>): void {
       state.packages = payload
     },
-    GET_SAMPLE_CONTENT (state: any, payload: any): void {
+    GET_SAMPLE_CONTENT (state: ModulesState, payload: Array<Sample>): void {
       state.samples = payload
     },
-    ERROR_PACKAGES (state: any, payload: boolean): void {
+    ERROR_PACKAGES (state: ModulesState, payload: boolean): void {
       state.packagesError = payload
     }
   },
@@ -133,7 +134,7 @@ const installPackagesModule = {
      * @param vuex params
      * @param data object containing url and token of system
      */
-    makeRequestsFromArray ({ commit, state, dispatch }, data) {
+    makeRequestsFromArray ({ commit, state, dispatch }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
       let index = 0
       let arr = state.samples
@@ -164,7 +165,7 @@ const installPackagesModule = {
       }
       request()
     },
-    async updateModules ({ commit, state, dispatch }, data) {
+    async updateModules ({ commit, state, dispatch }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
       if (helfer.allUpdated(state.packages) === false) {
         let update = state.packages.filter(element => {

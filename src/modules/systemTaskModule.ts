@@ -20,7 +20,13 @@ const systemTaskModule = {
     }
   },
   actions: {
-    async getSystemTasks ({ commit, dispatch }, data: any) {
+    /**
+     *
+     * @param vuex params
+     * @param data
+     * get all available System tasks
+     */
+    async getSystemTasks ({ commit, dispatch }, data: Server) {
       commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/systemtask'
       try {
@@ -37,7 +43,13 @@ const systemTaskModule = {
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async getForm ({ commit }, data: any) {
+    /**
+     *
+     * @param vuex params
+     * @param data
+     * returns form entries for a given system task
+     */
+    async getForm ({ commit }, data: Server) {
       const url = data.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
@@ -53,6 +65,30 @@ const systemTaskModule = {
       } catch (e) {
         // Error handling not yet
         console.log(e)
+      }
+      commit('status/LOADING_FALSE', {}, { root: true })
+    },
+    /**
+     *
+     * @param param0
+     * @param data server and object with selected values in the form
+     * executes a systemtask
+     */
+    async executeTask ({ commit }, data: any) {
+      const url = data.url + '/api.php/systemtask/' + data.task
+      commit('status/LOADING_TRUE', {}, { root: true })
+      try {
+        const res = await axios({
+          method: 'post',
+          url: url,
+          data: data.payload
+          // authorisation:'bearer' +data.token
+        })
+        // @TODO handle success
+      } catch (e) {
+        // Error handling not yet
+        console.log(e)
+        // @TODO handle error
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }
