@@ -39,8 +39,11 @@ class InstallerHelfer {
   }
   public allUpdated (packages: Array<Module>) {
     let found = true
-    packages.map(el => {
-      if (el.versionInstalled !== el.versionAvailable) {
+    packages.map(element => {
+      if (
+        element.versionInstalled > element.versionAvailable &&
+        element.isInstallable === true
+      ) {
         found = false
       }
     })

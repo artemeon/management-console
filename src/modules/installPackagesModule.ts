@@ -49,7 +49,6 @@ const installPackagesModule = {
     async getNextModule ({ dispatch, state, commit }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
       // Not all Modules installed
-
       if (helfer.allInstalled(state.packages) === false) {
         // filter already installed
         let installable = state.packages.filter(element => {
@@ -66,22 +65,16 @@ const installPackagesModule = {
         })
         await dispatch('getAllPackages', data)
         await dispatch('getNextModule', data)
-      }
-      // all Modules Installed
-      else {
+      } else {
         // install sample only in full Mode
         if (data.full === true) {
           // Sample Content not installed
           if (!helfer.allInstalledSamples(state.samples)) {
             await dispatch('makeRequestsFromArray', data)
           }
-          //  else {
           dispatch('getSampleContent', data)
-          // console.log('finish')
-          // }
         }
       }
-      // commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
      * @param payload Name of Module that will be installed
@@ -167,14 +160,17 @@ const installPackagesModule = {
     },
     async updateModules ({ commit, state, dispatch }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
+      // Not all Updated
+      let update = state.packages.filter(element => {
+        return (
+          element.versionInstalled > element.versionAvailable &&
+          element.isInstallable === true
+        )
+      })
       if (helfer.allUpdated(state.packages) === false) {
-        let update = state.packages.filter(element => {
-          return element.versionInstalled !== element.versionAvailable
-        })
-
         update.forEach(async element => {
-          if (element.providesInstaller === true) {
-            return dispatch('triggerNextModule', {
+          if (element.providesInstaller === true && element.isInstallable) {
+            dispatch('triggerNextModule', {
               url: data.url,
               module: element.title
             })
@@ -182,8 +178,9 @@ const installPackagesModule = {
         })
         await dispatch('getAllPackages', data)
         await dispatch('updateModules', data)
-        commit('status/LOADING_FALSE', {}, { root: true })
       }
+
+      commit('status/LOADING_FALSE', {}, { root: true })
     }
   },
   getters: {

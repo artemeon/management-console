@@ -8,7 +8,10 @@ class ChartJs extends Vue {
   @Prop() height!: number
   private chart: any
   mounted () {
-    var ctx = document.getElementById(this.id)
+    let canvas: any = document.getElementById(this.id)
+
+    let ctx = canvas.getContext('2d')
+
     // ctx.height = this.height
     this.chart = this.chartData
 

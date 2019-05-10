@@ -76,7 +76,7 @@ class Module extends Vue {
     this.updateModules(Object.assign(this.current, { full: this.full }))
   }
   public informations (data) {
-    const ar = []
+    let ar: object[] = []
     const array = Object.keys(data).map(i => {
       ar.push({ key: i, value: data[i] })
     })
@@ -85,6 +85,7 @@ class Module extends Vue {
   }
   public showUpdateBtn () {
     return (
+      this.hasUpdate &&
       this.hasUpdate !== null &&
       this.hasUpdate.length &&
       this.hasUpdate.length > 0

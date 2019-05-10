@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+// import { Module } from 'vuex';
+// import {DbBrowserState,RootState} from "../Globals/Types"
 const dbBrowserModule = {
   namespaced: true,
   state: {
@@ -27,6 +28,7 @@ const dbBrowserModule = {
         })
         commit('LIST_TABLES', res.data)
       } catch (e) {
+        // @TODO handle Error
         console.log(e)
       }
       commit('status/LOADING_FALSE', {}, { root: true })

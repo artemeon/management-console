@@ -16,7 +16,7 @@ const storageModule = {
   },
   actions: {
     getServers ({ commit }): Array<Server> {
-      let servers = null
+      let servers
       servers = Local.prototype.getServers()
 
       commit('GET_SERVERS', servers)

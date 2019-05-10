@@ -15,7 +15,7 @@ class PhpSettings extends Vue {
 
   private get fileChecksFolder (): any {
     if (this.phpSettings && this.phpSettings.folders) {
-      const ar = []
+      let ar: object[] = []
 
       const array = Object.keys(this.phpSettings.folders).map((i, k) => {
         ar.push({ key: i, value: Object.values(this.phpSettings.folders)[k] })
@@ -26,9 +26,9 @@ class PhpSettings extends Vue {
   }
   private get fileChecksModules (): any {
     if (this.phpSettings && this.phpSettings.extensions) {
-      const ar = []
+      let ar: object[] = []
 
-      const array = Object.keys(this.phpSettings.extensions).map((i, k) => {
+      Object.keys(this.phpSettings.extensions).map((i, k) => {
         ar.push({
           key: i,
           value: Object.values(this.phpSettings.extensions)[k]

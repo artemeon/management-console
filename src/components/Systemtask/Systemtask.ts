@@ -12,10 +12,10 @@ class Systemtask extends Vue {
     await this.getSystemTasks(this.current)
   }
   private objectToArray (data: Object) {
-    var arr = []
+    let arr: any[] = []
 
     if (!Array.isArray(data) && data) {
-      const array = Object.keys(data).map((i, k) => {
+      Object.keys(data).map((i, k) => {
         arr.push({
           key: i,
           value: Object.values(data)[k]
@@ -32,9 +32,10 @@ class Systemtask extends Vue {
     })
     return array
   }
-  private runtask (task) {
+  private runtask (task: any) {
+    console.log(task)
     this.$store.commit('systemTaskModule/GET_FORM', {})
-    this.getForm(Object.assign(this.current, { task: task }))
+    this.getForm({ server: this.current, task: task })
   }
 }
 

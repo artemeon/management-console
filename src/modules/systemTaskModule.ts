@@ -49,8 +49,8 @@ const systemTaskModule = {
      * @param data
      * returns form entries for a given system task
      */
-    async getForm ({ commit }, data: Server) {
-      const url = data.url + '/api.php/systemtask/' + data.task
+    async getForm ({ commit }, data: any) {
+      const url = data.server.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({

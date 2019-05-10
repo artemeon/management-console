@@ -41,3 +41,9 @@ npm run test:e2e
 ```
 npm run test:unit
 ```
+
+### Run helper functions tests
+
+```
+**npm run testGlobal**
+```

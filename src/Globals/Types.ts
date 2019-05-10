@@ -1,3 +1,5 @@
+import Server from './Storage/Server'
+
 interface Module {
   title: string
   description: string
@@ -20,4 +22,12 @@ interface ModulesState {
   packagesError: Boolean
   samples: Array<Sample>
 }
-export { Module, Sample, ModulesState }
+// interface DbBrowserState {
+//   dbTables: Object
+//   tableData: Object
+// }
+interface RootState {}
+interface ServersList {
+  systems?: Array<Server>
+}
+export { Module, Sample, ModulesState, ServersList, RootState }
