@@ -8,9 +8,11 @@ class SideBar extends Vue {
   public eventname: string = ''
 
   handler (e) {
-    const url = this.current.url
-
-    this.$router.push({ name: e, params: { system: this.current.title } })
+    // @TODO handle reload
+    if (this.current) {
+      const url = this.current.url
+      this.$router.push({ name: e, params: { system: this.current.title } })
+    }
   }
 }
 export default SideBar

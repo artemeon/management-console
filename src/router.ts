@@ -10,6 +10,8 @@ import SystemInfo from './components/SystemInfo/SystemInfo'
 import Stats from './components/Stats/Stats'
 import Mailtest from './components/Mailtest/Mailtest'
 import Systemtask from './components/Systemtask/Systemtask'
+import Dashboard from './components/Dashboard/Dashboard'
+import SystemsContainer from './components/SystemsContainer/SystemsContainer'
 Vue.use(Router)
 
 export default new Router({
@@ -17,54 +19,66 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/Installation/Systemcheck/:system',
-      name: 'Systemcheck',
-      component: PhpSettings
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard
     },
     {
-      path: '/Installation/Database/:system',
-      name: 'Datenbank',
-      component: DbSettings
-    },
-    {
-      path: '/Installation/Module/:system',
-      name: 'Module',
-      component: Install
-    },
+      path: '/:system',
+      name: 'inside',
+      component: SystemsContainer,
+      children: [
+        {
+          path: '/Installation/Systemcheck',
+          name: 'Systemcheck',
+          component: PhpSettings
+        },
+        {
+          path: '/Installation/Database',
+          name: 'Datenbank',
+          component: DbSettings
+        },
+        {
+          path: '/Installation/Module',
+          name: 'Module',
+          component: Install
+        },
 
-    {
-      path: '/System/SystemInfo/:system',
-      name: 'System Info',
-      component: SystemInfo
-    },
-    {
-      path: '/System/Logs/:system',
-      name: 'Logs',
-      component: Logs
-    },
+        {
+          path: '/System/SystemInfo',
+          name: 'System Info',
+          component: SystemInfo
+        },
+        {
+          path: '/System/Logs',
+          name: 'Logs',
+          component: Logs
+        },
 
-    {
-      path: '/System/Stats/:system',
-      name: 'Stats',
-      component: Stats
-    },
+        {
+          path: '/System/Stats',
+          name: 'Stats',
+          component: Stats
+        },
 
-    {
-      path: '/System/Mailtest/:system',
-      name: 'Mail-test',
-      component: Mailtest
-    },
+        {
+          path: '/System/Mailtest',
+          name: 'Mail-test',
+          component: Mailtest
+        },
 
-    {
-      path: '/System/DBBrowser/:system',
-      name: 'DBBrowser',
-      component: DbBrowser
-    },
+        {
+          path: '/System/DBBrowser/:system',
+          name: 'DBBrowser',
+          component: DbBrowser
+        },
 
-    {
-      path: '/System/Systemtask/:system',
-      name: 'Systemtask',
-      component: Systemtask
+        {
+          path: '/System/Systemtask/:system',
+          name: 'Systemtask',
+          component: Systemtask
+        }
+      ]
     }
   ]
 })

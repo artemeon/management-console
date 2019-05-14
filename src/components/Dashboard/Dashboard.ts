@@ -1,23 +1,19 @@
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import Card from '../ReusableLayout/Card/Card.vue'
 import Modal from '../ReusableLayout/Modal/Modal.vue'
 import Export from '../../Globals/Storage/Export'
 import ImportFile from '../../Globals/Storage/ImportFile'
 import Server from '../../Globals/Storage/Server'
-@Component({ components: { Modal } })
-class Base extends Vue {
+@Component({ components: { Card, Modal } })
+class Dashboard extends Vue {
   @(namespace('storage').Action) setServer!: any
   @(namespace('storage').Action) setServers!: any
   @(namespace('storage').Action) getServers!: any
   @(namespace('storage').Action) setCurrent!: any
   @(namespace('storage').State) storageLocal!: any
-  @(namespace('lock').State) locked!: any
-  @(namespace('lock').Action) checkIfLocked!: any
-  @(namespace('lock').Action) lockSystem!: any
-  @(namespace('lock').Action) unlockSystem!: any
+  @(namespace('storage').State) current: any
   private id = 'modalTopBar'
-  public current = null
-  public systems!: any
   public agp_add = [
     {
       id: 'Title',
@@ -41,14 +37,10 @@ class Base extends Vue {
   ]
   mounted () {
     this.getServers()
-
-    this.current = this.storageLocal[0] || {}
-    this.setCurrent(this.current)
-    this.checkIfLocked(this.current)
   }
-  getSelected () {
-    this.setCurrent(this.current)
-    this.$router.push({ path: '/' })
+  getSelected (system: Server) {
+    this.setCurrent(system)
+    this.$router.push({ name: 'inside', params: { system: system.title } })
   }
   exportJson () {
     Export.prototype.download(
@@ -69,7 +61,6 @@ class Base extends Vue {
       switch (el.id.toUpperCase()) {
         case 'TITLE': {
           server.title = el.value
-          // console.log(server)
         }
         case 'URL': {
           server.url = el.value
@@ -81,11 +72,5 @@ class Base extends Vue {
     })
     this.setServer(server)
   }
-  lock () {
-    this.lockSystem(this.current)
-  }
-  unlock () {
-    this.unlockSystem(this.current)
-  }
 }
-export default Base
+export default Dashboard
