@@ -6,7 +6,7 @@ import i18n from './assets/vueI18n/i18n'
 // import '../node_modules/bootstrap/scss/bootstrap.scss'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './assets/css/bootstrapOverride.scss'
+// import './assets/css/bootstrapOverride.scss'
 
 Vue.config.productionTip = false
 

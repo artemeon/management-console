@@ -10,8 +10,12 @@ import Dashboard from '../Dashboard/Dashboard'
 @Component({ components: { Base, StatusBar, SideBar, Modal, Dashboard } })
 export default class App extends Vue {
   @(namespace('storage').State) current: any
+  @(namespace('lock').Action) checkIfLocked!: any
   public content = navContent
   mounted () {
     if (!this.current) this.$router.push({ path: '/' })
+    if (this.current) {
+      this.checkIfLocked(this.current)
+    }
   }
 }

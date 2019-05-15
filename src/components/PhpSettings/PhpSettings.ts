@@ -1,14 +1,18 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import Card from '../ReusableLayout/Card/Card'
 
 const uuidv4 = require('uuid/v1')
-@Component
+@Component({ components: { Card } })
 class PhpSettings extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('phpSettingsModule').State) phpSettings!: any
   @(namespace('phpSettingsModule').Action) getPHPSettings!: any
   private langs: Array<String> = ['de', 'en']
-
+  private style = {
+    'max-height': '50%',
+    'overflow-y': 'auto'
+  }
   async mounted () {
     await this.getPHPSettings({ url: this.current.url })
   }

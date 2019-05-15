@@ -11,14 +11,15 @@
         <i class="fas fa-plus"></i>
         add new
       </button>
-      <button type="button" class="btn">
+      <button type="button" class="btn" @click="exportJson">
         <i class="fas fa-file-upload"></i>
         Export
       </button>
-      <button type="button" class="btn">
+      <label class="btn">
+        <input type="file" style="display: none;" @change="importJson" ref="myFiles">
         <i class="fas fa-file-download"></i>
         Import
-      </button>
+      </label>
     </div>
     <div class="dashboardCards">
       <!-- @TODO Delete System -->
