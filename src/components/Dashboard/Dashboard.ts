@@ -1,11 +1,11 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import Card from '../ReusableLayout/Card/Card.vue'
+// import Card from '../ReusableLayout/Card/Card.vue'
 import Modal from '../ReusableLayout/Modal/Modal.vue'
 import Export from '../../Globals/Storage/Export'
 import ImportFile from '../../Globals/Storage/ImportFile'
 import Server from '../../Globals/Storage/Server'
-@Component({ components: { Card, Modal } })
+@Component({ components: { Modal } })
 class Dashboard extends Vue {
   @(namespace('storage').Action) setServer!: any
   @(namespace('storage').Action) setServers!: any

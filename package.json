@@ -11,6 +11,7 @@
     "testGlobal": "mocha  ./tests/global.spec.ts"
   },
   "dependencies": {
+    "@artemeon/vue-library": "github:artemeon/frontend-components",
     "@types/chart.js": "^2.7.52",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
