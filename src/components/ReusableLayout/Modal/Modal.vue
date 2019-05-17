@@ -18,6 +18,7 @@
                 :key="item.id"
                 :is="item.type"
                 v-bind="item"
+                :item="item"
                 v-if=" exists(item.type)"
                 v-model="items[index].value"
               ></component>

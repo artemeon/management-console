@@ -1,7 +1,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import Table from '../ReusableLayout/Table/Table'
+import TableHead from '../ReusableLayout/Table/TableHead/TableHead'
+import TableCell from '../ReusableLayout/Table/TableCell/TableCell'
+import TableBody from '../ReusableLayout/Table/TableBody/TableBody'
+import TableRow from '../ReusableLayout/Table/TableRow/TableRow'
 
-@Component
+@Component({ components: { Table, TableHead, TableCell, TableBody, TableRow } })
 class Module extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('installPackagesModule').State) packages!: any
@@ -19,7 +24,10 @@ class Module extends Vue {
   public installationMode: string = 'full'
   public full: boolean = true
   public filter: string = ''
-
+  public style = {
+    height: '150px',
+    'overflow-y': 'auto'
+  }
   public handle () {
     if (this.installationMode === 'full') this.full = true
     else this.full = false

@@ -1,9 +1,10 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import Card from '../ReusableLayout/Card/Card'
+// import Card from '../ReusableLayout/Card/Card'
 
 const uuidv4 = require('uuid/v1')
-@Component({ components: { Card } })
+// @Component({ components: { Card } })
+@Component
 class PhpSettings extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('phpSettingsModule').State) phpSettings!: any

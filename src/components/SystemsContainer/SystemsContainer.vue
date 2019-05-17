@@ -7,7 +7,7 @@
       </div>
       <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
         <router-view></router-view>
-        <StatusBar/>
+        <!-- <StatusBar/> -->
       </div>
     </div>
   </div>

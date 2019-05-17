@@ -33,7 +33,7 @@
       />
     </div>
     <Modal
-      :items="agp_add"
+      :items="agpAdd"
       label="exampleModalCentered"
       header="Add System"
       :id="id"

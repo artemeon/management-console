@@ -14,7 +14,7 @@ class Dashboard extends Vue {
   @(namespace('storage').State) storageLocal!: any
   @(namespace('storage').State) current: any
   private id = 'modalTopBar'
-  public agp_add = [
+  public agpAdd = [
     {
       id: 'Title',
       label: 'Title',
@@ -57,17 +57,20 @@ class Dashboard extends Vue {
   }
   addSystem () {
     var server: Server = { title: '', url: '', token: '' }
-    this.agp_add.map(el => {
+    this.agpAdd.map(el => {
       switch (el.id.toUpperCase()) {
-        case 'TITLE': {
+        case 'TITLE':
           server.title = el.value
-        }
-        case 'URL': {
+
+          break
+        case 'URL':
           server.url = el.value
-        }
-        case 'TOKEN': {
+
+          break
+        case 'TOKEN':
           server.token = el.value
-        }
+
+          break
       }
     })
     this.setServer(server)
