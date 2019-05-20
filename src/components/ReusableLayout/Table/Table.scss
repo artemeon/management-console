@@ -1,0 +1,30 @@
+.table {
+  .fa-check-circle {
+    color: #9ccc65;
+  }
+  .fa-check {
+    color: #1de9b6;
+  }
+  .fa-download {
+    color: #03a9f4;
+  }
+  margin-top: 20px;
+  thead {
+    td {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+  td {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+}
+
+// .shadow {
+//   -webkit-box-shadow: 0px 2px 19px -11px rgba(0, 0, 0, 0.42);
+//   -moz-box-shadow: 0px 2px 19px -11px rgba(0, 0, 0, 0.42);
+//   box-shadow: 0px 2px 19px -11px rgba(0, 0, 0, 0.42);
+// }

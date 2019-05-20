@@ -1,12 +1,25 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import Table from '../ReusableLayout/Table/Table'
-import TableHead from '../ReusableLayout/Table/TableHead/TableHead'
-import TableCell from '../ReusableLayout/Table/TableCell/TableCell'
-import TableBody from '../ReusableLayout/Table/TableBody/TableBody'
-import TableRow from '../ReusableLayout/Table/TableRow/TableRow'
+// import Table from '../ReusableLayout/Table/Table'
+// import TableHead from '../ReusableLayout/Table/TableHead/TableHead'
+// import TableCell from '../ReusableLayout/Table/TableCell/TableCell'
+// import TableBody from '../ReusableLayout/Table/TableBody/TableBody'
+// import TableRow from '../ReusableLayout/Table/TableRow/TableRow'
+// import Button from '../ReusableLayout/Button/Button'
+// import ASwitch from '../ReusableLayout/ASwitch/ASwitch'
 
-@Component({ components: { Table, TableHead, TableCell, TableBody, TableRow } })
+// @Component({
+//   components: {
+//   Table,
+//   TableHead,
+//   TableCell,
+//   TableBody,
+//   TableRow,
+//   Button,
+//   ASwitch
+//   }
+//   })
+@Component
 class Module extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('installPackagesModule').State) packages!: any
@@ -28,8 +41,9 @@ class Module extends Vue {
     height: '150px',
     'overflow-y': 'auto'
   }
-  public handle () {
-    if (this.installationMode === 'full') this.full = true
+
+  public handle (e) {
+    if (e === true) this.full = true
     else this.full = false
   }
   public showInstalled () {
@@ -64,8 +78,10 @@ class Module extends Vue {
     }
   }
   async mounted () {
-    await this.getAllPackages({ url: this.current.url })
-    await this.getSampleContent({ url: this.current.url })
+    if (this.current) {
+      await this.getAllPackages({ url: this.current.url })
+      await this.getSampleContent({ url: this.current.url })
+    }
   }
   hasSampleContent (module) {
     let found = []
@@ -77,6 +93,7 @@ class Module extends Vue {
 
     return found[0]
   }
+
   public startInstaller () {
     this.getNextModule(Object.assign(this.current, { full: this.full }))
   }

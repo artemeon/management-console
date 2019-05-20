@@ -1,0 +1,17 @@
+.btn {
+  border: 1px solid #ff8f00;
+  padding: 0.3em 1em 0.3em 1em;
+  font-weight: 500;
+  i {
+    color: #ff8f00;
+  }
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #ff8f00;
+
+  i {
+    color: white;
+  }
+}
