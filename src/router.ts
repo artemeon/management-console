@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from './components/App/App.vue'
 import DbSettings from './components/DbSettings/DbSettings.vue'
 import PhpSettings from './components/PhpSettings/PhpSettings.vue'
 import Logs from './components/Logs/Logs'
@@ -12,6 +11,7 @@ import Mailtest from './components/Mailtest/Mailtest'
 import Systemtask from './components/Systemtask/Systemtask'
 import Dashboard from './components/Dashboard/Dashboard'
 import SystemsContainer from './components/SystemsContainer/SystemsContainer'
+import store from './store'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +22,21 @@ export default new Router({
       path: '/',
       name: 'Dashboard',
       component: Dashboard
+    },
+    {
+      path: '/addSystem',
+      // component: Dashboard,
+      props: route => ({
+        query: {
+          title: route.query.title,
+          url: route.query.url,
+          token: route.query.url
+        }
+      }),
+      beforeEnter: (to, from, next) => {
+        console.log(to.query, store)
+        store.dispatch('storage/setServer', to.query)
+      }
     },
     {
       path: '/:system',
