@@ -22,7 +22,6 @@
       </label>
     </div>
     <div class="dashboardCards">
-      <!-- @TODO Delete System -->
       <Card
         v-for="(data,index) in storageLocal"
         :key="index"
@@ -30,7 +29,19 @@
         :title="data.title"
         information
         @handleClick="getSelected(data)"
-      />
+        close
+        @close="deleteServer(data)"
+      >
+        <template v-slot:card-text>
+          <span>Title: {{data.title}}</span>
+          <br>
+          <span>Url: {{data.url}}</span>
+        </template>
+        <template v-slot:action-buttons>
+          <Button @click="getSelected(data)">Management</Button>
+          <Button @click="goToAgp(data)">AGP</Button>
+        </template>
+      </Card>
     </div>
     <Modal
       :items="agpAdd"

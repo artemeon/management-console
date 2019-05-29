@@ -32,6 +32,10 @@ const storageModule = {
     },
     setCurrent ({ commit }, server: Server) {
       commit('SET_CURRENT', server)
+    },
+    deleteServer ({ commit, dispatch }, server: Server) {
+      Local.prototype.deleteServer(server)
+      dispatch('getServers')
     }
   },
   getters: {}

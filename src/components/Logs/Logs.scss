@@ -5,3 +5,10 @@
   text-overflow: ellipsis;
   cursor: pointer;
 }
+.logFilesContainer {
+  display: flex;
+  cursor: pointer;
+  i {
+    font-size: 3rem;
+  }
+}

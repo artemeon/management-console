@@ -1,11 +1,35 @@
 <template>
-  <div class="card" :style="cardStyle" @click="handler">
+  <div class="card" :style="cardStyle" @click="handler" v-if="clickable">
     <div class="card-body">
-      <h5 class="card-title">{{title}}</h5>
+      <div class="header">
+        <!-- <h5 class="card-title">{{title}}</h5>
+        <i class="fas fa-times" @click="handleClose" v-if="close"></i>-->
+
+        <p class="custom-header">
+          <slot name="custom-header">
+            <h5 class="card-title">{{title}}</h5>
+            <i class="fas fa-times" @click="handleClose" v-if="close"></i>
+          </slot>
+        </p>
+      </div>
+
       <p class="card-text">
-        <slot></slot>
+        <slot name="card-text"></slot>
       </p>
-      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      <slot name="action-buttons"></slot>
+    </div>
+  </div>
+  <div class="card" :style="cardStyle" v-else>
+    <div class="card-body">
+      <div class="header">
+        <h5 class="card-title">{{title}}</h5>
+        <i class="fas fa-times" @click="handleClose" v-if="close"></i>
+      </div>
+
+      <p class="card-text">
+        <slot name="card-text"></slot>
+      </p>
+      <slot name="action-buttons"></slot>
     </div>
   </div>
 </template>

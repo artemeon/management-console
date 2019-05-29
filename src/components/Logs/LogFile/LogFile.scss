@@ -5,3 +5,33 @@
   text-overflow: ellipsis;
   cursor: pointer;
 }
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  padding-bottom: 60px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+#click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.active {
+  display: block !important;
+}
+#overlayContent {
+  margin-right: 20%;
+  margin-left: 20%;
+  overflow-y: auto !important;
+  max-height: 100%;
+}

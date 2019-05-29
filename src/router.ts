@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       path: '/addSystem',
-      // component: Dashboard,
+
       props: route => ({
         query: {
           title: route.query.title,
@@ -34,8 +34,21 @@ export default new Router({
         }
       }),
       beforeEnter: (to, from, next) => {
-        console.log(to.query, store)
         store.dispatch('storage/setServer', to.query)
+      }
+    },
+    {
+      path: '/delete',
+
+      props: route => ({
+        query: {
+          title: route.query.title,
+          url: route.query.url,
+          token: route.query.url
+        }
+      }),
+      beforeEnter: (to, from, next) => {
+        store.dispatch('storage/deleteServer', to.query)
       }
     },
     {

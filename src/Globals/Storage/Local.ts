@@ -48,6 +48,14 @@ class Local implements Storage {
 
     window.localStorage.setItem('mc_server_cfg', JSON.stringify(this.jsonData))
   }
+  deleteServer (server: Server) {
+    const servers = this.getServers()
+    let index = servers.findIndex(e => e.title === server.title)
+    if (index !== -1 && servers.length > 0) {
+      servers.splice(index, 1)
+    }
+    this.setServers(servers)
+  }
 }
 
 export default Local
