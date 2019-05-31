@@ -11,9 +11,9 @@ class LogFile extends Vue {
     return formatter.bootstrapType(el)
   }
   public getIcon (el: string) {
-    if (this.warning(el) !== undefined) {
-      return formatter.getIcon(this.warning(el))
-    }
+    let result = this.warning(el)
+    if (result === undefined) result = ''
+    return formatter.getIcon(result)
   }
   public close () {
     this.isActive = false
