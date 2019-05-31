@@ -37,7 +37,9 @@ class DbSettings extends Vue {
     this.found = this.checkModule[driver]
   }
   async mounted () {
-    await this.checkDbModule({ url: this.current.url })
+    if (this.current) {
+      await this.checkDbModule({ url: this.current.url })
+    }
     if (this.checkModule.config) {
       this.dbServer = this.checkModule.config.host
       this.dbUser = this.checkModule.config.username

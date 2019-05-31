@@ -1,0 +1,26 @@
+.sidenav {
+  background-color: #fff;
+  width: 15vw;
+  height: 100%;
+}
+li,
+li:hover {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  width: 100%;
+}
+ul {
+  padding: 10px;
+  font-size: 2em;
+  display: block;
+  width: 100%;
+}
+li:hover {
+  background-color: blue;
+}
+
+.systemTasksContainer {
+  height: 100%;
+}

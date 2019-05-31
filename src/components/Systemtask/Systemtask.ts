@@ -9,7 +9,9 @@ class Systemtask extends Vue {
   @(namespace('systemTaskModule').Action) getForm!: any
   @(namespace('systemTaskModule').State) form: any
   async mounted () {
-    await this.getSystemTasks(this.current)
+    if (this.current) {
+      await this.getSystemTasks(this.current)
+    }
   }
   private objectToArray (data: Object) {
     let arr: any[] = []

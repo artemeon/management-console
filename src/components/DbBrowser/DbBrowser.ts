@@ -21,7 +21,9 @@ class DbBrowser extends Vue {
 
   // get tables List fron the Api when the Component did mount
   public async mounted () {
-    await this.listTables({ url: this.current.url })
+    if (this.current) {
+      await this.listTables({ url: this.current.url })
+    }
   }
 
   public async getSelectedTable (): Promise<void> {

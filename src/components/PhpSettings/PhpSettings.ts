@@ -15,7 +15,9 @@ class PhpSettings extends Vue {
     'overflow-y': 'auto'
   }
   async mounted () {
-    await this.getPHPSettings({ url: this.current.url })
+    if (this.current) {
+      await this.getPHPSettings({ url: this.current.url })
+    }
   }
 
   private get fileChecksFolder (): any {

@@ -19,7 +19,9 @@ class Logs extends Vue {
 
   private selected = -1
   async mounted () {
-    await this.getLogFiles(this.current)
+    if (this.current) {
+      await this.getLogFiles(this.current)
+    }
   }
 
   public warning (el: string) {

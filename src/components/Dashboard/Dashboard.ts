@@ -14,6 +14,7 @@ class Dashboard extends Vue {
   @(namespace('storage').Action) setCurrent!: any
   @(namespace('storage').State) storageLocal!: any
   @(namespace('storage').State) current: any
+
   private id = 'modalTopBar'
   public agpAdd = [
     {

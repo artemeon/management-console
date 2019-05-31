@@ -8,7 +8,9 @@ class SystemInfo extends Vue {
   @(namespace('systemInfo').Action) getSystemInfo!: any
   @(namespace('status').State) loading!: any
   mounted () {
-    this.getSystemInfo(this.current)
+    if (this.current) {
+      this.getSystemInfo(this.current)
+    }
   }
 }
 export default SystemInfo
