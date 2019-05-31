@@ -1,8 +1,9 @@
 <template>
   <div class="systemTasksContainer">
     <div v-if="systemTasksComputed.length" class="systemTasksContainer">
-      <div class="row">
-        <div class="col-sm-1 col-md-3 col-lg-2 col-xl-2">
+      <!-- <div class="row"> -->
+      <SideBar :elements="systemTasksComputed" @indexClicked="handleClick"/>
+      <!-- <div class="col-sm-1 col-md-3 col-lg-2 col-xl-2">
           <ul class="sidenav">
             <li
               v-for="(task,index) in systemTasksComputed "
@@ -10,9 +11,9 @@
               @click="runtask(task.value[0].key)"
             >{{task.value[0].key}}</li>
           </ul>
-        </div>
-        <div class="col-sm-11 col-md-9 col-lg-10 col-xl-10"></div>
-      </div>
+      </div>-->
+      <div class="col-sm-11 col-md-9 col-lg-10 col-xl-10"></div>
+      <!-- </div> -->
       <!-- <ul class="list-group list-group-flush">
         <li class="list-group-item" v-for="(task,index) in systemTasksComputed " :key="index">
           <h5>{{task.key}}</h5>

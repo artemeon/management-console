@@ -1,7 +1,8 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import Modal from '../ReusableLayout/Modal/Modal'
-@Component({ components: { Modal } })
+import SideBar from '../ReusableLayout/SideBar/SideBar'
+@Component({ components: { Modal, SideBar } })
 class Systemtask extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('systemTaskModule').State) systemTasks!: any
@@ -12,6 +13,9 @@ class Systemtask extends Vue {
     if (this.current) {
       await this.getSystemTasks(this.current)
     }
+  }
+  handleClick (e) {
+    console.log(e)
   }
   private objectToArray (data: Object) {
     let arr: any[] = []
