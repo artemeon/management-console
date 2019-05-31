@@ -5,16 +5,23 @@ const formatter = LogsFormatter.default.prototype
 @Component({ components: { Card } })
 class LogFile extends Vue {
   @Prop() content: any
+
   public isActive: Boolean = false
   public warning (el: string) {
     return formatter.bootstrapType(el)
   }
-  close () {
-    this.isActive = false
+  public getIcon (el: string) {
+    if (this.warning(el) !== undefined) {
+      return formatter.getIcon(this.warning(el))
+    }
   }
-  @Watch('content')
-  onContentChanged (val: any) {
-    if (val !== null) this.isActive = true
+  public close () {
+    this.isActive = false
+    this.$emit('return')
+  }
+
+  public update () {
+    this.isActive = true
   }
   public selected: number = -1
   public showItem (i: number) {

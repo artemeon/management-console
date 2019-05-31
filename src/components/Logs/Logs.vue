@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LogFile :content="content"/>
     <div v-if="error">
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">ERROR!</h4>
@@ -15,7 +14,9 @@
         :component="component"
         :content="content"
       />-->
+      <LogFile :content="content" ref="logfile" v-if="selected!==-1" @return="handleReturn"/>
       <Card
+        v-else
         v-for="(data,index) in logsComputed"
         :key="index"
         :value="data"

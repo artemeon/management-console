@@ -1,11 +1,29 @@
 class LogsFormatter {
   public bootstrapType (logString: string) {
-    if (logString.indexOf('WARNING') !== -1) {
-      return 'alert-warning'
-    } else if (logString.indexOf('ERROR') !== -1) {
-      return 'alert-danger'
-    } else {
-      return 'alert-info'
+    if (logString.length > 0) {
+      if (logString.indexOf('WARNING') !== -1) {
+        return 'warning'
+      } else if (logString.indexOf('ERROR') !== -1) {
+        return 'danger'
+      } else {
+        return 'info'
+      }
+    }
+  }
+  public getIcon (type: string) {
+    switch (type) {
+      case 'warning': {
+        return '<i class="fas fa-exclamation-triangle"></i>'
+      }
+
+      case 'danger':
+        {
+          return '<i class="fas fa-exclamation-triangle"></i>'
+        }
+        break
+      case 'info': {
+        return '<i class="fas fa-exclamation-circle"></i>'
+      }
     }
   }
 }

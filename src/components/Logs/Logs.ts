@@ -16,25 +16,26 @@ class Logs extends Vue {
   @(namespace('logsModule').State) log!: any
   public component: any = ''
   public content: Array<String> = []
+
   private selected = -1
   async mounted () {
     await this.getLogFiles(this.current)
   }
-  public async loadContent (data) {
-    this.component = LogFile
-    await this.getLogForFile(Object.assign(this.current, { log: data }))
-    this.content = this.log
-  }
+
   public warning (el: string) {
     return formatter.bootstrapType(el)
   }
   public get logsComputed () {
     return this.logs ? this.logs.logs : []
   }
+  handleReturn () {
+    this.selected = -1
+  }
   async showLog (data) {
+    this.content = []
     this.selected = this.logs.logs.findIndex(e => e === data)
     await this.getLogForFile(Object.assign(this.current, { log: data }))
-    this.content = this.log
+    this.content = this.log.lines
   }
 }
 export default Logs
