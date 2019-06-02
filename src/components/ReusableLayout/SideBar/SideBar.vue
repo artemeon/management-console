@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div style="height:100%">
     <nav id="sidebar">
       <ul class="list-unstyled labels" v-if="elements">
         <li v-for="(content,index) in elements  " :key="index" :id="content.key">
@@ -11,7 +11,9 @@
               :key="index"
               :id="task.key"
               @click="handler(task.key)"
-            >{{task.key}}</li>
+            >
+              <span>{{task.key}}</span>
+            </li>
           </ul>
         </li>
       </ul>

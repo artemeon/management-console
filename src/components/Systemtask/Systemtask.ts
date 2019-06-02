@@ -2,7 +2,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import Modal from '../ReusableLayout/Modal/Modal'
 import SideBar from '../ReusableLayout/SideBar/SideBar'
-@Component({ components: { Modal, SideBar } })
+import FormContainer from '../ReusableLayout/FormContainer/FormContainer'
+@Component({ components: { Modal, SideBar, FormContainer } })
 class Systemtask extends Vue {
   @(namespace('storage').State) current: any
   @(namespace('systemTaskModule').State) systemTasks!: any
@@ -14,9 +15,7 @@ class Systemtask extends Vue {
       await this.getSystemTasks(this.current)
     }
   }
-  handleClick (e) {
-    console.log(e)
-  }
+
   private objectToArray (data: Object) {
     let arr: any[] = []
 
@@ -38,10 +37,12 @@ class Systemtask extends Vue {
     })
     return array
   }
-  private runtask (task: any) {
-    console.log(task)
+  private selectTask (task: any) {
     this.$store.commit('systemTaskModule/GET_FORM', {})
     this.getForm({ server: this.current, task: task })
+  }
+  public runTask () {
+    console.log('run')
   }
 }
 
