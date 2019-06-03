@@ -60,7 +60,7 @@ const systemTaskModule = {
           // authorisation:'bearer' +data.token
         })
         let result = formatTypes(res.data)
-        console.log(result)
+
         commit('GET_FORM', result)
       } catch (e) {
         // Error handling not yet

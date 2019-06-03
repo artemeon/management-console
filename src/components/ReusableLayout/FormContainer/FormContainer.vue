@@ -14,7 +14,9 @@
           v-model="items[index].value"
         ></component>
       </template>
-      <slot name="btn-bottom"></slot>
+      <div class="bottom-slot">
+        <slot name="btn-bottom"></slot>
+      </div>
     </div>
   </div>
 </template>

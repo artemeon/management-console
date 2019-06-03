@@ -9,7 +9,9 @@ class Systemtask extends Vue {
   @(namespace('systemTaskModule').State) systemTasks!: any
   @(namespace('systemTaskModule').Action) getSystemTasks!: any
   @(namespace('systemTaskModule').Action) getForm!: any
+  @(namespace('systemTaskModule').Action) executeTask!: any
   @(namespace('systemTaskModule').State) form: any
+  private selected!: any
   async mounted () {
     if (this.current) {
       await this.getSystemTasks(this.current)
@@ -39,12 +41,24 @@ class Systemtask extends Vue {
   }
   private async selectTask (task: any) {
     await this.$store.commit('systemTaskModule/GET_FORM', {})
-    console.log(this.form)
-    this.getForm({ server: this.current, task: task })
+
+    await this.getForm({ server: this.current, task: task })
+    this.selected = task
   }
   public runTask () {
-    console.log('run')
-    console.log(this.form)
+    let fields = this.form.fields[0].fields
+    let obj = {}
+    let valuesArray = fields.map(el => {
+      obj = {}
+      obj[el.name] = el.value
+      return obj
+    })
+    let payload = {
+      task: this.selected,
+      payload: valuesArray
+    }
+
+    this.executeTask(Object.assign(this.current, payload))
   }
 }
 

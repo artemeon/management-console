@@ -3,10 +3,10 @@ import { namespace } from 'vuex-class'
 import { TextField, Radio, Checkbox, Select } from '../../Form'
 @Component({
   components: {
-  FormentryText: TextField,
-  FormentryCheckbox: Checkbox,
-  FormentryCheckboxarray: Checkbox,
-  FormentryDropdown: Select,
+  KajonaSystemAdminFormentriesFormentryText: TextField,
+  KajonaSystemAdminFormentriesFormentryCheckbox: Checkbox,
+  KajonaSystemAdminFormentriesFormentryCheckboxarray: Checkbox,
+  KajonaSystemAdminFormentriesFormentryDropdown: Select,
   TextField,
   Radio,
   Checkbox,
@@ -20,6 +20,7 @@ class FormContainer extends Vue {
   @Prop() header!: string
   @Prop() id!: string
   @Prop() handler
+
   private exists (item): boolean {
     if (this.$options.components) return item in this.$options.components
     return false

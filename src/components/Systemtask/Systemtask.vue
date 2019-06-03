@@ -4,7 +4,7 @@
       <div class="wrapper">
         <SideBar :elements="systemTasksComputed" @indexClicked="selectTask"/>
 
-        <FormContainer :items="form.fields" v-if="form && form.fields">
+        <FormContainer :items="form.fields[0].fields" v-if="form && form.fields">
           <template v-slot:btn-bottom>
             <Button @click="runTask">Run task</Button>
           </template>

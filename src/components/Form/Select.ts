@@ -16,16 +16,17 @@ class Select extends Vue {
   public selected!: any
   created () {
     if (typeof this.values === 'object') {
-      console.log(this.name, typeof this.values, this.values)
       this.selected = this.values[this.value]
     } else {
-      console.log('else', this.value)
       this.selected = this.value
     }
   }
   updateVal () {
-    this.$emit('input', this.selected)
-    console.log('value', this.selected, this.item.value)
+    let result
+    for (var i in this.values) {
+      if (this.values[i] === this.selected) result = i
+    }
+    this.$emit('input', result)
   }
 }
 export default Select
