@@ -45,5 +45,12 @@ npm run test:unit
 ### Run helper functions tests
 
 ```
-**npm run testGlobal**
+npm run testGlobal
+```
+
+### Installer Url
+
+```
+localhost:8080/addSystem?title=give_title_here&url=give_url_here&token=give_token_here
+
 ```
