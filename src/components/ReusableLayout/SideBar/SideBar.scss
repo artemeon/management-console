@@ -17,7 +17,7 @@ $gray: #b0bec5;
 label {
   padding: 20px;
 }
-li .sideBarAction {
+li .sideBarActionWithLabels {
   color: rgba(0, 0, 0, 0.87);
   display: block;
   font-size: 14px;
@@ -29,12 +29,33 @@ li .sideBarAction {
   cursor: pointer;
 }
 
-li .sideBarAction > span {
+li .sideBarActionWithLabels > span {
   padding: 20px;
 }
 
-.sideBarAction:hover {
+.sideBarActionWithLabels:hover {
   // width: 100%;
+  background-color: #f57c00;
+  color: white;
+  transition: background-color 0.5s;
+}
+.sideBarActionWithout {
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  line-height: 48px;
+  width: 100%;
+  cursor: pointer;
+}
+.sideBarActionWithout > span {
+  padding: 20px;
+  i {
+    font-size: 20px;
+  }
+}
+.sideBarActionWithout:hover {
   background-color: #f57c00;
   color: white;
   transition: background-color 0.5s;

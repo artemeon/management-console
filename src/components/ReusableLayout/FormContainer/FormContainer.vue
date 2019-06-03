@@ -1,10 +1,9 @@
 <template>
   <div class="formContainer">
-    <div :id="id">
+    <div :id="id" v-if="items">
       <div class="top-slot">
         <slot name="btn-top"></slot>
       </div>
-
       <template v-for="(item,index) in items">
         <component
           :key="item.id"

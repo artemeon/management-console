@@ -12,12 +12,20 @@ class Select extends Vue {
   @Prop() mandatory!: boolean
   @Prop() value!: any
 
-  private selected = null
+  @Prop() item!: any
+  public selected!: any
   created () {
-    this.selected = this.value
+    if (typeof this.values === 'object') {
+      console.log(this.name, typeof this.values, this.values)
+      this.selected = this.values[this.value]
+    } else {
+      console.log('else', this.value)
+      this.selected = this.value
+    }
   }
   updateVal () {
     this.$emit('input', this.selected)
+    console.log('value', this.selected, this.item.value)
   }
 }
 export default Select

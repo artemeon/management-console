@@ -1,6 +1,6 @@
 <template>
   <div v-if="content" :class="{active:isActive}">
-    <Button @click="close">Return</Button>
+    <!-- <Button @click="close">Return</Button> -->
     <ul v-if="content.length && content.length>0" class="logs">
       <li
         class="list-group"

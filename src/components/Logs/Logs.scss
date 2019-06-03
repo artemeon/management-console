@@ -12,3 +12,8 @@
     font-size: 3rem;
   }
 }
+
+.wrapper {
+  height: calc(100% - 5vh);
+  display: flex;
+}

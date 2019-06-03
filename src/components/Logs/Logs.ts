@@ -4,8 +4,9 @@ import * as LogsFormatter from '../../Globals/GlobalHelfers/LogsFormatter'
 import Tabs from '../ReusableLayout/Tabs/Tabs'
 import LogFile from './LogFile/LogFile'
 import Card from '../ReusableLayout/Card/Card'
+import SideBar from '../ReusableLayout/SideBar/SideBar'
 const formatter = LogsFormatter.default.prototype
-@Component({ components: { Tabs, LogFile, Card } })
+@Component({ components: { Tabs, LogFile, Card, SideBar } })
 class Logs extends Vue {
   @(namespace('storage').State) current!: any
   @(namespace('logsModule').State) logs!: any
@@ -28,7 +29,9 @@ class Logs extends Vue {
     return formatter.bootstrapType(el)
   }
   public get logsComputed () {
-    return this.logs ? this.logs.logs : []
+    if (this.logs) {
+      return Object.values(this.logs.logs)
+    }
   }
   handleReturn () {
     this.selected = -1

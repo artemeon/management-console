@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div v-if="error">
       <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading">ERROR!</h4>
@@ -14,8 +14,15 @@
         :component="component"
         :content="content"
       />-->
+
+      <SideBar :elements="logsComputed" v-if="logsComputed" @indexClicked="showLog">
+        <template v-slot:icon>
+          <i class="far fa-file-code"></i>
+        </template>
+      </SideBar>
+
       <LogFile :content="content" ref="logfile" v-if="selected!==-1" @return="handleReturn"/>
-      <Card
+      <!-- <Card
         v-else
         v-for="(data,index) in logsComputed"
         :key="index"
@@ -31,7 +38,7 @@
         <template v-slot:card-text>
           <span>{{data}}.php</span>
         </template>
-      </Card>
+      </Card>-->
     </div>
   </div>
 </template>

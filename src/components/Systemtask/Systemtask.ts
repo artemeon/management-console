@@ -37,12 +37,14 @@ class Systemtask extends Vue {
     })
     return array
   }
-  private selectTask (task: any) {
-    this.$store.commit('systemTaskModule/GET_FORM', {})
+  private async selectTask (task: any) {
+    await this.$store.commit('systemTaskModule/GET_FORM', {})
+    console.log(this.form)
     this.getForm({ server: this.current, task: task })
   }
   public runTask () {
     console.log('run')
+    console.log(this.form)
   }
 }
 

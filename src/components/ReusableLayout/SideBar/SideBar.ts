@@ -3,7 +3,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 class SideBar extends Vue {
   @Prop() elements!: Array<String>
   mounted () {
-    console.log(this.elements)
+    console.log(window.location.pathname, this.elements)
   }
   handler (element) {
     this.$emit('indexClicked', element)

@@ -1,8 +1,8 @@
 <template>
   <div>
     <label :for="id">{{label}}</label>
-    <select class="form-control" :id="id" v-model="selected" @change="updateVal">
-      <option v-for="(value,index) in values" :key="index+'select'" :value="value">{{value}}</option>
+    <select class="form-control" :id="id" @change="updateVal" v-model="selected">
+      <option v-for="(el,index) in values" :key="index+'select'">{{el}}</option>
     </select>
   </div>
 </template>
