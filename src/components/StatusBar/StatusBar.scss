@@ -1,17 +1,17 @@
-@import "../../assets/css/bootstrapOverride.scss";
+// @import "../../assets/css/bootstrapOverride.scss";
 .fixedbottom {
   // position: -webkit-sticky;
   position: fixed;
   width: 100%;
   bottom: 0;
-  background: $kajona-gray;
+  background: blue;
   min-height: 30px;
   padding-left: 5px;
   padding-right: 15px;
   // z-index: 999;
   border: 0;
 
-  border-top: 1px solid $kajona-brand-color;
+  border-top: 1px solid blue;
 }
 .navbar-bottombar {
   display: flex;

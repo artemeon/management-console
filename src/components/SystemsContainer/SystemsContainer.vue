@@ -1,7 +1,7 @@
 
 <template>
-  <div>
-    <div class="row">
+  <div class="parent">
+    <div class="content">
       <div class="col-sm-1 col-md-3 col-lg-2 col-xl-2">
         <SideNav :content="content"/>
       </div>
@@ -9,6 +9,7 @@
         <router-view></router-view>
       </div>
     </div>
+    <StatusBar/>
   </div>
 </template>
 <script lang="ts" src="./SystemsContainer.ts"></script>

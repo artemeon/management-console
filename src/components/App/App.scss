@@ -1,18 +1,4 @@
 // @import "~font-awesome/scss/font-awesome";
-#bg {
-  // background-image: url("../../assets/img/bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  filter: blur(20px);
-  -webkit-filter: blur(20px);
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-}
 
 .fixed-top {
   background: #e5e5e5;
