@@ -10,8 +10,18 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header" v-if="header">{{header}}</div>
-          <div class="modal-body">
+          <div class="modal-header" v-if="header">
+            {{header}}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-header" v-else>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" v-if="items">
             <!-- <component v-for="item in items" :key="item.id" :is="item.type" v-bind="item"/> -->
             <template v-for="(item,index) in items">
               <component
@@ -24,14 +34,11 @@
               ></component>
             </template>
           </div>
+          <div class="modal-body" v-if="text">
+            <p>{{text}}</p>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              @click="execute()"
-              data-dismiss="modal"
-            >Ausführen</button>
+            <Button @click="execute()" data-dismiss="modal">Ausführen</Button>
           </div>
         </div>
       </div>

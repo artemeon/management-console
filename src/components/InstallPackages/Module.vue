@@ -22,7 +22,7 @@
       <ASwitch
         right="Das ganze System installieren"
         left="System ohne Beispielinhalte"
-        @change="handle()"
+        @change="handle"
       />
       <br>
       <Button @click="startInstaller">

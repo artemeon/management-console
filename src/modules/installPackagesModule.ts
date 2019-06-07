@@ -43,14 +43,11 @@ const installPackagesModule = {
       commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
-     *
      * @param data : System Url and token
      */
     async getNextModule ({ dispatch, state, commit }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
-      // Not all Modules installed
       if (helfer.allInstalled(state.packages) === false) {
-        // filter already installed
         let installable = state.packages.filter(element => {
           return !element.versionInstalled && element.providesInstaller === true
         })
@@ -67,6 +64,7 @@ const installPackagesModule = {
         await dispatch('getNextModule', data)
       } else {
         // install sample only in full Mode
+        console.log(data.full)
         if (data.full === true) {
           // Sample Content not installed
           if (!helfer.allInstalledSamples(state.samples)) {

@@ -16,6 +16,9 @@ class Dashboard extends Vue {
   @(namespace('storage').State) current: any
 
   private id = 'modalTopBar'
+  private openDialog = 'modalDeleteSystem'
+  private deleteDialog = 'Delete System ?'
+  private systemToDelete!: Server
   public agpAdd = [
     {
       id: 'Title',
@@ -79,6 +82,12 @@ class Dashboard extends Vue {
       }
     })
     this.setServer(server)
+  }
+  setDelete (data) {
+    this.systemToDelete = data
+  }
+  deleteSystem () {
+    this.deleteServer(this.systemToDelete)
   }
 }
 export default Dashboard

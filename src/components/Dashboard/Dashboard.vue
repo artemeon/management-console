@@ -28,10 +28,16 @@
         :value="data"
         :title="data.title"
         information
-        @handleClick="getSelected(data)"
-        close
-        @close="deleteServer(data)"
       >
+        <template v-slot:custom-header>
+          <h5 class="card-title">{{data.title}}</h5>
+          <i
+            class="fas fa-times"
+            data-toggle="modal"
+            :data-target="'#'+openDialog"
+            @click="setDelete(data)"
+          ></i>
+        </template>
         <template v-slot:card-text>
           <span>Title: {{data.title}}</span>
           <br>
@@ -49,6 +55,12 @@
       header="Add System"
       :id="id"
       :handler="addSystem"
+    />
+    <Modal
+      label="exampleModalCentered"
+      :id="openDialog"
+      :text="deleteDialog"
+      :handler="deleteSystem"
     />
   </div>
 </template>

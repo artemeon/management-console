@@ -20,6 +20,7 @@ class Modal extends Vue {
   @Prop() header!: string
   @Prop() id!: string
   @Prop() handler
+  @Prop() text!: string
   private exists (item): boolean {
     if (this.$options.components) return item in this.$options.components
     return false

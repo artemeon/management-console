@@ -45,6 +45,7 @@ class Module extends Vue {
   public handle (e) {
     if (e === true) this.full = true
     else this.full = false
+    console.log(e, this.full)
   }
   public showInstalled () {
     this.filter = 'INSTALLED'
