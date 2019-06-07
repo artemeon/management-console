@@ -1,5 +1,5 @@
 $fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome";
+// @import "~font-awesome/scss/font-awesome";
 
 .wrapper {
   display: flex;
@@ -131,12 +131,13 @@ ul ul a {
     -moz-box-shadow: 0px 2px 19px -11px rgba(0, 0, 0, 0.42);
     box-shadow: 0px 2px 19px -11px rgba(0, 0, 0, 0.42);
   }
-  i i {
+  .fa-unlock,
+  .fa-lock {
     position: absolute;
     top: 50%;
-    left: 50%;
+    // left: 50%;
     background: transparent;
-    padding: 10px;
+    // padding: 10px;
     color: #d50000;
   }
 }

@@ -31,12 +31,9 @@
       >
         <template v-slot:custom-header>
           <h5 class="card-title">{{data.title}}</h5>
-          <i
-            class="fas fa-times"
-            data-toggle="modal"
-            :data-target="'#'+openDialog"
-            @click="setDelete(data)"
-          ></i>
+          <div data-toggle="modal" :data-target="'#'+openDialog" @click="setDelete(data)">
+            <i class="fas fa-times"></i>
+          </div>
         </template>
         <template v-slot:card-text>
           <span>Title: {{data.title}}</span>

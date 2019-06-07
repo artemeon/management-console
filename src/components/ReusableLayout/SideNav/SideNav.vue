@@ -4,11 +4,13 @@
     <nav id="sidenav">
       <ul class="list-unstyled components" v-if="content">
         <li class="brand-logo" @click="lock">
-          <i class="__brand_img">
+          <div class="__brand_img">
             <img :src="require(`@/assets/img/${brand}`)">
+
             <i class="fas fa-lock" v-if="locked"></i>
+
             <i class="fas fa-unlock" v-else></i>
-          </i>
+          </div>
         </li>
         <li v-for="(content,index) in content  " :key="index">
           <a

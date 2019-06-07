@@ -84,6 +84,7 @@ class Dashboard extends Vue {
     this.setServer(server)
   }
   setDelete (data) {
+    console.log(data)
     this.systemToDelete = data
   }
   deleteSystem () {
