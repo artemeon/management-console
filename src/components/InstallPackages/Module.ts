@@ -84,6 +84,7 @@ class Module extends Vue {
       await this.getSampleContent({ url: this.current.url })
     }
   }
+
   hasSampleContent (module) {
     let found = []
     if (this.samples) {

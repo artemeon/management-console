@@ -41,6 +41,7 @@ const lockSystem = {
           // authorisation:'bearer' +data.token
         })
         commit('LOCK_SYSTEM', true)
+        commit('status/INSTALLER_LOG', 'System locked', { root: true })
         commit('status/LOADING_FALSE', {}, { root: true })
       } catch (e) {}
     },
@@ -55,6 +56,7 @@ const lockSystem = {
           // authorisation:'bearer' +data.token
         })
         commit('UNLOCK_SYSTEM', false)
+        commit('status/INSTALLER_LOG', 'System unlocked', { root: true })
         commit('status/LOADING_FALSE', {}, { root: true })
       } catch (e) {}
     }

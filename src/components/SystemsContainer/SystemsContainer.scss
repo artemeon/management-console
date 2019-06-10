@@ -1,20 +1,21 @@
 .parent {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  position: relative; /* braucht es für die Footer Position*/
+  margin: 0 auto; /* Zentriert die Seite (nicht in IE5) */
+
+  // height: auto !important; /* normale Browser */
+  height: 100vh; /* IE6: setzt dies wie min-height um*/
+  min-height: 100%; /* normale Browser */
+  // overflow-x: hidden;
+  overflow-y: hidden !important;
 }
 
 .content {
-  flex: auto 1 1;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 35px;
 }
 
-.status-bar {
-  height: 30px;
-
-  flex: auto 0 0;
-  position: relative;
-  z-index: 20;
-  background-color: black;
-  color: white;
+.routesContainer {
+  height: 100%;
 }

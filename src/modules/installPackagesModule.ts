@@ -64,7 +64,7 @@ const installPackagesModule = {
         await dispatch('getNextModule', data)
       } else {
         // install sample only in full Mode
-        console.log(data.full)
+
         if (data.full === true) {
           // Sample Content not installed
           if (!helfer.allInstalledSamples(state.samples)) {
@@ -132,7 +132,7 @@ const installPackagesModule = {
       let url = data.url + '/api.php/installer/sample'
       function request (): any {
         commit(
-          'status/SET_INFORMATION',
+          'status/INSTALLER_LOG',
           'Installing sample content ' + arr[index].title,
           {
             root: true
@@ -146,9 +146,13 @@ const installPackagesModule = {
             index++
             if (index >= arr.length) {
               commit('status/LOADING_FALSE', {}, { root: true })
-              commit('status/SET_INFORMATION', '', {
-                root: true
-              })
+              commit(
+                'status/INSTALLER_LOG',
+                'Installation erfolgreich abgeschlossen',
+                {
+                  root: true
+                }
+              )
               return dispatch('getSampleContent', data)
             }
             return request()

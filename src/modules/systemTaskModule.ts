@@ -84,6 +84,8 @@ const systemTaskModule = {
           data: data.payload
           // authorisation:'bearer' +data.token
         })
+
+        commit('status/INSTALLER_LOG', res.data.return, { root: true })
         // @TODO handle success
       } catch (e) {
         // Error handling not yet
