@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="modal"
+      class="modal fade"
       :id="id"
       tabindex="-1"
       role="dialog"

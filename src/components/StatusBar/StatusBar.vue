@@ -5,7 +5,7 @@
         <div class="icon">
           <i class="fas fa-desktop"></i>
         </div>
-        <div class="title">Protokolle</div>
+        <div class="title">{{$t('custom.status_bar_header')}}</div>
         <div class="icon action" @click="toggleShow">
           <span class="icon-content">
             <i class="fas fa-times"></i>
@@ -17,7 +17,7 @@
           <div>
             <i class="far fa-frown"></i>
           </div>
-          <span>{{empty}}</span>
+          <span>{{$t('custom.status_bar_empty')}}</span>
         </div>
         <div v-else>
           <div v-for="(item,index) in installerLog" :key="index">
@@ -25,7 +25,9 @@
               <div class="logger-icon">
                 <i class="far fa-clock"></i>
               </div>
-              <div class="message">{{item}}</div>
+              <div class="message" v-if="htmlTag(item)" v-html="item"></div>
+              <div class="message" v-else>{{item}}</div>
+
               <!-- <div class="date">{{new Date().toLocaleString()}}</div> -->
             </div>
           </div>
@@ -39,9 +41,27 @@
       </div>
       <div class="section last-log" @click="toggleShow">
         <i class="fas fa-desktop"></i>
-        <span class="text" v-if="!installerLog || installerLog && installerLog.length===0">{{empty}}</span>
-        <span class="text" v-else>{{installerLog[installerLog.length-1]}}</span>
+        <div
+          class="text"
+          v-if="!installerLog || installerLog && installerLog.length===0"
+        >{{$t('custom.status_bar_empty')}}</div>
+        <div class="text" v-else>
+          <div
+            class="status-bar-text"
+            v-if="htmlTag(installerLog[installerLog.length-1])"
+            v-html="installerLog[installerLog.length-1]"
+          ></div>
+          <div v-else>{{installerLog[installerLog.length-1]}}</div>
+        </div>
       </div>
+      <!-- <div class="section">
+        <span class="flag" v-if="lang==='en'" @click="handleLang">
+          <img src="../../assets/img/en_small.png" alt>
+        </span>
+        <span class="flag" v-if="lang==='de'" @click="handleLang">
+          <img src="../../assets/img/de_small.png" alt>
+        </span>
+      </div>-->
       <div class="section dark-light">
         <i class="fas fa-adjust"></i>
       </div>

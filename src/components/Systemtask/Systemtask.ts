@@ -12,9 +12,16 @@ class Systemtask extends Vue {
   @(namespace('systemTaskModule').Action) executeTask!: any
   @(namespace('systemTaskModule').State) form: any
   private selected!: any
+
   async mounted () {
     if (this.current) {
+      await this.$store.commit('systemTaskModule/GET_FORM', {})
       await this.getSystemTasks(this.current)
+
+      this.selected = Object.keys(
+        this.systemTasks[Object.keys(this.systemTasks)[0]]
+      )[0]
+      await this.getForm({ server: this.current, task: this.selected })
     }
   }
 

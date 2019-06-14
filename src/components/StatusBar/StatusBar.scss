@@ -1,6 +1,9 @@
 $status-bar-color: #2c3e50;
 $status-bar-hover: #435f7a;
 
+.core-component-formentry-textrow {
+  background-color: red;
+}
 .status-bar {
   flex: auto 0 0;
   position: absolute;
@@ -96,6 +99,7 @@ $status-bar-hover: #435f7a;
   overflow-y: auto !important;
   height: 100%;
   padding: 0 16px;
+
   .empty {
     color: rgba(44, 62, 80, 0.5);
     padding: 24px;
@@ -124,8 +128,10 @@ $status-bar-hover: #435f7a;
     }
   }
 }
+.status-bar-text {
+  margin-top: 15px;
+}
 
-// test
 .spinner {
   $s: 12px;
   $c: #ecf0f1;
@@ -169,81 +175,3 @@ $status-bar-hover: #435f7a;
     transform: rotate(-360deg);
   }
 }
-
-//test 2
-// $count: 18;
-// $size: 12px;
-// $time: 2s;
-
-// @mixin animation($name) {
-//   @-webkit-keyframes #{$name} {
-//     @content;
-//   }
-//   @-moz-keyframes #{$name} {
-//     @content;
-//   }
-//   @-o-keyframes #{$name} {
-//     @content;
-//   }
-//   @keyframes #{$name} {
-//     @content;
-//   }
-// }
-
-// @include animation(spin) {
-//   100% {
-//     -webkit-transform: rotate(360deg);
-//     -ms-transform: rotate(360deg);
-//     transform: rotate(360deg);
-//   }
-// }
-
-// .outer {
-//   width: $size;
-//   height: $size;
-//   border-radius: 50%;
-//   // margin-left: -2.25 * $size;
-//   -ms-transform-origin: 225% 0%;
-//   -webkit-transform-origin: 225% 0%;
-//   -moz-transform-origin: 225% 0%;
-//   -o-transform-origin: 225% 0%;
-//   transform-origin: 225% 0%;
-
-//   @for $i from 1 through $count {
-//     &:nth-child(#{$i}) {
-//       -ms-transform: rotate($i * (360deg / $count));
-//       -webkit-transform: rotate($i * (360deg / $count));
-//       transform: rotate($i * (360deg / $count));
-//     }
-//   }
-// }
-
-// .inner {
-//   width: $size;
-//   height: $size;
-//   -webkit-animation: spin $time linear infinite;
-//   -moz-animation: spin $time linear infinite;
-//   -o-animation: spin $time linear infinite;
-//   animation: spin $time linear infinite;
-
-//   &:before,
-//   &:after {
-//     content: "";
-//     position: absolute;
-//     width: $size / 5;
-//     height: $size / 5;
-//     background: red;
-//     box-shadow: 0 0 10px 1px #fff;
-//     border-radius: 50%;
-//     top: 50%;
-//     margin-top: -$size / 10;
-//   }
-
-//   &:before {
-//     left: -$size / 10;
-//   }
-
-//   &:after {
-//     left: $size - $size / 10;
-//   }
-// }
