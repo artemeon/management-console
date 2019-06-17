@@ -1,6 +1,6 @@
 <template>
   <div v-if="dbTables">
-    <div v-if="'tables' in dbTables">
+    <div v-if="dbTables.tables && dbTables.tables.length && dbTables.tables.length>0">
       <div class="row">
         <div id="dbTablesContainer" class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
           <div
@@ -14,10 +14,10 @@
         </div>
 
         <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
-          <h1 v-if="selectedTable===''">Wählen Sie eine Tablelle aus</h1>
-          <h1 v-else>Tabelle : {{selectedTable}}</h1>
+          <h4 v-if="selectedTable===''">Wählen Sie eine Tablelle aus</h4>
+          <h4 v-else>Tabelle : {{selectedTable}}</h4>
           <div v-if="tableData">
-            <h1>Spalten</h1>
+            <h5>Spalten</h5>
 
             <table class="dbBrowserTable table table-striped">
               <thead>
@@ -50,7 +50,7 @@
                 </tr>
               </tbody>
             </table>
-            <h1>Primary Keys</h1>
+            <h5>Primary Keys</h5>
 
             <table class="dbBrowserTable table table-striped">
               <thead>
@@ -64,7 +64,7 @@
                 </tr>
               </tbody>
             </table>
-            <h1>Indexes</h1>
+            <h5>Indexes</h5>
 
             <table class="dbBrowserTable table table-striped">
               <thead>
@@ -92,6 +92,12 @@
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="empty-handle">
+      <div class="icon-empty">
+        <i class="fas fa-wifi"></i>
+      </div>
+      <h5>{{$t('custom.db_leer')}}</h5>
     </div>
   </div>
 </template>

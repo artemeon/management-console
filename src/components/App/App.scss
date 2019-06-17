@@ -48,3 +48,15 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ff6f00;
 }
+
+/* Handle empty dbbrowser and Dashboard */
+.empty-handle {
+  position: absolute;
+  color: rgba(44, 62, 80, 0.5);
+  top: 30%;
+
+  .icon-empty {
+    font-size: 50px;
+    text-align: center;
+  }
+}

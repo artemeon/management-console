@@ -22,29 +22,37 @@
       </label>
     </div>
     <div class="dashboardCards">
-      <Card
-        v-for="(data,index) in storageLocal"
-        :key="index"
-        :value="data"
-        :title="data.title"
-        information
-      >
-        <template v-slot:custom-header>
-          <h5 class="card-title">{{data.title}}</h5>
-          <div data-toggle="modal" :data-target="'#'+openDialog" @click="setDelete(data)">
-            <i class="fas fa-times"></i>
-          </div>
-        </template>
-        <template v-slot:card-text>
-          <span>Title: {{data.title}}</span>
-          <br>
-          <span>Url: {{data.url}}</span>
-        </template>
-        <template v-slot:action-buttons>
-          <Button @click="getSelected(data)">Management</Button>
-          <Button @click="goToAgp(data)">AGP</Button>
-        </template>
-      </Card>
+      <div v-if="storageLocal && storageLocal.length>0">
+        <Card
+          v-for="(data,index) in storageLocal"
+          :key="index"
+          :value="data"
+          :title="data.title"
+          information
+        >
+          <template v-slot:custom-header>
+            <h5 class="card-title">{{data.title}}</h5>
+            <div data-toggle="modal" :data-target="'#'+openDialog" @click="setDelete(data)">
+              <i class="fas fa-times"></i>
+            </div>
+          </template>
+          <template v-slot:card-text>
+            <span>Title: {{data.title}}</span>
+            <br>
+            <span>Url: {{data.url}}</span>
+          </template>
+          <template v-slot:action-buttons>
+            <Button @click="getSelected(data)">Management</Button>
+            <Button @click="goToAgp(data)">AGP</Button>
+          </template>
+        </Card>
+      </div>
+      <div v-else class="empty-handle">
+        <div class="icon-empty">
+          <i class="fas fa-wifi"></i>
+        </div>
+        <h5>{{$t('custom.dashboard_leer')}}</h5>
+      </div>
     </div>
     <Modal
       :items="agpAdd"
