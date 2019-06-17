@@ -13,10 +13,10 @@ import Dashboard from './components/Dashboard/Dashboard'
 import SystemsContainer from './components/SystemsContainer/SystemsContainer'
 import store from './store'
 Vue.use(Router)
-
+console.log(process.env.BASE_URL)
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
