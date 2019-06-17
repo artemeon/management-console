@@ -23,8 +23,10 @@ const lockSystem = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('CHECK_LOCK', res.data.locked)
         commit('status/LOADING_FALSE', {}, { root: true })
@@ -37,8 +39,10 @@ const lockSystem = {
       try {
         const res = await axios({
           method: 'post',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('LOCK_SYSTEM', true)
         commit('status/INSTALLER_LOG', 'System locked', { root: true })
@@ -52,8 +56,10 @@ const lockSystem = {
       try {
         const res = await axios({
           method: 'delete',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('UNLOCK_SYSTEM', false)
         commit('status/INSTALLER_LOG', 'System unlocked', { root: true })

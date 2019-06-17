@@ -16,7 +16,7 @@ class PhpSettings extends Vue {
   }
   async mounted () {
     if (this.current) {
-      await this.getPHPSettings({ url: this.current.url })
+      await this.getPHPSettings(this.current)
     }
   }
 
@@ -48,8 +48,5 @@ class PhpSettings extends Vue {
   private get phpVersion (): String {
     return this.phpSettings ? this.phpSettings.version.actual : ''
   }
-  // private get langs (): any {
-  //   return ['de', 'en']
-  // }
 }
 export default PhpSettings

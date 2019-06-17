@@ -19,9 +19,7 @@ const dbSettingsModule = {
      * check if dB Settings are correct
      * @param data contains System-url, token and dbSettings for config.php
      */
-    /*
-    @TODO handle check false and async Loaders
-    */
+
     async checkDbSettings ({ dispatch, commit }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/installer/connection'
@@ -29,8 +27,10 @@ const dbSettingsModule = {
         const res = await axios({
           method: 'post',
           url: url,
-          data: data.database
-          // authorisation:'bearer' +data.token
+          data: data.database,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         if (res.data.check === true) dispatch('postDbSettings', data)
       } catch (e) {
@@ -46,8 +46,10 @@ const dbSettingsModule = {
         const res = await axios({
           method: 'post',
           url: url,
-          data: data.database
-          // authorisation:'bearer' +data.token
+          data: data.database,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('POST_DB_SETTINGS', res.data)
@@ -69,8 +71,10 @@ const dbSettingsModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('GET_CHECK_MODULE', res.data)

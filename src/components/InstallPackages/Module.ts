@@ -1,24 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-// import Table from '../ReusableLayout/Table/Table'
-// import TableHead from '../ReusableLayout/Table/TableHead/TableHead'
-// import TableCell from '../ReusableLayout/Table/TableCell/TableCell'
-// import TableBody from '../ReusableLayout/Table/TableBody/TableBody'
-// import TableRow from '../ReusableLayout/Table/TableRow/TableRow'
-// import Button from '../ReusableLayout/Button/Button'
-// import ASwitch from '../ReusableLayout/ASwitch/ASwitch'
-
-// @Component({
-//   components: {
-//   Table,
-//   TableHead,
-//   TableCell,
-//   TableBody,
-//   TableRow,
-//   Button,
-//   ASwitch
-//   }
-//   })
 @Component
 class Module extends Vue {
   @(namespace('storage').State) current: any
@@ -80,8 +61,8 @@ class Module extends Vue {
   }
   async mounted () {
     if (this.current) {
-      await this.getAllPackages({ url: this.current.url })
-      await this.getSampleContent({ url: this.current.url })
+      await this.getAllPackages(this.current)
+      await this.getSampleContent(this.current)
     }
   }
 

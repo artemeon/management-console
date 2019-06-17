@@ -21,7 +21,7 @@ class Systemtask extends Vue {
       this.selected = Object.keys(
         this.systemTasks[Object.keys(this.systemTasks)[0]]
       )[0]
-      await this.getForm({ server: this.current, task: this.selected })
+      await this.getForm(Object.assign(this.current, { task: this.selected }))
     }
   }
 
@@ -49,7 +49,7 @@ class Systemtask extends Vue {
   private async selectTask (task: any) {
     await this.$store.commit('systemTaskModule/GET_FORM', {})
 
-    await this.getForm({ server: this.current, task: task })
+    await this.getForm(Object.assign(this.current, { task: task }))
     this.selected = task
   }
   public runTask () {

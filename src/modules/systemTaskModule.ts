@@ -32,8 +32,10 @@ const systemTaskModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation :'bearer'+data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('GET_SYSTEM_TASKS', res.data.systemtasks)
@@ -50,14 +52,15 @@ const systemTaskModule = {
      * returns form entries for a given system task
      */
     async getForm ({ commit }, data: any) {
-      const url = data.server.url + '/api.php/systemtask/' + data.task
+      const url = data.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
         const res = await axios({
           method: 'get',
-          url: url
-
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         let result = formatTypes(res.data)
 
@@ -81,8 +84,10 @@ const systemTaskModule = {
         const res = await axios({
           method: 'post',
           url: url,
-          data: data.payload
-          // authorisation:'bearer' +data.token
+          data: data.payload,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('status/INSTALLER_LOG', res.data.return, { root: true })

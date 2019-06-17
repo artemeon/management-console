@@ -20,17 +20,18 @@ class DbSettings extends Vue {
   private async postDbsettings (e): Promise<any> {
     e.preventDefault()
 
-    this.postDbSettings({
-      database: {
-        username: this.dbUser,
-        dbname: this.dbName,
-        password: this.dbPassword,
-        hostname: this.dbServer,
-        driver: this.dbDriver,
-        port: this.dbPort
-      },
-      url: this.current.url
-    })
+    this.postDbSettings(
+      Object.assign(this.current, {
+        database: {
+          username: this.dbUser,
+          dbname: this.dbName,
+          password: this.dbPassword,
+          hostname: this.dbServer,
+          driver: this.dbDriver,
+          port: this.dbPort
+        }
+      })
+    )
   }
   public async switchDriver () {
     let driver = this.dbDriver
@@ -38,7 +39,7 @@ class DbSettings extends Vue {
   }
   async mounted () {
     if (this.current) {
-      await this.checkDbModule({ url: this.current.url })
+      await this.checkDbModule(this.current)
     }
     if (this.checkModule.config) {
       this.dbServer = this.checkModule.config.host

@@ -25,8 +25,10 @@ const phpSettingsModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation:'bearer'+data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         console.log(res)
         commit('GET_PHP_SETTINGS', res.data)

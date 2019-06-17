@@ -3,9 +3,7 @@ import { namespace } from 'vuex-class'
 import { Index, DbTables, TableData } from './Interfaces'
 
 @Component
-// ({ components: { Row, Col } })
 class DbBrowser extends Vue {
-  // @Prop(String) url!: String
   @(namespace('dbBrowserModule').State) dbTables: any
   @(namespace('dbBrowserModule').Action) listTables: any
   @(namespace('dbBrowserModule').State) tableData: any
@@ -14,23 +12,19 @@ class DbBrowser extends Vue {
   @(namespace('dbBrowserModule').Action) deleteIndexFromDb: any
   @(namespace('dbBrowserModule').Action) recreateIndexDb: any
   @(namespace('storage').State) current: any
-  // @(namespace('Loader').Action) StopLoader: any
-  // private dbTables: DbTables = {} as DbTables
   public selectedTable: string = ''
-  // private tableData: TableData = {} as TableData
 
   // get tables List fron the Api when the Component did mount
   public async mounted () {
     if (this.current) {
-      await this.listTables({ url: this.current.url })
+      await this.listTables(this.current)
     }
   }
 
   public async getSelectedTable (): Promise<void> {
-    // this.StartLoader()
-    await this.detailTable({ url: this.current.url, table: this.selectedTable })
-    console.log('tableData', this.tableData)
-    // this.StopLoader()
+    await this.detailTable(
+      Object.assign(this.current, { table: this.selectedTable })
+    )
   }
   // set the selected table and get the data from the Api
   public setSelectedTable (table: string): void {
@@ -39,35 +33,31 @@ class DbBrowser extends Vue {
   }
 
   public async addIndex (column: string): Promise<void> {
-    // this.StartLoader()
-    await this.addIndexToDb({
-      url: this.current.url,
-      table: this.selectedTable,
-      column: column
-    })
-    // this.StopLoader()
+    await this.addIndexToDb(
+      Object.assign(this.current, {
+        table: this.selectedTable,
+        column: column
+      })
+    )
   }
   // delete the selected dbIndex
   public async deleteIndex (index: Index): Promise<void> {
-    // this.StartLoader()
-    await this.deleteIndexFromDb({
-      url: this.current.url,
-      table: this.selectedTable,
-      index: index
-    })
-    // this.StopLoader()
+    await this.deleteIndexFromDb(
+      Object.assign(this.current, {
+        table: this.selectedTable,
+        index: index
+      })
+    )
   }
 
   // recreate index
   public async recreateIndex (index: Index): Promise<void> {
-    // this.StartLoader()
-    await this.recreateIndexDb({
-      url: this.current.url,
-      table: this.selectedTable,
-      index: index
-    })
-
-    // this.StopLoader()
+    await this.recreateIndexDb(
+      Object.assign(this.current, {
+        table: this.selectedTable,
+        index: index
+      })
+    )
   }
   // checks if the key is in indexes
   public isIndex (key: string): boolean {

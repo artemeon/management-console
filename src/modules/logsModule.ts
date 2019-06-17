@@ -30,8 +30,10 @@ const logsModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('GET_LOG_FILES', res.data)
         commit('LOADING', false)
@@ -48,8 +50,10 @@ const logsModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('GET_LOG_FOR_ENTRY', res.data)
       } catch (e) {

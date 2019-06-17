@@ -1,6 +1,5 @@
 import axios from 'axios'
-// import { Module } from 'vuex';
-// import {DbBrowserState,RootState} from "../Globals/Types"
+
 const dbBrowserModule = {
   namespaced: true,
   state: {
@@ -20,11 +19,14 @@ const dbBrowserModule = {
     async listTables ({ commit }, data) {
       commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/dbbrowser'
+
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('LIST_TABLES', res.data)
       } catch (e) {
@@ -39,8 +41,10 @@ const dbBrowserModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('DETAIL_TABLE', res.data)
       } catch (e) {
@@ -58,11 +62,19 @@ const dbBrowserModule = {
           data: {
             table: data.table,
             column: data.column
+          },
+          headers: {
+            Authorization: 'Bearer ' + data.token
           }
         })
-        dispatch('detailTable', { url: data.url, table: data.table })
+        dispatch('detailTable', data)
+        commit('status/INSTALLER_LOG', 'Added Index to Table', {
+          root: true
+        })
       } catch (e) {
-        console.log(e)
+        commit('status/INSTALLER_LOG', e, {
+          root: true
+        })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -76,9 +88,15 @@ const dbBrowserModule = {
           data: {
             table: data.table,
             index: data.index.name
+          },
+          headers: {
+            Authorization: 'Bearer ' + data.token
           }
         })
-        dispatch('detailTable', { url: data.url, table: data.table })
+        dispatch('detailTable', data)
+        commit('status/INSTALLER_LOG', 'Deleted Index from Table', {
+          root: true
+        })
       } catch (e) {
         console.log(e)
       }
@@ -94,11 +112,19 @@ const dbBrowserModule = {
           data: {
             table: data.table,
             index: data.index.name
+          },
+          headers: {
+            Authorization: 'Bearer ' + data.token
           }
         })
-        dispatch('detailTable', { url: data.url, table: data.table })
+        dispatch('detailTable', data)
+        commit('status/INSTALLER_LOG', 'Index was recreated successfully', {
+          root: true
+        })
       } catch (e) {
-        console.log(e)
+        commit('status/INSTALLER_LOG', e, {
+          root: true
+        })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }

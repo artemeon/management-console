@@ -31,8 +31,10 @@ const installPackagesModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation :'bearer'+data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('GET_PACKAGES', res.data.modules)
@@ -54,10 +56,10 @@ const installPackagesModule = {
 
         installable.forEach(async element => {
           if (!element.versionInstalled && element.providesInstaller === true) {
-            return dispatch('triggerNextModule', {
-              url: data.url,
-              module: element.title
-            })
+            return dispatch(
+              'triggerNextModule',
+              Object.assign(data, { module: element.title })
+            )
           }
         })
         await dispatch('getAllPackages', data)
@@ -77,14 +79,17 @@ const installPackagesModule = {
     /**
      * @param payload Name of Module that will be installed
      */
-    async triggerNextModule ({ commit, dispatch, state }, payload: any) {
-      const url = payload.url + '/api.php/installer/module'
+    async triggerNextModule ({ commit, dispatch, state }, data: any) {
+      const url = data.url + '/api.php/installer/module'
       try {
         const res = await axios({
           method: 'post',
           url: url,
           data: {
-            module: payload.module
+            module: data.module
+          },
+          headers: {
+            Authorization: 'Bearer ' + data.token
           }
         })
         if (res.data.status === 'success') {
@@ -112,8 +117,10 @@ const installPackagesModule = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // Authorisation:'bearer'+data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
 
         commit('GET_SAMPLE_CONTENT', res.data.samples)
@@ -139,9 +146,17 @@ const installPackagesModule = {
           }
         )
         return axios
-          .post(url, {
-            module: arr[index].title
-          })
+          .post(
+            url,
+            {
+              module: arr[index].title
+            },
+            {
+              headers: {
+                Authorization: 'Bearer ' + data.token
+              }
+            }
+          )
           .then(res => {
             index++
             if (index >= arr.length) {
@@ -172,10 +187,7 @@ const installPackagesModule = {
       if (helfer.allUpdated(state.packages) === false) {
         update.forEach(async element => {
           if (element.providesInstaller === true && element.isInstallable) {
-            dispatch('triggerNextModule', {
-              url: data.url,
-              module: element.title
-            })
+            dispatch('triggerNextModule', data)
           }
         })
         await dispatch('getAllPackages', data)

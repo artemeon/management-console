@@ -26,6 +26,7 @@
                   <th>Datentyp intern</th>
                   <th>Datentyp DB</th>
                   <th>Null</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -42,14 +43,10 @@
                   <td>{{column.type}}</td>
                   <td>{{column.dbtype}}</td>
                   <td>{{column.nullable}}</td>
-                  <td>
-                    <i
-                      class="fa fa-bolt"
-                      aria-hidden="true"
-                      v-if="!isIndex(column.name)"
-                      @click="addIndex(column.name)"
-                    ></i>
+                  <td v-if="!isIndex(column.name)" @click="addIndex(column.name)">
+                    <i class="fa fa-bolt" aria-hidden="true"></i>
                   </td>
+                  <td v-else></td>
                 </tr>
               </tbody>
             </table>
@@ -82,8 +79,12 @@
                   <td>{{dbIndex.name}}</td>
                   <td>{{dbIndex.description}}</td>
                   <td>
-                    <i class="fas fa-trash-alt" aria-hidden="true" @click="deleteIndex(dbIndex)"></i>
-                    <i class="fas fa-sync" aria-hidden="true" @click="recreateIndex(dbIndex)"></i>
+                    <span @click="deleteIndex(dbIndex)">
+                      <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                    </span>
+                    <span @click="recreateIndex(dbIndex)">
+                      <i class="fas fa-sync" aria-hidden="true"></i>
+                    </span>
                   </td>
                 </tr>
               </tbody>

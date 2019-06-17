@@ -17,8 +17,10 @@ const systemInfo = {
       try {
         const res = await axios({
           method: 'get',
-          url: url
-          // authorisation:'bearer' +data.token
+          url: url,
+          headers: {
+            Authorization: 'Bearer ' + data.token
+          }
         })
         commit('GET_SYSTEM_INFO', res.data.plugins)
         commit('status/LOADING_FALSE', {}, { root: true })
