@@ -11,6 +11,7 @@ import statusBarModule from './modules/statusBarModule'
 import systemTaskModule from './modules/systemTaskModule'
 import lockSystem from './modules/lockSystem'
 import systemInfosModule from './modules/systemInfosModule'
+import toastrModule from './modules/toastrModule'
 Vue.use(Vuex)
 Vue.use(VueI18n)
 export default new Vuex.Store({
@@ -24,6 +25,7 @@ export default new Vuex.Store({
     status: statusBarModule,
     systemTaskModule: systemTaskModule,
     lock: lockSystem,
-    systemInfo: systemInfosModule
+    systemInfo: systemInfosModule,
+    toast: toastrModule
   }
 })

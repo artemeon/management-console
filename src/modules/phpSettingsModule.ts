@@ -18,7 +18,7 @@ const phpSettingsModule = {
      * get System Informations : php Settings
      * @param data :contains system url and token
      */
-    async getPHPSettings ({ commit }, data: any) {
+    async getPHPSettings ({ dispatch, commit }, data: any) {
       const url = data.url + '/api.php/installer/systeminfo'
       commit('status/LOADING_TRUE', {}, { root: true })
 
@@ -30,11 +30,11 @@ const phpSettingsModule = {
             Authorization: 'Bearer ' + data.token
           }
         })
-        console.log(res)
+
         commit('GET_PHP_SETTINGS', res.data)
+        dispatch('toast/showToast', 'halelujah', { root: true })
       } catch (e) {
         commit('ERROR_PHP_SETTINGS')
-        console.log(e)
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }
