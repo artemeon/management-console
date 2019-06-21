@@ -16,7 +16,7 @@ const dbBrowserModule = {
   },
   actions: {
     // list all tables
-    async listTables ({ commit }, data) {
+    async listTables ({ commit, dispatch }, data) {
       commit('status/LOADING_TRUE', {}, { root: true })
       const url = data.url + '/api.php/dbbrowser'
 
@@ -30,12 +30,11 @@ const dbBrowserModule = {
         })
         commit('LIST_TABLES', res.data)
       } catch (e) {
-        // @TODO handle Error
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async detailTable ({ commit }, data) {
+    async detailTable ({ commit, dispatch }, data) {
       const url = data.url + '/api.php/dbbrowser/' + data.table
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
@@ -48,7 +47,7 @@ const dbBrowserModule = {
         })
         commit('DETAIL_TABLE', res.data)
       } catch (e) {
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -72,9 +71,10 @@ const dbBrowserModule = {
           root: true
         })
       } catch (e) {
-        commit('status/INSTALLER_LOG', e, {
+        commit('status/INSTALLER_LOG', e.message, {
           root: true
         })
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -98,7 +98,7 @@ const dbBrowserModule = {
           root: true
         })
       } catch (e) {
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -125,6 +125,7 @@ const dbBrowserModule = {
         commit('status/INSTALLER_LOG', e, {
           root: true
         })
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }

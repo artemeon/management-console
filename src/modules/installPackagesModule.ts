@@ -41,6 +41,7 @@ const installPackagesModule = {
         commit('ERROR_PACKAGES', false)
       } catch (e) {
         commit('ERROR_PACKAGES', true)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -105,6 +106,7 @@ const installPackagesModule = {
       } catch (e) {
         console.log('error', e)
         // commit('ERROR_PACKAGES', true)
+        // dispatch('toast/errorToast', e.message, { root: true })
       }
     },
     /**

@@ -35,11 +35,11 @@ const dbSettingsModule = {
         if (res.data.check === true) dispatch('postDbSettings', data)
       } catch (e) {
         // Error handling not yet
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async postDbSettings ({ commit }, data: any) {
+    async postDbSettings ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/installer/config'
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
@@ -55,7 +55,7 @@ const dbSettingsModule = {
         commit('POST_DB_SETTINGS', res.data)
       } catch (e) {
         // Error handling not yet
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -64,7 +64,7 @@ const dbSettingsModule = {
      * @param commit commit Mutation to change the state
      * @param data Object that contains System-url and token
      */
-    async checkDbModule ({ commit }, data: any) {
+    async checkDbModule ({ commit, dispatch }, data: any) {
       // https://dev.artemeon.de/agp/debug.php?debugfile=api_show_routes.php
       const url = data.url + '/api.php/installer/connection'
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -79,8 +79,7 @@ const dbSettingsModule = {
 
         commit('GET_CHECK_MODULE', res.data)
       } catch (e) {
-        // Error handling not yet
-        console.log(e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }

@@ -1,8 +1,12 @@
 import { Storage } from './Storage'
 import Server from './Server'
 import { ServersList } from '../Types'
+import Toastr from '../Toastr/Toastr'
 class Local implements Storage {
   private jsonData!: ServersList
+  /**
+   * returns an Array of Servers from Localstorage
+   */
   getServers (): Array<Server> {
     let temp = JSON.parse(window.localStorage.getItem('mc_server_cfg') || '{}')
     let result =
@@ -10,7 +14,11 @@ class Local implements Storage {
 
     return result
   }
-  setServer (server: Server): void {
+  /**
+   * adds a server to the localStorage
+   * @param server
+   */
+  addServer (server: Server): void {
     if (server.title !== '' && server.url !== '' && server.token !== '') {
       let local = window.localStorage.getItem('mc_server_cfg')
 
@@ -41,18 +49,28 @@ class Local implements Storage {
         'mc_server_cfg',
         JSON.stringify(this.jsonData)
       )
+      Toastr.prototype.success(server.title + ' was added successfully')
     }
   }
+  /**
+   * overrides property mc_server_cfg in localstorage with a new array of servers
+   * @param servers
+   */
   setServers (servers: Array<Server>) {
     this.jsonData = { systems: servers }
 
     window.localStorage.setItem('mc_server_cfg', JSON.stringify(this.jsonData))
   }
+  /**
+   * deletes server from localstorage
+   * @param server
+   */
   deleteServer (server: Server) {
     const servers = this.getServers()
     let index = servers.findIndex(e => e.title === server.title)
     if (index !== -1 && servers.length > 0) {
       servers.splice(index, 1)
+      Toastr.prototype.success(server.title + ' was deleted successfully')
     }
     this.setServers(servers)
   }

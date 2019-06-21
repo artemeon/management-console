@@ -23,11 +23,13 @@ const storageModule = {
       return servers
     },
     setServer ({ commit, dispatch }, server: Server) {
-      Local.prototype.setServer(server)
+      Local.prototype.addServer(server)
+
       dispatch('getServers')
     },
     setServers ({ dispatch }, servers: Array<Server>) {
       Local.prototype.setServers(servers)
+
       dispatch('getServers')
     },
     setCurrent ({ commit }, server: Server) {
@@ -35,6 +37,7 @@ const storageModule = {
     },
     deleteServer ({ commit, dispatch }, server: Server) {
       Local.prototype.deleteServer(server)
+
       dispatch('getServers')
     }
   },

@@ -1,0 +1,28 @@
+#toast-container > .toast-success,
+#toast-container > .toast-warning,
+#toast-container > .toast-error {
+  background-image: none !important;
+}
+#toast-container > .toast:before {
+  position: fixed;
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  font-size: 18px;
+  //   line-height: 18px;
+  float: left;
+  color: #fff;
+  padding-right: 0.5em;
+  margin: auto 0.5em auto -1.5em;
+}
+#toast-container > .toast-warning:before {
+  content: "\f06a";
+}
+#toast-container > .toast-error:before {
+  content: "\f119";
+}
+#toast-container > .toast-info:before {
+  content: "\f12a";
+}
+#toast-container > .toast-success:before {
+  content: "\f118";
+}

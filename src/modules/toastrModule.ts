@@ -1,22 +1,21 @@
-import axios from 'axios'
-
-import * as toastr from 'toastr'
+import * as toasterClass from '../Globals/Toastr/Toastr'
+const Toastr = toasterClass.default.prototype
 const toaster = {
   namespaced: true,
   state: {},
   mutations: {},
   actions: {
-    showToast ({}, data) {
-      toastr.options.showEasing = 'swing'
-      toastr.options.hideEasing = 'linear'
-      toastr.options.closeEasing = 'linear'
-      toastr.options.closeButton = true
-      toastr.options.positionClass = 'toast-top-left'
-      toastr.options.timeOut = 0
-      toastr.options.extendedTimeOut = 0
-
-      toastr.success(data)
-      console.log(toastr, data)
+    successToast ({}, data: string) {
+      Toastr.success(data)
+    },
+    warningToast ({}, data: string) {
+      Toastr.warning(data)
+    },
+    errorToast ({}, data: string) {
+      Toastr.error(data)
+    },
+    infoToast ({}, data: string) {
+      Toastr.info(data)
     }
   },
   getters: {}

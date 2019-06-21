@@ -49,7 +49,7 @@ const lockSystem = {
         commit('status/LOADING_FALSE', {}, { root: true })
       } catch (e) {}
     },
-    async unlockSystem ({ commit }, data: any) {
+    async unlockSystem ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/systemlock'
 
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -64,7 +64,9 @@ const lockSystem = {
         commit('UNLOCK_SYSTEM', false)
         commit('status/INSTALLER_LOG', 'System unlocked', { root: true })
         commit('status/LOADING_FALSE', {}, { root: true })
-      } catch (e) {}
+      } catch (e) {
+        dispatch('toast/errorToast', e.message, { root: true })
+      }
     }
   },
   getters: {}

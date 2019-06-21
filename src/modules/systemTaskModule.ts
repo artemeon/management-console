@@ -42,6 +42,7 @@ const systemTaskModule = {
         commit('ERROR', false)
       } catch (e) {
         commit('ERROR', true)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -51,7 +52,7 @@ const systemTaskModule = {
      * @param data
      * returns form entries for a given system task
      */
-    async getForm ({ commit }, data: any) {
+    async getForm ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
@@ -66,8 +67,8 @@ const systemTaskModule = {
 
         commit('GET_FORM', result)
       } catch (e) {
-        // Error handling not yet
-        console.log(e)
+        // Error handling
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
@@ -77,7 +78,7 @@ const systemTaskModule = {
      * @param data server and object with selected values in the form
      * executes a systemtask
      */
-    async executeTask ({ commit }, data: any) {
+    async executeTask ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/systemtask/' + data.task
       commit('status/LOADING_TRUE', {}, { root: true })
       try {
@@ -91,11 +92,9 @@ const systemTaskModule = {
         })
 
         commit('status/INSTALLER_LOG', res.data.return, { root: true })
-        // @TODO handle success
+        dispatch('toast/successToast', res.data.return, { root: true })
       } catch (e) {
-        // Error handling not yet
-        console.log(e)
-        // @TODO handle error
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }

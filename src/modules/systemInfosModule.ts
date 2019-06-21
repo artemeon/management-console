@@ -10,7 +10,7 @@ const systemInfo = {
     }
   },
   actions: {
-    async getSystemInfo ({ commit }, data: any) {
+    async getSystemInfo ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/systeminfo'
 
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -24,7 +24,9 @@ const systemInfo = {
         })
         commit('GET_SYSTEM_INFO', res.data.plugins)
         commit('status/LOADING_FALSE', {}, { root: true })
-      } catch (e) {}
+      } catch (e) {
+        dispatch('toast/errorToast', e.message, { root: true })
+      }
     }
   },
   getters: {}

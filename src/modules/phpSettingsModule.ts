@@ -32,9 +32,9 @@ const phpSettingsModule = {
         })
 
         commit('GET_PHP_SETTINGS', res.data)
-        dispatch('toast/showToast', 'halelujah', { root: true })
       } catch (e) {
         commit('ERROR_PHP_SETTINGS')
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }

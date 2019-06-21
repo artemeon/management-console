@@ -23,7 +23,7 @@ const logsModule = {
     }
   },
   actions: {
-    async getLogFiles ({ commit }, data: any) {
+    async getLogFiles ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/installer/log'
       commit('LOADING', true)
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -40,10 +40,11 @@ const logsModule = {
       } catch (e) {
         // Error handling not yet
         commit('ERROR', e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     },
-    async getLogForFile ({ commit }, data: any) {
+    async getLogForFile ({ commit, dispatch }, data: any) {
       const url = data.url + '/api.php/installer/log/' + data.log
 
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -59,6 +60,7 @@ const logsModule = {
       } catch (e) {
         // Error handling not yet
         commit('ERROR', e)
+        dispatch('toast/errorToast', e.message, { root: true })
       }
       commit('status/LOADING_FALSE', {}, { root: true })
     }
