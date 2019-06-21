@@ -1,19 +1,15 @@
 <template>
-  <div v-if="dbTables">
-    <div v-if="dbTables.tables && dbTables.tables.length && dbTables.tables.length>0">
-      <div class="row">
-        <div id="dbTablesContainer" class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-          <div
-            v-for="(table, index) in dbTables.tables"
-            :key="index"
-            class="dbTable"
-            @click="setSelectedTable(table)"
-          >
-            <p>{{table}}</p>
-          </div>
+  <div v-if="dbTables" class="heightClass">
+    <div
+      v-if="dbTables.tables && dbTables.tables.length && dbTables.tables.length>0"
+      class="heightClass"
+    >
+      <div class="row heightClass">
+        <div id="dbTablesContainer" class="col-sm-12 col-md-3 col-lg-3 col-xl-3 heightClass">
+          <SideBar :elements="dbTables.tables" @indexClicked="setSelectedTable"/>
         </div>
 
-        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
+        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9 scrollContainer">
           <h4 v-if="selectedTable===''">Wählen Sie eine Tablelle aus</h4>
           <h4 v-else>Tabelle : {{selectedTable}}</h4>
           <div v-if="tableData">

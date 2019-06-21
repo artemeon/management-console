@@ -1,6 +1,6 @@
 #dbTablesContainer {
-  height: 100vh;
-  overflow-y: scroll;
+  height: 100%;
+
   .dbTable {
     padding: 0.1em;
     cursor: pointer;
@@ -21,4 +21,11 @@ i {
 }
 .empty-handle {
   left: 40%;
+}
+.heightClass {
+  height: 100%;
+}
+#sidebar {
+  overflow-y: auto;
+  overflow-x: hidden;
 }

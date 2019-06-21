@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading">Loading...</div>
-  <div v-else>
+  <div v-else class="scrollContainer">
     <div v-for="(data,index) in systemInfo" :key="index+ '-info'">
       <legend>{{data.title}}</legend>
       <table class="table table-striped">

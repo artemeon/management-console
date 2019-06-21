@@ -22,6 +22,7 @@ class Module extends Vue {
     height: '150px',
     'overflow-y': 'auto'
   }
+  public scrolled: string = ''
 
   public handle (e) {
     if (e === true) this.full = true
@@ -59,13 +60,20 @@ class Module extends Vue {
         return this.packages
     }
   }
+  handleScroll (e) {
+    if (e.target.scrollTop === 0) {
+      this.scrolled = ''
+    } else {
+      this.scrolled = 'scrolled'
+    }
+  }
   async mounted () {
     if (this.current) {
       await this.getAllPackages(this.current)
       await this.getSampleContent(this.current)
     }
   }
-
+  created () {}
   hasSampleContent (module) {
     let found = []
     if (this.samples) {

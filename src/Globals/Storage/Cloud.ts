@@ -3,7 +3,7 @@ class Cloud implements Storage {
   getServers () {
     throw new Error('Method not implemented.')
   }
-  setServer (server: object): void {
+  addServer (server: object): void {
     throw new Error('Method not implemented.')
   }
 }

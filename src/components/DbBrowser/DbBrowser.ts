@@ -1,8 +1,8 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import { Index, DbTables, TableData } from './Interfaces'
-
-@Component
+import SideBar from '../ReusableLayout/SideBar/SideBar'
+@Component({ components: { SideBar } })
 class DbBrowser extends Vue {
   @(namespace('dbBrowserModule').State) dbTables: any
   @(namespace('dbBrowserModule').Action) listTables: any
@@ -27,7 +27,8 @@ class DbBrowser extends Vue {
     )
   }
   // set the selected table and get the data from the Api
-  public setSelectedTable (table: string): void {
+  public setSelectedTable (table: any): void {
+    console.log(table)
     this.selectedTable = table
     this.getSelectedTable()
   }

@@ -13,12 +13,12 @@
         {{ $t("message.installer_start_installation") }}
       </Button>
     </div>
-    <div v-else class="floatRight">
+    <div v-else :class="['floatRight',scrolled]">
       <Button @click="update">
         <i class="fas fa-download"></i> Update
       </Button>
     </div>
-    <div id="ModulesCard">
+    <div id="ModulesCard" v-on:scroll="handleScroll">
       <Card>
         <Table>
           <TableHead>
