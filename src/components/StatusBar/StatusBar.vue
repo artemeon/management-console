@@ -34,10 +34,6 @@
           <div class="logger-icon">
             <i class="far fa-clock"></i>
           </div>
-
-          <div
-            class="message wrap"
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium iusto soluta repellat beatae maxime deserunt in dicta corrupti est sit obcaecati nisi nobis quod, similique enim dolorem esse temporibus!</div>
         </div>
       </div>
     </div>
