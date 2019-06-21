@@ -27,10 +27,17 @@
               </div>
               <div class="message" v-if="htmlTag(item)" v-html="item"></div>
               <div class="message" v-else>{{item}}</div>
-
-              <!-- <div class="date">{{new Date().toLocaleString()}}</div> -->
             </div>
           </div>
+        </div>
+        <div class="logger-message">
+          <div class="logger-icon">
+            <i class="far fa-clock"></i>
+          </div>
+
+          <div
+            class="message wrap"
+          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam accusantium iusto soluta repellat beatae maxime deserunt in dicta corrupti est sit obcaecati nisi nobis quod, similique enim dolorem esse temporibus!</div>
         </div>
       </div>
     </div>
@@ -47,7 +54,7 @@
         >{{$t('custom.status_bar_empty')}}</div>
         <div class="text" v-else>
           <div
-            class="status-bar-text"
+            class="status-bar-text truncate"
             v-if="htmlTag(installerLog[installerLog.length-1])"
             v-html="installerLog[installerLog.length-1]"
           ></div>
@@ -65,9 +72,7 @@
       <div class="section dark-light">
         <i class="fas fa-adjust"></i>
       </div>
-      <div class="section spinner" v-if="loading">
-        <!-- <i class="far fa-clock"></i> -->
-      </div>
+      <div class="section spinner" v-if="loading"></div>
     </div>
   </div>
 </template>

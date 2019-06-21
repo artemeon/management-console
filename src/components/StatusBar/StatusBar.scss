@@ -38,7 +38,15 @@ $status-bar-hover: #435f7a;
 }
 .text {
   margin-left: 6px;
+  // word-wrap: break-word;
 }
+.truncate {
+  width: calc(90vw - 100px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .last-log {
   flex: 100% 1 1;
 }
@@ -116,8 +124,6 @@ $status-bar-hover: #435f7a;
       width: 0;
       overflow: hidden;
       margin-left: 12px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
     .date {
       opacity: 0.5;
