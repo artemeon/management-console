@@ -1,6 +1,6 @@
 <template>
   <div class="status-bar">
-    <div class="logger" v-if="show">
+    <div class="logger" v-show="show">
       <div class="logger-header">
         <div class="icon">
           <i class="fas fa-desktop"></i>
@@ -12,7 +12,7 @@
           </span>
         </div>
       </div>
-      <div class="logger-content">
+      <div class="logger-content" id="logger">
         <div class="empty" v-if="!installerLog || installerLog && installerLog.length===0">
           <div>
             <i class="far fa-frown"></i>
@@ -30,14 +30,14 @@
             </div>
           </div>
         </div>
-        <div class="logger-message">
+        <!-- <div class="logger-message">
           <div class="logger-icon">
             <i class="far fa-clock"></i>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
-    <div class="status-bar-content">
+    <div :class="[loading? 'loaderBar' : '', 'status-bar-content']">
       <div class="section current-system" v-if="system && system!=='undefined'">
         <i class="fas fa-folder"></i>
         <span class="text">{{system}}</span>

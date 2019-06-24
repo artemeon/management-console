@@ -23,7 +23,7 @@ const installPackagesModule = {
   actions: {
     /**
      * Get all Modules
-     * @param data contains system-url and token
+     * @param data contains system data
      */
     async getAllPackages ({ commit, dispatch }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -46,7 +46,7 @@ const installPackagesModule = {
       commit('status/LOADING_FALSE', {}, { root: true })
     },
     /**
-     * @param data : System Url and token
+     * @param data : System data
      */
     async getNextModule ({ dispatch, state, commit }, data: any) {
       commit('status/LOADING_TRUE', {}, { root: true })
@@ -72,8 +72,14 @@ const installPackagesModule = {
           // Sample Content not installed
           if (!helfer.allInstalledSamples(state.samples)) {
             await dispatch('makeRequestsFromArray', data)
+          } else {
+            dispatch('getSampleContent', data)
+            commit('status/LOADING_FALSE', {}, { root: true })
+            console.log('ende get next Module ', Date.now().toLocaleString)
           }
-          dispatch('getSampleContent', data)
+        } else {
+          commit('status/LOADING_FALSE', {}, { root: true })
+          console.log('ende get next Module ', Date.now().toLocaleString)
         }
       }
     },
@@ -106,7 +112,7 @@ const installPackagesModule = {
       } catch (e) {
         console.log('error', e)
         // commit('ERROR_PACKAGES', true)
-        // dispatch('toast/errorToast', e.message, { root: true })
+        dispatch('toast/errorToast', e.message, { root: true })
       }
     },
     /**
@@ -161,8 +167,8 @@ const installPackagesModule = {
           )
           .then(res => {
             index++
-            if (index >= arr.length) {
-              commit('status/LOADING_FALSE', {}, { root: true })
+            if (index > arr.length) {
+              // commit('status/LOADING_FALSE', {}, { root: true })
               commit(
                 'status/INSTALLER_LOG',
                 'Installation erfolgreich abgeschlossen',
@@ -173,6 +179,13 @@ const installPackagesModule = {
               return dispatch('getSampleContent', data)
             }
             return request()
+          })
+          .catch(e => {
+            commit('status/LOADING_FALSE', {}, { root: true })
+            commit('status/INSTALLER_LOG', e.message, {
+              root: true
+            })
+            return dispatch('toast/errorToast', e.message, { root: true })
           })
       }
       request()

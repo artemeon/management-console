@@ -1,9 +1,6 @@
 $status-bar-color: #2c3e50;
 $status-bar-hover: #435f7a;
 
-.core-component-formentry-textrow {
-  background-color: red;
-}
 .status-bar {
   flex: auto 0 0;
   position: absolute;
@@ -179,5 +176,49 @@ $status-bar-hover: #435f7a;
 @keyframes rot {
   to {
     transform: rotate(-360deg);
+  }
+}
+
+//test loaderStatus
+
+.loaderBar {
+  background: linear-gradient(268deg, #2c3e50, #86add4);
+  background-size: 400% 400%;
+
+  -webkit-animation: loader 3s ease infinite;
+  -moz-animation: loader 3s ease infinite;
+  animation: loader 3s ease infinite;
+}
+@-webkit-keyframes loader {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+}
+@-moz-keyframes loader {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
+  }
+}
+@keyframes loader {
+  0% {
+    background-position: 0% 51%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 51%;
   }
 }

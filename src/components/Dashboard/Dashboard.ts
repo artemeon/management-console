@@ -12,9 +12,10 @@ class Dashboard extends Vue {
   @(namespace('storage').Action) getServers!: any
   @(namespace('storage').Action) deleteServer!: any
   @(namespace('storage').Action) setCurrent!: any
+  @(namespace('storage').Action) checkServer!: any
   @(namespace('storage').State) storageLocal!: any
   @(namespace('storage').State) current: any
-
+  @(namespace('storage').State) checkError: any
   private id = 'modalTopBar'
   private openDialog = 'modalDeleteSystem'
   private deleteDialog = 'Delete System ?'
@@ -63,8 +64,8 @@ class Dashboard extends Vue {
   goToAgp (system: Server) {
     window.open(system.url, '_blank')
   }
-  addSystem () {
-    var server: Server = { title: '', url: '', token: '' }
+  async addSystem () {
+    let server: Server = { title: '', url: '', token: '' }
     this.agpAdd.map(el => {
       switch (el.id.toUpperCase()) {
         case 'TITLE':
@@ -81,10 +82,12 @@ class Dashboard extends Vue {
           break
       }
     })
-    this.setServer(server)
+    if (server.title !== '' && server.url !== '' && server.token !== '') {
+      await this.checkServer(server)
+      if (this.checkError === false) this.setServer(server)
+    }
   }
   setDelete (data) {
-    console.log(data)
     this.systemToDelete = data
   }
   deleteSystem () {

@@ -10,7 +10,17 @@ class StatusBar extends Vue {
   private show: boolean = false
   public lang: string = ''
   private empty = 'Keine Protokolle '
-
+  test = [
+    'dknfhnsdrfjfndskjnk',
+    'rkjgnrkjngkrtgnjkernk',
+    'fkjndkjgkjf',
+    'dknfhnsdrfjfndskjnk',
+    'rkjgnrkjngkrtgnjkernk',
+    'fkjndkjgkjf',
+    'dknfhnsdrfjfndskjnk',
+    'rkjgnrkjngkrtgnjkernk',
+    'fkjndkjgkjf'
+  ]
   handleLang () {
     console.log('before', this.$i18n.locale)
     if (this.$i18n.locale === 'en') {
@@ -31,6 +41,14 @@ class StatusBar extends Vue {
   }
   toggleShow () {
     this.show = !this.show
+    if (this.show === true) {
+      let obj = this.$el.querySelector('#logger')
+      console.log(obj)
+      if (obj && obj !== undefined) {
+        console.log(obj.scrollHeight)
+        this.$set(obj, 'scrollTop', obj.scrollHeight)
+      }
+    }
   }
   htmlTag (str) {
     return str.includes('<') && str.includes('>')
