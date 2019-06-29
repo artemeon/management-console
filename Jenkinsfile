@@ -8,18 +8,23 @@ pipeline {
         node {
             label 'php 7.2'
 
-            #docker {
-            #    image 'node:6-alpine'
-            #}
+            //docker {
+            //    image 'node:6-alpine'
+            //}
         }
 
     }
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
                 sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
                 sh 'npm build'
             }
         }
+
     }
 }
