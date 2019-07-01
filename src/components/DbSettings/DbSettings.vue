@@ -21,7 +21,7 @@
               name="hostname"
               class="form-control"
               v-model="dbServer"
-            >
+            />
           </div>
         </div>
         <!-- dbUser -->
@@ -31,7 +31,7 @@
             class="col-sm-5 control-label"
           >{{$t('message.installer_config_dbusername')}}</label>
           <div class="col-sm-6">
-            <input type="text" id="username" name="username" class="form-control" v-model="dbUser">
+            <input type="text" id="username" name="username" class="form-control" v-model="dbUser" />
           </div>
         </div>
         <!-- dbPsw -->
@@ -47,7 +47,7 @@
               name="password"
               class="form-control"
               v-model="dbPassword"
-            >
+            />
           </div>
         </div>
         <!-- dbName -->
@@ -57,7 +57,7 @@
             class="col-sm-5 control-label"
           >{{$t('message.installer_config_dbname')}}</label>
           <div class="col-sm-6">
-            <input type="text" id="dbname" name="dbname" class="form-control" v-model="dbName">
+            <input type="text" id="dbname" name="dbname" class="form-control" v-model="dbName" />
           </div>
         </div>
         <div class="form-group">
@@ -86,7 +86,7 @@
         <div class="form-group">
           <label for="port" class="col-sm-5">{{$t('message.installer_config_dbport')}}</label>
           <div class="col-sm-6">
-            <input type="text" id="port" name="port" class="form-control" v-model="dbPort">
+            <input type="text" id="port" name="port" class="form-control" v-model="dbPort" />
           </div>
           <div class="col-sm-6">
             <span class="alert-info">{{$t('message.installer_config_dbportinfo')}}</span>

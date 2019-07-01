@@ -51,6 +51,7 @@ class DbSettings extends Vue {
   }
 
   enable () {
+    console.log('enable')
     this.disable = false
   }
 }
