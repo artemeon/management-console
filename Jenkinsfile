@@ -26,5 +26,12 @@ pipeline {
             }
         }
 
+        stage('Artifacts') {
+            steps {
+                sh 'tar -czf dist.tar.gz ./dist'
+                stash 'dist.tar.gz'
+                archiveArtifacts artifacts: 'dist.tar.gz'
+          }
+        }
     }
 }
