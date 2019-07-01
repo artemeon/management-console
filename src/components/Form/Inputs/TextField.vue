@@ -11,7 +11,7 @@
       :mandatory="mandatory"
       v-model="inputText"
       @change="updateVal"
-    >
+    />
     <!-- :disabled="disabled" -->
   </div>
 </template>

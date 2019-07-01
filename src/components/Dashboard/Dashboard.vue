@@ -16,13 +16,13 @@
         Export
       </button>
       <label class="btn">
-        <input type="file" style="display: none;" @change="importJson" ref="myFiles">
+        <input type="file" style="display: none;" @change="importJson" ref="myFiles" />
         <i class="fas fa-file-download"></i>
         Import
       </label>
     </div>
-    <div class="dashboardCards">
-      <div v-if="storageLocal && storageLocal.length>0">
+    <div>
+      <div v-if="storageLocal && storageLocal.length>0" class="dashboardCards">
         <Card
           v-for="(data,index) in storageLocal"
           :key="index"
@@ -32,13 +32,16 @@
         >
           <template v-slot:custom-header>
             <h5 class="card-title">{{data.title}}</h5>
+            <div data-toggle="modal" :data-target="'#'+updateId" @click="setUpdate(data)">
+              <i class="fas fa-edit"></i>
+            </div>
             <div data-toggle="modal" :data-target="'#'+openDialog" @click="setDelete(data)">
               <i class="fas fa-times"></i>
             </div>
           </template>
           <template v-slot:card-text>
             <span>Title: {{data.title}}</span>
-            <br>
+            <br />
             <span>Url: {{data.url}}</span>
           </template>
           <template v-slot:action-buttons>
@@ -60,6 +63,13 @@
       header="Add System"
       :id="id"
       :handler="addSystem"
+    />
+    <Modal
+      :items="agpAdd"
+      label="exampleModalCentered"
+      header="Update System"
+      :id="updateId"
+      :handler="updateSystem"
     />
     <Modal
       label="exampleModalCentered"

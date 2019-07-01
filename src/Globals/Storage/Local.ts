@@ -74,6 +74,16 @@ class Local implements Storage {
     }
     this.setServers(servers)
   }
+  updateServer (server: Server, update: Server) {
+    const servers = this.getServers()
+    console.log(servers)
+    let index = servers.findIndex(e => e.title === server.title)
+    if (index !== -1 && servers.length > 0) {
+      servers[index] = update
+      Toastr.prototype.success(update.title + ' was updated successfully')
+    }
+    this.setServers(servers)
+  }
 }
 
 export default Local

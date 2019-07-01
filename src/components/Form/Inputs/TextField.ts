@@ -1,4 +1,4 @@
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 
 @Component
@@ -11,9 +11,17 @@ class TextField extends Vue {
   @Prop() disabled!: boolean
   @Prop() mandatory!: boolean
   @Prop() value!: any
-  private inputText = null
+  private inputText: String = ''
   created () {
     this.inputText = this.value
+  }
+  /**
+   * watch input value changes
+   * @param inputValue
+   */
+  @Watch('value')
+  change (inputValue) {
+    this.inputText = inputValue
   }
   updateVal () {
     this.$emit('input', this.inputText)

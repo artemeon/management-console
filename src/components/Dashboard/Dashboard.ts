@@ -13,13 +13,16 @@ class Dashboard extends Vue {
   @(namespace('storage').Action) deleteServer!: any
   @(namespace('storage').Action) setCurrent!: any
   @(namespace('storage').Action) checkServer!: any
+  @(namespace('storage').Action) updateServer!: any
   @(namespace('storage').State) storageLocal!: any
   @(namespace('storage').State) current: any
   @(namespace('storage').State) checkError: any
   private id = 'modalTopBar'
   private openDialog = 'modalDeleteSystem'
+  private updateId = 'modalUpdateSystem'
   private deleteDialog = 'Delete System ?'
   private systemToDelete!: Server
+  private systemToUpdate!: Server
   public agpAdd = [
     {
       id: 'Title',
@@ -41,6 +44,7 @@ class Dashboard extends Vue {
       value: ''
     }
   ]
+
   mounted () {
     this.getServers()
   }
@@ -69,8 +73,9 @@ class Dashboard extends Vue {
     this.agpAdd.map(el => {
       switch (el.id.toUpperCase()) {
         case 'TITLE':
-          server.title = el.value
-
+          {
+            server.title = el.value
+          }
           break
         case 'URL':
           server.url = el.value
@@ -82,6 +87,7 @@ class Dashboard extends Vue {
           break
       }
     })
+
     if (server.title !== '' && server.url !== '' && server.token !== '') {
       await this.checkServer(server)
       if (this.checkError === false) this.setServer(server)
@@ -92,6 +98,54 @@ class Dashboard extends Vue {
   }
   deleteSystem () {
     this.deleteServer(this.systemToDelete)
+  }
+  setUpdate (data: Server) {
+    this.systemToUpdate = data
+    this.agpAdd.map(el => {
+      switch (el.id.toUpperCase()) {
+        case 'TITLE':
+          {
+            el.value = data.title
+          }
+          break
+        case 'URL':
+          el.value = data.url
+
+          break
+        case 'TOKEN':
+          el.value = data.token
+
+          break
+      }
+    })
+  }
+  async updateSystem () {
+    let server: Server = { title: '', url: '', token: '' }
+    this.agpAdd.map(el => {
+      switch (el.id.toUpperCase()) {
+        case 'TITLE':
+          {
+            server.title = el.value
+          }
+          break
+        case 'URL':
+          server.url = el.value
+
+          break
+        case 'TOKEN':
+          server.token = el.value
+
+          break
+      }
+    })
+
+    if (server.title !== '' && server.url !== '' && server.token !== '') {
+      await this.checkServer(server)
+
+      if (this.checkError === false) {
+        this.updateServer({ server: this.systemToUpdate, update: server })
+      }
+    }
   }
 }
 export default Dashboard

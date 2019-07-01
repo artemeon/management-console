@@ -69,6 +69,10 @@ const storageModule = {
       Local.prototype.deleteServer(server)
 
       dispatch('getServers')
+    },
+    updateServer ({ dispatch }, data) {
+      Local.prototype.updateServer(data.server, data.update)
+      dispatch('getServers')
     }
   },
   getters: {}

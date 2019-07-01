@@ -14,7 +14,7 @@ class ChartJs extends Vue {
 
     // ctx.height = this.height
     this.chart = this.chartData
-
+    
     if (this.chart.data.datasets) {
       this.chart.data.datasets.forEach(element => {
         if (element.type === 'line') {

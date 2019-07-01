@@ -22,15 +22,14 @@
             </button>
           </div>
           <div class="modal-body" v-if="items">
-            <!-- <component v-for="item in items" :key="item.id" :is="item.type" v-bind="item"/> -->
-            <template v-for="(item,index) in items">
+            <template v-for="(item) in items">
               <component
                 :key="item.id"
                 :is="item.type"
                 v-bind="item"
                 :item="item"
                 v-if=" exists(item.type)"
-                v-model="items[index].value"
+                v-model="item.value"
               ></component>
             </template>
           </div>
