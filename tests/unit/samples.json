@@ -1,0 +1,92 @@
+[
+  {
+    "title": "agp_commons",
+    "class": "AGP\\Agp_Commons\\Installer\\InstallerSamplecontentAaAgpCommons",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "prozessverwaltung",
+    "class": "AGP\\Prozessverwaltung\\Installer\\InstallerSamplecontentAbProzesse",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "auswertung",
+    "class": "AGP\\Auswertung\\Installer\\InstallerSamplecontentAuswertung",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "checklist",
+    "class": "AGP\\Checklist\\Installer\\InstallerSamplecontentChecklist",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "contracts",
+    "class": "AGP\\Contracts\\Installer\\InstallerSamplecontentContracts",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "cwft",
+    "class": "AGP\\Cwft\\Installer\\InstallerSamplecontentCwft",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "gdpr",
+    "class": "AGP\\Gdpr\\Installer\\InstallerSamplecontentGdpr",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "incidents",
+    "class": "AGP\\Incidents\\Installer\\InstallerSamplecontentIncidents",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "leistungsscheine",
+    "class": "AGP\\Leistungsscheine\\Installer\\InstallerSamplecontentLeistungsscheine",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "reportconfigurator",
+    "class": "AGP\\Reportconfigurator\\Installer\\InstallerSamplecontentReportconfigurator",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "riskanalysis",
+    "class": "AGP\\Riskanalysis\\Installer\\InstallerSamplecontentRiskanalysis",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "trainings",
+    "class": "AGP\\Trainings\\Installer\\InstallerSamplecontentTrainings",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "aufgaben",
+    "class": "AGP\\Aufgaben\\Installer\\InstallerSamplecontentZAufgaben",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "auditmanager",
+    "class": "AGP\\Auditmanager\\Installer\\InstallerSamplecontentZaAuditmanager",
+    "isInstallable": true,
+    "isInstalled": true
+  },
+  {
+    "title": "calculations",
+    "class": "AGP\\Calculations\\Installer\\InstallerSamplecontentZzCalculations",
+    "isInstallable": true,
+    "isInstalled": true
+  }
+]

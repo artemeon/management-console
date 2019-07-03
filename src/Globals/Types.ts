@@ -8,7 +8,7 @@ interface Module {
   requires: object
   path: string
   providesInstaller: boolean
-  versionInstalled: string
+  versionInstalled: string | null
   isInstallable: boolean
 }
 interface Sample {

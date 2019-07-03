@@ -30,7 +30,7 @@ class InstallerHelfer {
    * returns true if all entries have been installed
    * @param samples array with sample content
    */
-  public allInstalledSamples (samples: Array<Sample>) {
+  public allInstalledSamples (samples: any) {
     var found = true
     samples.map(el => {
       if (el.isInstalled === false) found = false
@@ -41,6 +41,7 @@ class InstallerHelfer {
     let found = true
     packages.map(element => {
       if (
+        element.versionInstalled &&
         element.versionInstalled > element.versionAvailable &&
         element.isInstallable === true
       ) {

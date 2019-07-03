@@ -1,0 +1,202 @@
+{
+  "installed": [
+    {
+      "title": "agp_commons",
+      "description": "Holds common values and settings, updates the config-files if required.",
+      "versionAvailable": "7.1.2",
+      "author": "ARTEMEON",
+      "requires": {
+        "system": "7.1",
+        "dashboard": "7.1",
+        "tags": "7.1",
+        "mediamanager": "7.1",
+        "nestedset": "7.1"
+      },
+      "path": "/core_agp/module_agp_commons",
+      "providesInstaller": true,
+      "versionInstalled": "7.1.2",
+      "isInstallable": false
+    },
+    {
+      "title": "auditmanager",
+      "description": "Complex module to track, manage and analyze all audit relevant findings.",
+      "versionAvailable": "7.1",
+      "author": "ARTEMEON",
+      "requires": {
+        "agp_commons": "7.1",
+        "aufgaben": "7.1",
+        "phpexcel": "7.1",
+        "summary": "7.1",
+        "mediamanager": "7.1",
+        "prozessverwaltung": "7.1"
+      },
+      "path": "/core_agp/module_auditmanager",
+      "providesInstaller": true,
+      "versionInstalled": "7.1",
+      "isInstallable": false
+    },
+    {
+      "title": "benchmark",
+      "description": "Simple scripts to validate a systems' performance",
+      "versionAvailable": "7.1",
+      "author": "Kajona Team",
+      "requires": {
+        "system": "7.0"
+      },
+      "path": "/core/module_benchmark",
+      "providesInstaller": false,
+      "versionInstalled": null,
+      "isInstallable": false
+    }
+  ],
+  "not_installed": [
+    {
+      "title": "agp_commons",
+      "description": "Holds common values and settings, updates the config-files if required.",
+      "versionAvailable": "7.1.2",
+      "author": "ARTEMEON",
+      "requires": {
+        "system": "7.1",
+        "dashboard": "7.1",
+        "tags": "7.1",
+        "mediamanager": "7.1",
+        "nestedset": "7.1"
+      },
+      "path": "/core_agp/module_agp_commons",
+      "providesInstaller": true,
+      "versionInstalled": "7.1.2",
+      "isInstallable": false
+    },
+    {
+      "title": "auditmanager",
+      "description": "Complex module to track, manage and analyze all audit relevant findings.",
+      "versionAvailable": "7.1",
+      "author": "ARTEMEON",
+      "requires": {
+        "agp_commons": "7.1",
+        "aufgaben": "7.1",
+        "phpexcel": "7.1",
+        "summary": "7.1",
+        "mediamanager": "7.1",
+        "prozessverwaltung": "7.1"
+      },
+      "path": "/core_agp/module_auditmanager",
+      "providesInstaller": true,
+      "versionInstalled": null,
+      "isInstallable": true
+    },
+    {
+      "title": "benchmark",
+      "description": "Simple scripts to validate a systems' performance",
+      "versionAvailable": "7.1",
+      "author": "Kajona Team",
+      "requires": {
+        "system": "7.0"
+      },
+      "path": "/core/module_benchmark",
+      "providesInstaller": false,
+      "versionInstalled": null,
+      "isInstallable": false
+    }
+  ],
+  "updated": [
+    {
+      "title": "agp_commons",
+      "description": "Holds common values and settings, updates the config-files if required.",
+      "versionAvailable": "7.1.2",
+      "author": "ARTEMEON",
+      "requires": {
+        "system": "7.1",
+        "dashboard": "7.1",
+        "tags": "7.1",
+        "mediamanager": "7.1",
+        "nestedset": "7.1"
+      },
+      "path": "/core_agp/module_agp_commons",
+      "providesInstaller": true,
+      "versionInstalled": "7.1.2",
+      "isInstallable": false
+    },
+    {
+      "title": "auditmanager",
+      "description": "Complex module to track, manage and analyze all audit relevant findings.",
+      "versionAvailable": "7.1",
+      "author": "ARTEMEON",
+      "requires": {
+        "agp_commons": "7.1",
+        "aufgaben": "7.1",
+        "phpexcel": "7.1",
+        "summary": "7.1",
+        "mediamanager": "7.1",
+        "prozessverwaltung": "7.1"
+      },
+      "path": "/core_agp/module_auditmanager",
+      "providesInstaller": true,
+      "versionInstalled": "7.1",
+      "isInstallable": false
+    },
+    {
+      "title": "benchmark",
+      "description": "Simple scripts to validate a systems' performance",
+      "versionAvailable": "7.1",
+      "author": "Kajona Team",
+      "requires": {
+        "system": "7.0"
+      },
+      "path": "/core/module_benchmark",
+      "providesInstaller": false,
+      "versionInstalled": "7.1",
+      "isInstallable": false
+    }
+  ],
+  "not_updated": [
+    {
+      "title": "agp_commons",
+      "description": "Holds common values and settings, updates the config-files if required.",
+      "versionAvailable": "7.1.2",
+      "author": "ARTEMEON",
+      "requires": {
+        "system": "7.1",
+        "dashboard": "7.1",
+        "tags": "7.1",
+        "mediamanager": "7.1",
+        "nestedset": "7.1"
+      },
+      "path": "/core_agp/module_agp_commons",
+      "providesInstaller": true,
+      "versionInstalled": "7.1.2",
+      "isInstallable": false
+    },
+    {
+      "title": "auditmanager",
+      "description": "Complex module to track, manage and analyze all audit relevant findings.",
+      "versionAvailable": "7.1",
+      "author": "ARTEMEON",
+      "requires": {
+        "agp_commons": "7.1",
+        "aufgaben": "7.1",
+        "phpexcel": "7.1",
+        "summary": "7.1",
+        "mediamanager": "7.1",
+        "prozessverwaltung": "7.1"
+      },
+      "path": "/core_agp/module_auditmanager",
+      "providesInstaller": true,
+      "versionInstalled": "7.2",
+      "isInstallable": true
+    },
+    {
+      "title": "benchmark",
+      "description": "Simple scripts to validate a systems' performance",
+      "versionAvailable": "7.1",
+      "author": "Kajona Team",
+      "requires": {
+        "system": "7.0"
+      },
+      "path": "/core/module_benchmark",
+      "providesInstaller": false,
+      "versionInstalled": "7.1",
+      "isInstallable": false
+    }
+  ]
+}
