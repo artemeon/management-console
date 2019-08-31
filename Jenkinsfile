@@ -10,7 +10,7 @@ pipeline {
 //         }
 
         docker {
-           image 'node:current'
+           image 'node:10-stretch'
            label 'master'
 //            args '-v /.npm/''
         }
