@@ -18,12 +18,12 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'npm install'
+                sh 'npm install --unsafe-perm=true --allow-root'
             }
         }
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build '
             }
         }
 
