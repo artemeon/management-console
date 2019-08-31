@@ -11,6 +11,7 @@ pipeline {
 
         docker {
            image 'node:6-alpine'
+           label 'master'
         }
 
     }
