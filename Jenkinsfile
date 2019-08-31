@@ -10,7 +10,7 @@ pipeline {
 //         }
 
         docker {
-           image 'node:6-alpine'
+           image 'node:current'
            label 'master'
 //            args '-v /.npm/''
         }
@@ -22,7 +22,8 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'npm install --unsafe-perm=true --allow-root'
+                sh 'npm install '
+//                 sh 'npm install --unsafe-perm=true --allow-root'
             }
         }
         stage('Build') {
