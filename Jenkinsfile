@@ -12,8 +12,12 @@ pipeline {
         docker {
            image 'node:6-alpine'
            label 'master'
+//            args '-v /.npm/''
         }
 
+    }
+    environment {
+        HOME = '.'
     }
     stages {
         stage('Install') {
