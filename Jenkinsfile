@@ -6,11 +6,11 @@
 pipeline {
     agent {
         node {
-            label 'php 7.3'
+//             label 'php 7.3'
 
-            //docker {
-            //    image 'node:6-alpine'
-            //}
+            docker {
+               image 'node:6-alpine'
+            }
         }
 
     }
